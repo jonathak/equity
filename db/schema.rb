@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110819194044) do
+ActiveRecord::Schema.define(:version => 20110819202510) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -35,6 +35,19 @@ ActiveRecord::Schema.define(:version => 20110819194044) do
     t.float    "partic_cap"
     t.float    "int_rate"
     t.float    "div_rate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transactions", :force => true do |t|
+    t.integer  "company_id"
+    t.integer  "security_id"
+    t.integer  "seller_id"
+    t.integer  "buyer_id"
+    t.integer  "shares"
+    t.float    "dollars"
+    t.float    "ex_price"
+    t.date     "date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

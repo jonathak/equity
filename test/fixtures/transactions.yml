@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  company_id: 1
+  security_id: 1
+  seller_id: 1
+  buyer_id: 1
+  shares: 1
+  dollars: 1.5
+  ex_price: 1.5
+  date: 2011-08-19
+
+two:
+  company_id: 1
+  security_id: 1
+  seller_id: 1
+  buyer_id: 1
+  shares: 1
+  dollars: 1.5
+  ex_price: 1.5
+  date: 2011-08-19

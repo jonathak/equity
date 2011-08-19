@@ -354,3 +354,164 @@ Started POST "/securities" for 127.0.0.1 at 2011-08-19 15:57:29 -0400
 Rendered securities/_form.html.erb (7.9ms)
 Rendered securities/new.html.erb within layouts/application (10.6ms)
 Completed 200 OK in 55ms (Views: 13.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/securities" for 127.0.0.1 at 2011-08-19 16:01:46 -0400
+  Processing by SecuritiesController#index as HTML
+  [1m[35mSecurity Load (0.3ms)[0m  SELECT "securities".* FROM "securities"
+Rendered securities/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 13ms (Views: 5.1ms | ActiveRecord: 0.3ms)
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+Migrating to CreateCompanies (20110819023156)
+Migrating to CreateEntities (20110819191454)
+Migrating to CreateSecurities (20110819194044)
+Migrating to CreateTransactions (20110819202510)
+  [1m[35mSQL (0.0ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "transactions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "company_id" integer, "security_id" integer, "seller_id" integer, "buyer_id" integer, "shares" integer, "dollars" float, "ex_price" float, "date" date, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110819202510')
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("companies")
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_list("entities")[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("securities")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("transactions")[0m
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from service at /Users/jonkaufman/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/1.9.1/webrick/httpserver.rb:111)
+
+
+Started GET "/" for 127.0.0.1 at 2011-08-19 16:32:25 -0400
+  Processing by AdminController#home as HTML
+Rendered admin/home.html.haml within layouts/application (3.1ms)
+Completed 200 OK in 6ms (Views: 6.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-08-19 16:33:07 -0400
+  Processing by AdminController#home as HTML
+Rendered admin/home.html.haml within layouts/application (2.9ms)
+Completed 200 OK in 6ms (Views: 6.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/transactions" for 127.0.0.1 at 2011-08-19 16:33:09 -0400
+  Processing by TransactionsController#index as HTML
+Completed 500 Internal Server Error in 5ms
+
+SyntaxError (/Users/jonkaufman/github/equity/app/models/transaction.rb:2: syntax error, unexpected tIDENTIFIER, expecting keyword_end
+... company_id:integer security_id:integer seller_id:integer bu...
+...                               ^
+/Users/jonkaufman/github/equity/app/models/transaction.rb:2: syntax error, unexpected tLABEL, expecting keyword_do or '{' or '('
+...ger seller_id:integer buyer_id:integer shares:integer dollar...
+...                               ^
+/Users/jonkaufman/github/equity/app/models/transaction.rb:2: syntax error, unexpected tLABEL, expecting keyword_do or '{' or '('
+...integer shares:integer dollars:float ex_price:float date:date
+...                               ^
+/Users/jonkaufman/github/equity/app/models/transaction.rb:2: syntax error, unexpected tLABEL, expecting keyword_do or '{' or '('
+...lars:float ex_price:float date:date
+...                               ^):
+  app/controllers/transactions_controller.rb:5:in `index'
+
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.3ms)
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (6.3ms)
+
+
+Started GET "/transactions" for 127.0.0.1 at 2011-08-19 16:33:39 -0400
+  Processing by TransactionsController#index as HTML
+  [1m[36mTransaction Load (0.4ms)[0m  [1mSELECT "transactions".* FROM "transactions"[0m
+Rendered transactions/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 59ms (Views: 5.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/transactions/new" for 127.0.0.1 at 2011-08-19 16:33:43 -0400
+  Processing by TransactionsController#new as HTML
+Rendered transactions/_form.html.erb (82.2ms)
+Rendered transactions/new.html.erb within layouts/application (84.9ms)
+Completed 200 OK in 99ms (Views: 88.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2011-08-19 16:33:45 -0400
+  Processing by TransactionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"m5Ka1Bv4688nhGAcgfquDlXdncLIxreAmUft48nw43Y=", "transaction"=>{"company_id"=>"", "security_id"=>"", "seller_id"=>"", "buyer_id"=>"", "shares"=>"", "dollars"=>"", "ex_price"=>"", "date(1i)"=>"2011", "date(2i)"=>"8", "date(3i)"=>"19"}, "commit"=>"Create Transaction"}
+Rendered transactions/_form.html.erb (15.6ms)
+Rendered transactions/new.html.erb within layouts/application (18.3ms)
+Completed 200 OK in 64ms (Views: 21.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2011-08-19 16:34:03 -0400
+  Processing by TransactionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"m5Ka1Bv4688nhGAcgfquDlXdncLIxreAmUft48nw43Y=", "transaction"=>{"company_id"=>"", "security_id"=>"", "seller_id"=>"", "buyer_id"=>"", "shares"=>"9.0", "dollars"=>"-8", "ex_price"=>"678", "date(1i)"=>"2011", "date(2i)"=>"8", "date(3i)"=>"19"}, "commit"=>"Create Transaction"}
+Rendered transactions/_form.html.erb (35.2ms)
+Rendered transactions/new.html.erb within layouts/application (37.9ms)
+Completed 200 OK in 68ms (Views: 40.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2011-08-19 16:34:20 -0400
+  Processing by TransactionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"m5Ka1Bv4688nhGAcgfquDlXdncLIxreAmUft48nw43Y=", "transaction"=>{"company_id"=>"", "security_id"=>"", "seller_id"=>"", "buyer_id"=>"", "shares"=>"9.08", "dollars"=>"-8", "ex_price"=>"678", "date(1i)"=>"2011", "date(2i)"=>"8", "date(3i)"=>"19"}, "commit"=>"Create Transaction"}
+Rendered transactions/_form.html.erb (16.0ms)
+Rendered transactions/new.html.erb within layouts/application (18.5ms)
+Completed 200 OK in 67ms (Views: 21.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2011-08-19 16:35:28 -0400
+  Processing by TransactionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"m5Ka1Bv4688nhGAcgfquDlXdncLIxreAmUft48nw43Y=", "transaction"=>{"company_id"=>"", "security_id"=>"", "seller_id"=>"", "buyer_id"=>"", "shares"=>"9.08", "dollars"=>"-8", "ex_price"=>"678", "date(1i)"=>"2011", "date(2i)"=>"8", "date(3i)"=>"19"}, "commit"=>"Create Transaction"}
+Rendered transactions/_form.html.erb (35.5ms)
+Rendered transactions/new.html.erb within layouts/application (38.1ms)
+Completed 200 OK in 67ms (Views: 41.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-08-19 16:35:39 -0400
+  Processing by AdminController#home as HTML
+Rendered admin/home.html.haml within layouts/application (2.8ms)
+Completed 200 OK in 6ms (Views: 5.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/transactions" for 127.0.0.1 at 2011-08-19 16:35:40 -0400
+  Processing by TransactionsController#index as HTML
+  [1m[35mTransaction Load (0.4ms)[0m  SELECT "transactions".* FROM "transactions"
+Rendered transactions/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 14ms (Views: 5.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/transactions/new" for 127.0.0.1 at 2011-08-19 16:35:42 -0400
+  Processing by TransactionsController#new as HTML
+Rendered transactions/_form.html.erb (31.8ms)
+Rendered transactions/new.html.erb within layouts/application (34.5ms)
+Completed 200 OK in 48ms (Views: 37.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2011-08-19 16:35:48 -0400
+  Processing by TransactionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"m5Ka1Bv4688nhGAcgfquDlXdncLIxreAmUft48nw43Y=", "transaction"=>{"company_id"=>"", "security_id"=>"", "seller_id"=>"", "buyer_id"=>"", "shares"=>".9", "dollars"=>"", "ex_price"=>"", "date(1i)"=>"2011", "date(2i)"=>"8", "date(3i)"=>"19"}, "commit"=>"Create Transaction"}
+Rendered transactions/_form.html.erb (15.3ms)
+Rendered transactions/new.html.erb within layouts/application (17.9ms)
+Completed 200 OK in 65ms (Views: 21.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2011-08-19 16:36:07 -0400
+  Processing by TransactionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"m5Ka1Bv4688nhGAcgfquDlXdncLIxreAmUft48nw43Y=", "transaction"=>{"company_id"=>"", "security_id"=>"", "seller_id"=>"", "buyer_id"=>"", "shares"=>"-.9", "dollars"=>"", "ex_price"=>"", "date(1i)"=>"2011", "date(2i)"=>"8", "date(3i)"=>"19"}, "commit"=>"Create Transaction"}
+Rendered transactions/_form.html.erb (33.5ms)
+Rendered transactions/new.html.erb within layouts/application (36.2ms)
+Completed 200 OK in 84ms (Views: 39.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/transactions" for 127.0.0.1 at 2011-08-19 16:37:27 -0400
+  Processing by TransactionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"m5Ka1Bv4688nhGAcgfquDlXdncLIxreAmUft48nw43Y=", "transaction"=>{"company_id"=>"", "security_id"=>"", "seller_id"=>"", "buyer_id"=>"", "shares"=>"-.9", "dollars"=>"", "ex_price"=>"", "date(1i)"=>"2011", "date(2i)"=>"8", "date(3i)"=>"19"}, "commit"=>"Create Transaction"}
+Rendered transactions/_form.html.erb (16.0ms)
+Rendered transactions/new.html.erb within layouts/application (18.6ms)
+Completed 200 OK in 68ms (Views: 21.6ms | ActiveRecord: 0.0ms)

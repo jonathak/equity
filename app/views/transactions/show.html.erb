@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Company:</b>
+  <%= @transaction.company_id %>
+</p>
+
+<p>
+  <b>Security:</b>
+  <%= @transaction.security_id %>
+</p>
+
+<p>
+  <b>Seller:</b>
+  <%= @transaction.seller_id %>
+</p>
+
+<p>
+  <b>Buyer:</b>
+  <%= @transaction.buyer_id %>
+</p>
+
+<p>
+  <b>Shares:</b>
+  <%= @transaction.shares %>
+</p>
+
+<p>
+  <b>Dollars:</b>
+  <%= @transaction.dollars %>
+</p>
+
+<p>
+  <b>Ex price:</b>
+  <%= @transaction.ex_price %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @transaction.date %>
+</p>
+
+
+<%= link_to 'Edit', edit_transaction_path(@transaction) %> |
+<%= link_to 'Back', transactions_path %>
