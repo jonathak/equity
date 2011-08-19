@@ -1,4 +1,6 @@
 Equity::Application.routes.draw do
+  get "admin/home"
+
   resources :companies
 
   # The priority is based upon order of creation:
