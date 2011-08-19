@@ -92,3 +92,87 @@ Started GET "/" for 127.0.0.1 at 2011-08-19 14:43:13 -0400
   Processing by AdminController#home as HTML
 Rendered admin/home.html.haml within layouts/application (2.3ms)
 Completed 200 OK in 6ms (Views: 5.9ms | ActiveRecord: 0.0ms)
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from service at /Users/jonkaufman/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/1.9.1/webrick/httpserver.rb:111)
+
+
+Started GET "/" for 127.0.0.1 at 2011-08-19 15:02:27 -0400
+  Processing by AdminController#home as HTML
+Rendered admin/home.html.haml within layouts/application (2.3ms)
+Completed 200 OK in 6ms (Views: 5.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin/home" for 127.0.0.1 at 2011-08-19 15:02:39 -0400
+  Processing by AdminController#home as HTML
+Rendered admin/home.html.haml within layouts/application (2.2ms)
+Completed 200 OK in 6ms (Views: 5.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-08-19 15:02:49 -0400
+  Processing by AdminController#home as HTML
+Rendered admin/home.html.haml within layouts/application (2.1ms)
+Completed 200 OK in 5ms (Views: 5.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/companies" for 127.0.0.1 at 2011-08-19 15:02:53 -0400
+  Processing by CompaniesController#index as HTML
+Completed 500 Internal Server Error in 5ms
+
+SyntaxError (/Users/jonkaufman/github/equity/app/models/company.rb:3: syntax error, unexpected tSYMBEG, expecting keyword_do or '{' or '('
+  validates_uniqueness_of :email, :case_sensitive => false
+                           ^):
+  app/controllers/companies_controller.rb:5:in `index'
+
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.3ms)
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.3ms)
+
+
+Started GET "/companies" for 127.0.0.1 at 2011-08-19 15:03:16 -0400
+  Processing by CompaniesController#index as HTML
+Completed 500 Internal Server Error in 5ms
+
+SyntaxError (/Users/jonkaufman/github/equity/app/models/company.rb:3: syntax error, unexpected tSYMBEG, expecting keyword_do or '{' or '('
+  validates_uniqueness_of :name, :case_sensitive => false
+                           ^):
+  app/controllers/companies_controller.rb:5:in `index'
+
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.2ms)
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (6.2ms)
+
+
+Started GET "/companies" for 127.0.0.1 at 2011-08-19 15:03:17 -0400
+  Processing by CompaniesController#index as HTML
+Completed 500 Internal Server Error in 5ms
+
+SyntaxError (/Users/jonkaufman/github/equity/app/models/company.rb:3: syntax error, unexpected tSYMBEG, expecting keyword_do or '{' or '('
+  validates_uniqueness_of :name, :case_sensitive => false
+                           ^):
+  app/controllers/companies_controller.rb:5:in `index'
+
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.1ms)
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (5.8ms)
+
+
+Started GET "/companies" for 127.0.0.1 at 2011-08-19 15:03:39 -0400
+  Processing by CompaniesController#index as HTML
+  [1m[36mCompany Load (0.7ms)[0m  [1mSELECT "companies".* FROM "companies"[0m
+Rendered companies/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 49ms (Views: 6.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/companies/new" for 127.0.0.1 at 2011-08-19 15:03:42 -0400
+  Processing by CompaniesController#new as HTML
+Rendered companies/_form.html.erb (50.7ms)
+Rendered companies/new.html.erb within layouts/application (54.4ms)
+Completed 200 OK in 67ms (Views: 59.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/companies" for 127.0.0.1 at 2011-08-19 15:03:44 -0400
+  Processing by CompaniesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"m5Ka1Bv4688nhGAcgfquDlXdncLIxreAmUft48nw43Y=", "company"=>{"name"=>""}, "commit"=>"Create Company"}
+  [1m[35mSQL (0.2ms)[0m  SELECT 1 FROM "companies" WHERE (LOWER("companies"."name") = LOWER('')) LIMIT 1
+Rendered companies/_form.html.erb (3.3ms)
+Rendered companies/new.html.erb within layouts/application (5.7ms)
+Completed 200 OK in 37ms (Views: 8.9ms | ActiveRecord: 0.2ms)
