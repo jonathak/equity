@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @security.name %>
+</p>
+
+<p>
+  <b>Kind:</b>
+  <%= @security.kind %>
+</p>
+
+<p>
+  <b>Rank:</b>
+  <%= @security.rank %>
+</p>
+
+<p>
+  <b>Liq pref:</b>
+  <%= @security.liq_pref %>
+</p>
+
+<p>
+  <b>Disc fact:</b>
+  <%= @security.disc_fact %>
+</p>
+
+<p>
+  <b>Warrant cov:</b>
+  <%= @security.warrant_cov %>
+</p>
+
+<p>
+  <b>Participating:</b>
+  <%= @security.participating %>
+</p>
+
+<p>
+  <b>Partic cap:</b>
+  <%= @security.partic_cap %>
+</p>
+
+<p>
+  <b>Int rate:</b>
+  <%= @security.int_rate %>
+</p>
+
+<p>
+  <b>Div rate:</b>
+  <%= @security.div_rate %>
+</p>
+
+
+<%= link_to 'Edit', edit_security_path(@security) %> |
+<%= link_to 'Back', securities_path %>

@@ -1,0 +1,57 @@
+<%= form_for(@security) do |f| %>
+  <% if @security.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@security.errors.count, "error") %> prohibited this security from being saved:</h2>
+
+      <ul>
+      <% @security.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :kind %><br />
+    <%= f.text_field :kind %>
+  </div>
+  <div class="field">
+    <%= f.label :rank %><br />
+    <%= f.text_field :rank %>
+  </div>
+  <div class="field">
+    <%= f.label :liq_pref %><br />
+    <%= f.text_field :liq_pref %>
+  </div>
+  <div class="field">
+    <%= f.label :disc_fact %><br />
+    <%= f.text_field :disc_fact %>
+  </div>
+  <div class="field">
+    <%= f.label :warrant_cov %><br />
+    <%= f.text_field :warrant_cov %>
+  </div>
+  <div class="field">
+    <%= f.label :participating %><br />
+    <%= f.check_box :participating %>
+  </div>
+  <div class="field">
+    <%= f.label :partic_cap %><br />
+    <%= f.text_field :partic_cap %>
+  </div>
+  <div class="field">
+    <%= f.label :int_rate %><br />
+    <%= f.text_field :int_rate %>
+  </div>
+  <div class="field">
+    <%= f.label :div_rate %><br />
+    <%= f.text_field :div_rate %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

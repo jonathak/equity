@@ -1,0 +1,41 @@
+<h1>Listing securities</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Kind</th>
+    <th>Rank</th>
+    <th>Liq pref</th>
+    <th>Disc fact</th>
+    <th>Warrant cov</th>
+    <th>Participating</th>
+    <th>Partic cap</th>
+    <th>Int rate</th>
+    <th>Div rate</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @securities.each do |security| %>
+  <tr>
+    <td><%= security.name %></td>
+    <td><%= security.kind %></td>
+    <td><%= security.rank %></td>
+    <td><%= security.liq_pref %></td>
+    <td><%= security.disc_fact %></td>
+    <td><%= security.warrant_cov %></td>
+    <td><%= security.participating %></td>
+    <td><%= security.partic_cap %></td>
+    <td><%= security.int_rate %></td>
+    <td><%= security.div_rate %></td>
+    <td><%= link_to 'Show', security %></td>
+    <td><%= link_to 'Edit', edit_security_path(security) %></td>
+    <td><%= link_to 'Destroy', security, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Security', new_security_path %>

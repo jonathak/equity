@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  kind: MyString
+  rank: 1
+  liq_pref: 1.5
+  disc_fact: 1.5
+  warrant_cov: 1.5
+  participating: false
+  partic_cap: 1.5
+  int_rate: 1.5
+  div_rate: 1.5
+
+two:
+  name: MyString
+  kind: MyString
+  rank: 1
+  liq_pref: 1.5
+  disc_fact: 1.5
+  warrant_cov: 1.5
+  participating: false
+  partic_cap: 1.5
+  int_rate: 1.5
+  div_rate: 1.5

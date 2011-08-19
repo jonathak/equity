@@ -262,3 +262,95 @@ Started POST "/entities" for 127.0.0.1 at 2011-08-19 15:32:15 -0400
 Rendered entities/_form.html.erb (3.5ms)
 Rendered entities/new.html.erb within layouts/application (6.0ms)
 Completed 200 OK in 34ms (Views: 8.9ms | ActiveRecord: 0.1ms)
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+Migrating to CreateCompanies (20110819023156)
+Migrating to CreateEntities (20110819191454)
+Migrating to CreateSecurities (20110819194044)
+  [1m[35mSQL (0.0ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE TABLE "securities" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "kind" varchar(255), "rank" integer, "liq_pref" float, "disc_fact" float, "warrant_cov" float, "participating" boolean, "partic_cap" float, "int_rate" float, "div_rate" float, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110819194044')
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("companies")
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_list("entities")[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("securities")
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from service at /Users/jonkaufman/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/1.9.1/webrick/httpserver.rb:111)
+
+
+Started GET "/" for 127.0.0.1 at 2011-08-19 15:53:09 -0400
+  Processing by AdminController#home as HTML
+Rendered admin/home.html.haml within layouts/application (2.9ms)
+Completed 200 OK in 7ms (Views: 6.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/securities" for 127.0.0.1 at 2011-08-19 15:53:11 -0400
+  Processing by SecuritiesController#index as HTML
+  [1m[36mSecurity Load (0.4ms)[0m  [1mSELECT "securities".* FROM "securities"[0m
+Rendered securities/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 61ms (Views: 6.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 15:53:14 -0400
+  Processing by SecuritiesController#new as HTML
+Rendered securities/_form.html.erb (76.5ms)
+Rendered securities/new.html.erb within layouts/application (79.2ms)
+Completed 200 OK in 94ms (Views: 82.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/securities" for 127.0.0.1 at 2011-08-19 15:53:24 -0400
+  Processing by SecuritiesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"m5Ka1Bv4688nhGAcgfquDlXdncLIxreAmUft48nw43Y=", "security"=>{"name"=>"", "kind"=>"", "rank"=>"", "liq_pref"=>"", "disc_fact"=>"", "warrant_cov"=>"", "participating"=>"1", "partic_cap"=>"", "int_rate"=>"", "div_rate"=>""}, "commit"=>"Create Security"}
+  [1m[35mSQL (0.2ms)[0m  SELECT 1 FROM "securities" WHERE ("securities"."name" = '') LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mSELECT 1 FROM "securities" WHERE ("securities"."rank" IS NULL) LIMIT 1[0m
+Rendered securities/_form.html.erb (33.3ms)
+Rendered securities/new.html.erb within layouts/application (35.9ms)
+Completed 200 OK in 100ms (Views: 38.9ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/securities" for 127.0.0.1 at 2011-08-19 15:53:47 -0400
+  Processing by SecuritiesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"m5Ka1Bv4688nhGAcgfquDlXdncLIxreAmUft48nw43Y=", "security"=>{"name"=>"q", "kind"=>"w", "rank"=>"", "liq_pref"=>"", "disc_fact"=>"", "warrant_cov"=>"", "participating"=>"1", "partic_cap"=>"", "int_rate"=>"888", "div_rate"=>""}, "commit"=>"Create Security"}
+  [1m[35mSQL (0.1ms)[0m  SELECT 1 FROM "securities" WHERE ("securities"."name" = 'q') LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mSELECT 1 FROM "securities" WHERE ("securities"."rank" IS NULL) LIMIT 1[0m
+Rendered securities/_form.html.erb (14.0ms)
+Rendered securities/new.html.erb within layouts/application (16.5ms)
+Completed 200 OK in 66ms (Views: 19.5ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/securities" for 127.0.0.1 at 2011-08-19 15:56:28 -0400
+  Processing by SecuritiesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"m5Ka1Bv4688nhGAcgfquDlXdncLIxreAmUft48nw43Y=", "security"=>{"name"=>"q", "kind"=>"w", "rank"=>"", "liq_pref"=>"", "disc_fact"=>"", "warrant_cov"=>"", "participating"=>"1", "partic_cap"=>"", "int_rate"=>"888", "div_rate"=>""}, "commit"=>"Create Security"}
+Completed 500 Internal Server Error in 4ms
+
+SyntaxError (/Users/jonkaufman/github/equity/app/models/security.rb:4: syntax error, unexpected '}', expecting tASSOC
+/Users/jonkaufman/github/equity/app/models/security.rb:5: syntax error, unexpected '}', expecting tASSOC
+/Users/jonkaufman/github/equity/app/models/security.rb:6: syntax error, unexpected '}', expecting tASSOC):
+  app/controllers/securities_controller.rb:43:in `create'
+
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.4ms)
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.8ms)
+
+
+Started POST "/securities" for 127.0.0.1 at 2011-08-19 15:57:29 -0400
+  Processing by SecuritiesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"m5Ka1Bv4688nhGAcgfquDlXdncLIxreAmUft48nw43Y=", "security"=>{"name"=>"q", "kind"=>"w", "rank"=>"", "liq_pref"=>"", "disc_fact"=>"", "warrant_cov"=>"", "participating"=>"1", "partic_cap"=>"", "int_rate"=>"888", "div_rate"=>""}, "commit"=>"Create Security"}
+  [1m[35mSQL (0.1ms)[0m  SELECT 1 FROM "securities" WHERE ("securities"."name" = 'q') LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mSELECT 1 FROM "securities" WHERE ("securities"."rank" IS NULL) LIMIT 1[0m
+Rendered securities/_form.html.erb (7.9ms)
+Rendered securities/new.html.erb within layouts/application (10.6ms)
+Completed 200 OK in 55ms (Views: 13.6ms | ActiveRecord: 0.2ms)

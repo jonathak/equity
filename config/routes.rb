@@ -1,4 +1,6 @@
 Equity::Application.routes.draw do
+  resources :securities
+
   resources :entities
 
   get "admin/home"
