@@ -176,3 +176,35 @@ Started POST "/companies" for 127.0.0.1 at 2011-08-19 15:03:44 -0400
 Rendered companies/_form.html.erb (3.3ms)
 Rendered companies/new.html.erb within layouts/application (5.7ms)
 Completed 200 OK in 37ms (Views: 8.9ms | ActiveRecord: 0.2ms)
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from service at /Users/jonkaufman/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/1.9.1/webrick/httpserver.rb:111)
+
+
+Started GET "/" for 127.0.0.1 at 2011-08-19 15:06:18 -0400
+  Processing by AdminController#home as HTML
+Rendered admin/home.html.haml within layouts/application (2.7ms)
+Completed 200 OK in 6ms (Views: 5.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin/home" for 127.0.0.1 at 2011-08-19 15:06:21 -0400
+  Processing by AdminController#home as HTML
+Rendered admin/home.html.haml within layouts/application (3.0ms)
+Completed 200 OK in 6ms (Views: 6.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin/home" for 127.0.0.1 at 2011-08-19 15:06:22 -0400
+  Processing by AdminController#home as HTML
+Rendered admin/home.html.haml within layouts/application (3.5ms)
+Completed 200 OK in 7ms (Views: 6.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin/home" for 127.0.0.1 at 2011-08-19 15:06:34 -0400
+  Processing by AdminController#home as HTML
+Rendered admin/home.html.haml within layouts/application (2.5ms)
+Completed 200 OK in 6ms (Views: 5.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/companies" for 127.0.0.1 at 2011-08-19 15:06:36 -0400
+  Processing by CompaniesController#index as HTML
+  [1m[36mCompany Load (0.4ms)[0m  [1mSELECT "companies".* FROM "companies"[0m
+Rendered companies/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 58ms (Views: 4.7ms | ActiveRecord: 0.4ms)
