@@ -84,3 +84,11 @@ Started GET "/admin/home" for 127.0.0.1 at 2011-08-18 22:56:21 -0400
   Processing by AdminController#home as HTML
 Rendered admin/home.html.haml within layouts/application (2.5ms)
 Completed 200 OK in 6ms (Views: 6.1ms | ActiveRecord: 0.0ms)
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from service at /Users/jonkaufman/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/1.9.1/webrick/httpserver.rb:111)
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from service at /Users/jonkaufman/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/1.9.1/webrick/httpserver.rb:111)
+
+
+Started GET "/" for 127.0.0.1 at 2011-08-19 14:43:13 -0400
+  Processing by AdminController#home as HTML
+Rendered admin/home.html.haml within layouts/application (2.3ms)
+Completed 200 OK in 6ms (Views: 5.9ms | ActiveRecord: 0.0ms)
