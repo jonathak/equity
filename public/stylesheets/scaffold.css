@@ -30,6 +30,26 @@ div.field, div.actions {
   display: table;
 }
 
+.field_liq {
+  margin-bottom: 10px;
+  display: none;
+}
+
+.field_pref {
+  margin-bottom: 10px;
+  display: none;
+}
+
+.field_debt {
+  margin-bottom: 10px;
+  display: none;
+}
+
+.field_cov {
+  margin-bottom: 10px;
+  display: none;
+}
+
 #error_explanation {
   width: 450px;
   border: 2px solid red;

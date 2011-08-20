@@ -19,35 +19,35 @@
     <%= f.label :kind %><br />
     <%= f.select(:kind, options_for_select(@kinds)) %>
   </div>
-  <div class="field">
+  <div class="field_liq">
     <%= f.label :rank %><br />
     <%= f.text_field :rank %>
   </div>
-  <div class="field">
+  <div class="field_pref">
     <%= f.label :liq_pref %><br />
     <%= f.text_field :liq_pref %>
   </div>
-  <div class="field">
+  <div class="field_debt">
     <%= f.label :disc_fact %><br />
     <%= f.text_field :disc_fact %>
   </div>
-  <div class="field">
+  <div class="field_cov">
     <%= f.label :warrant_cov %><br />
     <%= f.text_field :warrant_cov %>
   </div>
-  <div class="field">
-    <%= f.label :participating %><br />
-    <%= f.check_box :participating %>
+  <div class="field_pref">
+    <%= f.label :participating? %><br />
+    <%= f.check_box :participating %> (check if yes)
   </div>
-  <div class="field">
+  <div class="field_pref">
     <%= f.label :partic_cap %><br />
     <%= f.text_field :partic_cap %>
   </div>
-  <div class="field">
+  <div class="field_debt">
     <%= f.label :int_rate %><br />
     <%= f.text_field :int_rate %>
   </div>
-  <div class="field">
+  <div class="field_pref">
     <%= f.label :div_rate %><br />
     <%= f.text_field :div_rate %>
   </div>

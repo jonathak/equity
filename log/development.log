@@ -1259,3 +1259,203 @@ Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 21:19:59 -0400
 Rendered securities/_form.html.erb (13.8ms)
 Rendered securities/new.html.erb within layouts/application (36.4ms)
 Completed 200 OK in 58ms (Views: 39.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 21:45:07 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[35mKind Load (0.2ms)[0m  SELECT "kinds".* FROM "kinds"
+Rendered securities/_form.html.erb (34.4ms)
+Rendered securities/new.html.erb within layouts/application (36.8ms)
+Completed 200 OK in 59ms (Views: 39.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 21:47:26 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+Rendered securities/_form.html.erb (14.3ms)
+Rendered securities/new.html.erb within layouts/application (16.8ms)
+Completed 200 OK in 57ms (Views: 19.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 21:47:52 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[35mKind Load (0.2ms)[0m  SELECT "kinds".* FROM "kinds"
+Rendered securities/_form.html.erb (14.4ms)
+Rendered securities/new.html.erb within layouts/application (17.5ms)
+Completed 200 OK in 58ms (Views: 20.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 21:50:50 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+Rendered securities/_form.html.erb (14.2ms)
+Rendered securities/new.html.erb within layouts/application (16.6ms)
+Completed 200 OK in 38ms (Views: 19.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 21:51:41 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[35mKind Load (0.2ms)[0m  SELECT "kinds".* FROM "kinds"
+Rendered securities/_form.html.erb (13.7ms)
+Rendered securities/new.html.erb within layouts/application (16.2ms)
+Completed 200 OK in 38ms (Views: 19.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 21:52:20 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+Rendered securities/_form.html.erb (32.1ms)
+Rendered securities/new.html.erb within layouts/application (34.6ms)
+Completed 200 OK in 56ms (Views: 37.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 21:54:22 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[35mKind Load (0.2ms)[0m  SELECT "kinds".* FROM "kinds"
+Rendered securities/_form.html.erb (33.4ms)
+Rendered securities/new.html.erb within layouts/application (35.8ms)
+Completed 200 OK in 58ms (Views: 38.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 21:58:18 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+Rendered securities/_form.html.erb (13.9ms)
+Rendered securities/new.html.erb within layouts/application (16.4ms)
+Completed 200 OK in 56ms (Views: 19.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 21:59:45 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[35mKind Load (0.2ms)[0m  SELECT "kinds".* FROM "kinds"
+Rendered securities/_form.html.erb (14.5ms)
+Rendered securities/new.html.erb within layouts/application (16.9ms)
+Completed 200 OK in 57ms (Views: 19.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 21:59:46 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+Rendered securities/_form.html.erb (14.2ms)
+Rendered securities/new.html.erb within layouts/application (16.7ms)
+Completed 200 OK in 38ms (Views: 19.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 21:59:47 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[35mKind Load (0.2ms)[0m  SELECT "kinds".* FROM "kinds"
+Rendered securities/_form.html.erb (14.0ms)
+Rendered securities/new.html.erb within layouts/application (16.4ms)
+Completed 200 OK in 38ms (Views: 19.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 21:59:48 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+Rendered securities/_form.html.erb (34.5ms)
+Rendered securities/new.html.erb within layouts/application (36.9ms)
+Completed 200 OK in 58ms (Views: 40.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 22:00:55 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[35mKind Load (0.2ms)[0m  SELECT "kinds".* FROM "kinds"
+Rendered securities/_form.html.erb (35.5ms)
+Rendered securities/new.html.erb within layouts/application (37.9ms)
+Completed 200 OK in 60ms (Views: 41.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 22:00:56 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+Rendered securities/_form.html.erb (14.6ms)
+Rendered securities/new.html.erb within layouts/application (17.0ms)
+Completed 200 OK in 57ms (Views: 20.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 22:01:35 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[35mKind Load (0.2ms)[0m  SELECT "kinds".* FROM "kinds"
+Rendered securities/_form.html.erb (14.3ms)
+Rendered securities/new.html.erb within layouts/application (16.7ms)
+Completed 200 OK in 56ms (Views: 19.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 22:02:09 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+Rendered securities/_form.html.erb (15.6ms)
+Rendered securities/new.html.erb within layouts/application (18.1ms)
+Completed 200 OK in 59ms (Views: 21.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 22:02:35 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[35mKind Load (0.2ms)[0m  SELECT "kinds".* FROM "kinds"
+Rendered securities/_form.html.erb (13.8ms)
+Rendered securities/new.html.erb within layouts/application (16.3ms)
+Completed 200 OK in 38ms (Views: 19.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 22:02:58 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+Rendered securities/_form.html.erb (14.2ms)
+Rendered securities/new.html.erb within layouts/application (16.6ms)
+Completed 200 OK in 39ms (Views: 19.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 22:03:58 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[35mKind Load (0.2ms)[0m  SELECT "kinds".* FROM "kinds"
+Rendered securities/_form.html.erb (34.2ms)
+Rendered securities/new.html.erb within layouts/application (36.6ms)
+Completed 200 OK in 58ms (Views: 39.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 22:05:01 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+Rendered securities/_form.html.erb (32.7ms)
+Rendered securities/new.html.erb within layouts/application (35.2ms)
+Completed 200 OK in 57ms (Views: 38.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 22:05:33 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[35mKind Load (0.2ms)[0m  SELECT "kinds".* FROM "kinds"
+Rendered securities/_form.html.erb (14.4ms)
+Rendered securities/new.html.erb within layouts/application (16.8ms)
+Completed 200 OK in 56ms (Views: 19.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 22:11:23 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+Rendered securities/_form.html.erb (14.3ms)
+Rendered securities/new.html.erb within layouts/application (16.7ms)
+Completed 200 OK in 58ms (Views: 19.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 22:12:24 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[35mKind Load (0.2ms)[0m  SELECT "kinds".* FROM "kinds"
+Rendered securities/_form.html.erb (15.5ms)
+Rendered securities/new.html.erb within layouts/application (17.9ms)
+Completed 200 OK in 39ms (Views: 20.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 22:14:08 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+Rendered securities/_form.html.erb (13.9ms)
+Rendered securities/new.html.erb within layouts/application (16.2ms)
+Completed 200 OK in 38ms (Views: 19.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 22:15:09 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[35mKind Load (0.2ms)[0m  SELECT "kinds".* FROM "kinds"
+Rendered securities/_form.html.erb (35.3ms)
+Rendered securities/new.html.erb within layouts/application (37.7ms)
+Completed 200 OK in 59ms (Views: 40.7ms | ActiveRecord: 0.2ms)
