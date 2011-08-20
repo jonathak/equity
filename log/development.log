@@ -1459,3 +1459,23 @@ Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 22:15:09 -0400
 Rendered securities/_form.html.erb (35.3ms)
 Rendered securities/new.html.erb within layouts/application (37.7ms)
 Completed 200 OK in 59ms (Views: 40.7ms | ActiveRecord: 0.2ms)
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from service at /Users/jonkaufman/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/1.9.1/webrick/httpserver.rb:111)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 22:23:15 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+Rendered securities/_form.html.erb (70.7ms)
+Rendered securities/new.html.erb within layouts/application (73.6ms)
+Completed 200 OK in 145ms (Views: 76.9ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/securities" for 127.0.0.1 at 2011-08-19 22:23:44 -0400
+  Processing by SecuritiesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0K8TqCGDZjCd+hnSbhwXh7jqK+cqloofBO2TgGNLaVA=", "security"=>{"name"=>"", "kind"=>"preferred", "rank"=>"", "liq_pref"=>"3X", "disc_fact"=>"", "warrant_cov"=>"", "participating"=>"0", "partic_cap"=>"", "int_rate"=>"", "div_rate"=>""}, "commit"=>"Create Security"}
+  [1m[35mKind Load (0.2ms)[0m  SELECT "kinds".* FROM "kinds"
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT 1 FROM "securities" WHERE ("securities"."name" = '') LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT 1 FROM "securities" WHERE ("securities"."rank" IS NULL) LIMIT 1
+Rendered securities/_form.html.erb (28.5ms)
+Rendered securities/new.html.erb within layouts/application (30.9ms)
+Completed 200 OK in 80ms (Views: 33.8ms | ActiveRecord: 0.5ms)
