@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :kind %><br />
-    <%= f.text_field :kind %>
+    <%= f.select(:kind, options_for_select(@kinds)) %>
   </div>
   <div class="field">
     <%= f.label :rank %><br />

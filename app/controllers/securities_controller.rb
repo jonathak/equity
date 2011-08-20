@@ -25,6 +25,7 @@ class SecuritiesController < ApplicationController
   # GET /securities/new.xml
   def new
     @security = Security.new
+    @kinds = Kind.all.map(&:name)
 
     respond_to do |format|
       format.html # new.html.erb

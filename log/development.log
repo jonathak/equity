@@ -655,3 +655,261 @@ Started GET "/" for 127.0.0.1 at 2011-08-19 20:10:15 -0400
   [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "transactions"[0m
 Rendered admin/home.html.haml within layouts/application (4.2ms)
 Completed 200 OK in 39ms (Views: 7.2ms | ActiveRecord: 0.5ms)
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+Migrating to CreateCompanies (20110819023156)
+Migrating to CreateEntities (20110819191454)
+Migrating to CreateSecurities (20110819194044)
+Migrating to CreateTransactions (20110819202510)
+Migrating to CreateKinds (20110820001443)
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "kinds" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110820001443')
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("companies")
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_list("entities")[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("kinds")
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_list("securities")[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("transactions")
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from service at /Users/jonkaufman/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/1.9.1/webrick/httpserver.rb:111)
+
+
+Started GET "/" for 127.0.0.1 at 2011-08-19 20:16:35 -0400
+  Processing by AdminController#home as HTML
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "companies"[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "entities"
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "securities"[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "kinds"
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "transactions"[0m
+Rendered admin/home.html.haml within layouts/application (5.1ms)
+Completed 200 OK in 96ms (Views: 8.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/kinds" for 127.0.0.1 at 2011-08-19 20:16:38 -0400
+  Processing by KindsController#index as HTML
+  [1m[35mKind Load (0.1ms)[0m  SELECT "kinds".* FROM "kinds"
+Rendered kinds/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 10ms (Views: 5.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/kinds/new" for 127.0.0.1 at 2011-08-19 20:16:55 -0400
+  Processing by KindsController#new as HTML
+Rendered kinds/_form.html.erb (69.8ms)
+Rendered kinds/new.html.erb within layouts/application (72.5ms)
+Completed 200 OK in 83ms (Views: 75.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/kinds" for 127.0.0.1 at 2011-08-19 20:17:00 -0400
+  Processing by KindsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0K8TqCGDZjCd+hnSbhwXh7jqK+cqloofBO2TgGNLaVA=", "kind"=>{"name"=>"common"}, "commit"=>"Create Kind"}
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO "kinds" ("name", "created_at", "updated_at") VALUES ('common', '2011-08-20 00:17:00.621989', '2011-08-20 00:17:00.621989')
+Redirected to http://localhost:3000/kinds/1
+Completed 302 Found in 24ms
+
+
+Started GET "/kinds/1" for 127.0.0.1 at 2011-08-19 20:17:00 -0400
+  Processing by KindsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mKind Load (0.1ms)[0m  [1mSELECT "kinds".* FROM "kinds" WHERE "kinds"."id" = 1 LIMIT 1[0m
+Rendered kinds/show.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 16ms (Views: 8.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-08-19 20:17:17 -0400
+  Processing by AdminController#home as HTML
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "companies"
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "entities"[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM "securities"
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "kinds"[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "transactions"
+Rendered admin/home.html.haml within layouts/application (4.8ms)
+Completed 200 OK in 67ms (Views: 7.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/kinds" for 127.0.0.1 at 2011-08-19 20:17:19 -0400
+  Processing by KindsController#index as HTML
+  [1m[36mKind Load (0.4ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+Rendered kinds/index.html.erb within layouts/application (6.9ms)
+Completed 200 OK in 17ms (Views: 10.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/kinds/new" for 127.0.0.1 at 2011-08-19 20:17:21 -0400
+  Processing by KindsController#new as HTML
+Rendered kinds/_form.html.erb (4.8ms)
+Rendered kinds/new.html.erb within layouts/application (7.2ms)
+Completed 200 OK in 19ms (Views: 10.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/kinds" for 127.0.0.1 at 2011-08-19 20:17:35 -0400
+  Processing by KindsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0K8TqCGDZjCd+hnSbhwXh7jqK+cqloofBO2TgGNLaVA=", "kind"=>{"name"=>"options"}, "commit"=>"Create Kind"}
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO "kinds" ("name", "created_at", "updated_at") VALUES ('options', '2011-08-20 00:17:35.198120', '2011-08-20 00:17:35.198120')
+Redirected to http://localhost:3000/kinds/2
+Completed 302 Found in 34ms
+
+
+Started GET "/kinds/2" for 127.0.0.1 at 2011-08-19 20:17:35 -0400
+  Processing by KindsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mKind Load (0.1ms)[0m  [1mSELECT "kinds".* FROM "kinds" WHERE "kinds"."id" = 2 LIMIT 1[0m
+Rendered kinds/show.html.erb within layouts/application (7.3ms)
+Completed 200 OK in 17ms (Views: 10.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-08-19 20:17:42 -0400
+  Processing by AdminController#home as HTML
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "companies"
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "entities"[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "securities"
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "kinds"[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "transactions"
+Rendered admin/home.html.haml within layouts/application (4.9ms)
+Completed 200 OK in 67ms (Views: 7.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/kinds" for 127.0.0.1 at 2011-08-19 20:17:43 -0400
+  Processing by KindsController#index as HTML
+  [1m[36mKind Load (0.3ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+Rendered kinds/index.html.erb within layouts/application (7.4ms)
+Completed 200 OK in 16ms (Views: 10.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/kinds/new" for 127.0.0.1 at 2011-08-19 20:17:46 -0400
+  Processing by KindsController#new as HTML
+Rendered kinds/_form.html.erb (4.8ms)
+Rendered kinds/new.html.erb within layouts/application (7.1ms)
+Completed 200 OK in 18ms (Views: 10.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/kinds" for 127.0.0.1 at 2011-08-19 20:17:53 -0400
+  Processing by KindsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0K8TqCGDZjCd+hnSbhwXh7jqK+cqloofBO2TgGNLaVA=", "kind"=>{"name"=>"c_debt"}, "commit"=>"Create Kind"}
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO "kinds" ("name", "created_at", "updated_at") VALUES ('c_debt', '2011-08-20 00:17:53.372206', '2011-08-20 00:17:53.372206')
+Redirected to http://localhost:3000/kinds/3
+Completed 302 Found in 16ms
+
+
+Started GET "/kinds/3" for 127.0.0.1 at 2011-08-19 20:17:53 -0400
+  Processing by KindsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mKind Load (0.1ms)[0m  [1mSELECT "kinds".* FROM "kinds" WHERE "kinds"."id" = 3 LIMIT 1[0m
+Rendered kinds/show.html.erb within layouts/application (23.9ms)
+Completed 200 OK in 35ms (Views: 27.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-08-19 20:17:58 -0400
+  Processing by AdminController#home as HTML
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "companies"
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "entities"[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "securities"
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "kinds"[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "transactions"
+Rendered admin/home.html.haml within layouts/application (4.7ms)
+Completed 200 OK in 66ms (Views: 7.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/kinds" for 127.0.0.1 at 2011-08-19 20:17:59 -0400
+  Processing by KindsController#index as HTML
+  [1m[36mKind Load (0.6ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+Rendered kinds/index.html.erb within layouts/application (8.9ms)
+Completed 200 OK in 19ms (Views: 12.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/kinds/new" for 127.0.0.1 at 2011-08-19 20:18:12 -0400
+  Processing by KindsController#new as HTML
+Rendered kinds/_form.html.erb (4.7ms)
+Rendered kinds/new.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 16ms (Views: 10.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/kinds" for 127.0.0.1 at 2011-08-19 20:18:21 -0400
+  Processing by KindsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0K8TqCGDZjCd+hnSbhwXh7jqK+cqloofBO2TgGNLaVA=", "kind"=>{"name"=>"preferred"}, "commit"=>"Create Kind"}
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO "kinds" ("name", "created_at", "updated_at") VALUES ('preferred', '2011-08-20 00:18:21.045559', '2011-08-20 00:18:21.045559')
+Redirected to http://localhost:3000/kinds/4
+Completed 302 Found in 34ms
+
+
+Started GET "/kinds/4" for 127.0.0.1 at 2011-08-19 20:18:21 -0400
+  Processing by KindsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mKind Load (0.1ms)[0m  [1mSELECT "kinds".* FROM "kinds" WHERE "kinds"."id" = 4 LIMIT 1[0m
+Rendered kinds/show.html.erb within layouts/application (6.1ms)
+Completed 200 OK in 16ms (Views: 9.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-08-19 20:18:24 -0400
+  Processing by AdminController#home as HTML
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "companies"
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(*) FROM "entities"[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "securities"
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "kinds"[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "transactions"
+Rendered admin/home.html.haml within layouts/application (4.7ms)
+Completed 200 OK in 67ms (Views: 7.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/kinds" for 127.0.0.1 at 2011-08-19 20:18:27 -0400
+  Processing by KindsController#index as HTML
+  [1m[36mKind Load (0.4ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+Rendered kinds/index.html.erb within layouts/application (9.1ms)
+Completed 200 OK in 38ms (Views: 12.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-08-19 20:18:31 -0400
+  Processing by AdminController#home as HTML
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "companies"
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "entities"[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "securities"
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "kinds"[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "transactions"
+Rendered admin/home.html.haml within layouts/application (5.0ms)
+Completed 200 OK in 67ms (Views: 7.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/securities" for 127.0.0.1 at 2011-08-19 20:18:52 -0400
+  Processing by SecuritiesController#index as HTML
+  [1m[36mSecurity Load (0.3ms)[0m  [1mSELECT "securities".* FROM "securities"[0m
+Rendered securities/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 13ms (Views: 6.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 20:18:54 -0400
+  Processing by SecuritiesController#new as HTML
+Rendered securities/_form.html.erb (15.4ms)
+Rendered securities/new.html.erb within layouts/application (18.9ms)
+Completed 200 OK in 37ms (Views: 24.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 20:26:22 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[35mKind Load (0.2ms)[0m  SELECT "kinds".* FROM "kinds"
+Rendered securities/_form.html.erb (15.1ms)
+Rendered securities/new.html.erb within layouts/application (17.6ms)
+Completed 200 OK in 39ms (Views: 20.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 20:28:15 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+Rendered securities/_form.html.erb (33.5ms)
+Rendered securities/new.html.erb within layouts/application (36.2ms)
+Completed 200 OK in 59ms (Views: 39.2ms | ActiveRecord: 0.2ms)
