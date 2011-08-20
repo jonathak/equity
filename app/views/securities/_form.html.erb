@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :kind %><br />
-    <%= f.select(:kind, options_for_select(@kinds)) %>
+    <%= f.select(:kind, options_for_select(@kinds.map{|i| [i.name, i.id.to_s]})) %>
   </div>
   <div class="field_liq">
     <%= f.label :rank %> (0 to 100)<br />

@@ -4,21 +4,24 @@
 $(document).ready(function() {
   jQuery("#security_kind").change(function(){ 
 	
-    if ($(this).val() == 'c_debt'){
+	// c_debt
+    if ($(this).val() == '3'){
 	  $('.field_liq').fadeIn();
 	  $('.field_debt').fadeIn();
 	  $('.field_cov').fadeIn();
 	  $('.field_pref').fadeOut();
 	}
 	
-	if ($(this).val() == 'preferred'){
+	// preferred
+	if ($(this).val() == '4'){
 	  $('.field_liq').fadeIn();
 	  $('.field_pref').fadeIn();
 	  $('.field_cov').fadeIn();
 	  $('.field_debt').fadeOut();
 	}	
 	
-	if (($(this).val() == 'common') || ($(this).val() == 'options')){
+	// common || options
+	if (($(this).val() == '1') || ($(this).val() == '2')){
 	  $('.field_liq').fadeOut();
 	  $('.field_pref').fadeOut();
 	  $('.field_cov').fadeOut();

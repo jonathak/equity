@@ -26,7 +26,7 @@ class SecuritiesController < ApplicationController
   # GET /securities/new.xml
   def new
     @security = Security.new
-    @kinds = Kind.all.map(&:name)
+    @kinds = Kind.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,13 +37,14 @@ class SecuritiesController < ApplicationController
   # GET /securities/1/edit
   def edit
     @security = Security.find(params[:id])
+    @kinds = Kind.all
   end
 
   # POST /securities
   # POST /securities.xml
   def create
     @security = Security.new(params[:security])
-    @kinds = Kind.all.map(&:name)
+    @kinds = Kind.all
 
     respond_to do |format|
       if @security.save
