@@ -2,5 +2,7 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 $(document).ready(function() {
-  //alert('jQuery is working.');
+  jQuery("#security_kind").change(function(){ 
+    alert('jQuery is working.');
+  });
 });
