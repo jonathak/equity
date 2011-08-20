@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :company_id %><br />
-    <%= f.text_field :company_id %>
+    <%= f.select(:company, options_for_select(@companies.map{|i| [i.name, i.id.to_s]})) %>
   </div>
   <div class="field">
     <%= f.label :security_id %><br />

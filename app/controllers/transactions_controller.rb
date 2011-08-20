@@ -25,6 +25,7 @@ class TransactionsController < ApplicationController
   # GET /transactions/new.xml
   def new
     @transaction = Transaction.new
+    @companies = Company.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,6 +42,7 @@ class TransactionsController < ApplicationController
   # POST /transactions.xml
   def create
     @transaction = Transaction.new(params[:transaction])
+    @companies = Company.all
 
     respond_to do |format|
       if @transaction.save
