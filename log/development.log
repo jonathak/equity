@@ -913,3 +913,260 @@ Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 20:28:15 -0400
 Rendered securities/_form.html.erb (33.5ms)
 Rendered securities/new.html.erb within layouts/application (36.2ms)
 Completed 200 OK in 59ms (Views: 39.2ms | ActiveRecord: 0.2ms)
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from service at /Users/jonkaufman/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/1.9.1/webrick/httpserver.rb:111)
+
+
+Started GET "/" for 127.0.0.1 at 2011-08-19 20:45:37 -0400
+  Processing by AdminController#home as HTML
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "companies"[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "entities"
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "securities"[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "kinds"
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "transactions"[0m
+Rendered admin/home.html.haml within layouts/application (4.8ms)
+Completed 200 OK in 97ms (Views: 8.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/kinds" for 127.0.0.1 at 2011-08-19 20:45:40 -0400
+  Processing by KindsController#index as HTML
+  [1m[35mKind Load (0.2ms)[0m  SELECT "kinds".* FROM "kinds"
+Rendered kinds/index.html.erb within layouts/application (25.2ms)
+Completed 200 OK in 36ms (Views: 28.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/kinds/new" for 127.0.0.1 at 2011-08-19 20:45:42 -0400
+  Processing by KindsController#new as HTML
+Rendered kinds/_form.html.erb (67.2ms)
+Rendered kinds/new.html.erb within layouts/application (69.7ms)
+Completed 200 OK in 80ms (Views: 72.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/kinds" for 127.0.0.1 at 2011-08-19 20:45:45 -0400
+  Processing by KindsController#index as HTML
+  [1m[36mKind Load (0.4ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+Rendered kinds/index.html.erb within layouts/application (8.7ms)
+Completed 200 OK in 19ms (Views: 11.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/kinds/new" for 127.0.0.1 at 2011-08-19 20:45:47 -0400
+  Processing by KindsController#new as HTML
+Rendered kinds/_form.html.erb (4.6ms)
+Rendered kinds/new.html.erb within layouts/application (6.8ms)
+Completed 200 OK in 16ms (Views: 9.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/kinds" for 127.0.0.1 at 2011-08-19 20:45:49 -0400
+  Processing by KindsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0K8TqCGDZjCd+hnSbhwXh7jqK+cqloofBO2TgGNLaVA=", "kind"=>{"name"=>""}, "commit"=>"Create Kind"}
+  [1m[35mSQL (0.1ms)[0m  SELECT 1 FROM "kinds" WHERE ("kinds"."name" = '') LIMIT 1
+Rendered kinds/_form.html.erb (3.2ms)
+Rendered kinds/new.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 33ms (Views: 8.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/kinds" for 127.0.0.1 at 2011-08-19 20:45:59 -0400
+  Processing by KindsController#index as HTML
+  [1m[36mKind Load (0.4ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+Rendered kinds/index.html.erb within layouts/application (8.8ms)
+Completed 200 OK in 18ms (Views: 11.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-08-19 20:46:08 -0400
+  Processing by AdminController#home as HTML
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM "companies"
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "entities"[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM "securities"
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "kinds"[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "transactions"
+Rendered admin/home.html.haml within layouts/application (4.6ms)
+Completed 200 OK in 64ms (Views: 7.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/securities" for 127.0.0.1 at 2011-08-19 20:46:10 -0400
+  Processing by SecuritiesController#index as HTML
+  [1m[36mSecurity Load (0.3ms)[0m  [1mSELECT "securities".* FROM "securities"[0m
+Rendered securities/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 12ms (Views: 5.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 20:46:12 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[35mKind Load (0.2ms)[0m  SELECT "kinds".* FROM "kinds"
+Rendered securities/_form.html.erb (14.1ms)
+Rendered securities/new.html.erb within layouts/application (16.5ms)
+Completed 200 OK in 57ms (Views: 19.7ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/securities" for 127.0.0.1 at 2011-08-19 20:46:17 -0400
+  Processing by SecuritiesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0K8TqCGDZjCd+hnSbhwXh7jqK+cqloofBO2TgGNLaVA=", "security"=>{"name"=>"", "kind"=>"options", "rank"=>"", "liq_pref"=>"", "disc_fact"=>"", "warrant_cov"=>"", "participating"=>"0", "partic_cap"=>"", "int_rate"=>"", "div_rate"=>""}, "commit"=>"Create Security"}
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT 1 FROM "securities" WHERE ("securities"."name" = '') LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  SELECT 1 FROM "securities" WHERE ("securities"."rank" IS NULL) LIMIT 1
+Rendered securities/_form.html.erb (3.9ms)
+Rendered securities/new.html.erb within layouts/application (5.0ms)
+Completed 500 Internal Server Error in 28ms
+
+ActionView::Template::Error (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.map):
+    17:   </div>
+    18:   <div class="field">
+    19:     <%= f.label :kind %><br />
+    20:     <%= f.select(:kind, options_for_select(@kinds)) %>
+    21:   </div>
+    22:   <div class="field">
+    23:     <%= f.label :rank %><br />
+  app/views/securities/_form.html.erb:20:in `block in _app_views_securities__form_html_erb___4300643067908635330_70094100352740__4309602473825410919'
+  app/views/securities/_form.html.erb:1:in `_app_views_securities__form_html_erb___4300643067908635330_70094100352740__4309602473825410919'
+  app/views/securities/new.html.erb:3:in `_app_views_securities_new_html_erb__1274715777144862574_70094100418980_1350863831446182960'
+  app/controllers/securities_controller.rb:51:in `block (2 levels) in create'
+  app/controllers/securities_controller.rb:46:in `create'
+
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.6ms)
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (7.7ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 20:47:19 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+Rendered securities/_form.html.erb (14.0ms)
+Rendered securities/new.html.erb within layouts/application (16.4ms)
+Completed 200 OK in 38ms (Views: 19.7ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/securities" for 127.0.0.1 at 2011-08-19 20:47:25 -0400
+  Processing by SecuritiesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0K8TqCGDZjCd+hnSbhwXh7jqK+cqloofBO2TgGNLaVA=", "security"=>{"name"=>"", "kind"=>"options", "rank"=>"", "liq_pref"=>"", "disc_fact"=>"", "warrant_cov"=>"", "participating"=>"0", "partic_cap"=>"", "int_rate"=>"", "div_rate"=>""}, "commit"=>"Create Security"}
+  [1m[35mSQL (0.1ms)[0m  SELECT 1 FROM "securities" WHERE ("securities"."name" = '') LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mSELECT 1 FROM "securities" WHERE ("securities"."rank" IS NULL) LIMIT 1[0m
+Rendered securities/_form.html.erb (3.8ms)
+Rendered securities/new.html.erb within layouts/application (4.8ms)
+Completed 500 Internal Server Error in 28ms
+
+ActionView::Template::Error (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.map):
+    17:   </div>
+    18:   <div class="field">
+    19:     <%= f.label :kind %><br />
+    20:     <%= f.select(:kind, options_for_select(@kinds)) %>
+    21:   </div>
+    22:   <div class="field">
+    23:     <%= f.label :rank %><br />
+  app/views/securities/_form.html.erb:20:in `block in _app_views_securities__form_html_erb___4300643067908635330_70094099027140__4309602473825410919'
+  app/views/securities/_form.html.erb:1:in `_app_views_securities__form_html_erb___4300643067908635330_70094099027140__4309602473825410919'
+  app/views/securities/new.html.erb:3:in `_app_views_securities_new_html_erb__1274715777144862574_70094099052160_1350863831446182960'
+  app/controllers/securities_controller.rb:51:in `block (2 levels) in create'
+  app/controllers/securities_controller.rb:46:in `create'
+
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.6ms)
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (7.6ms)
+
+
+Started POST "/securities" for 127.0.0.1 at 2011-08-19 20:52:03 -0400
+  [1m[35mKind Load (0.4ms)[0m  SELECT "kinds".* FROM "kinds"
+  Processing by SecuritiesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0K8TqCGDZjCd+hnSbhwXh7jqK+cqloofBO2TgGNLaVA=", "security"=>{"name"=>"", "kind"=>"options", "rank"=>"", "liq_pref"=>"", "disc_fact"=>"", "warrant_cov"=>"", "participating"=>"0", "partic_cap"=>"", "int_rate"=>"", "div_rate"=>""}, "commit"=>"Create Security"}
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT 1 FROM "securities" WHERE ("securities"."name" = '') LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  SELECT 1 FROM "securities" WHERE ("securities"."rank" IS NULL) LIMIT 1
+Rendered securities/_form.html.erb (3.8ms)
+Rendered securities/new.html.erb within layouts/application (4.9ms)
+Completed 500 Internal Server Error in 28ms
+
+ActionView::Template::Error (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.map):
+    17:   </div>
+    18:   <div class="field">
+    19:     <%= f.label :kind %><br />
+    20:     <%= f.select(:kind, options_for_select(@kinds)) %>
+    21:   </div>
+    22:   <div class="field">
+    23:     <%= f.label :rank %><br />
+  app/views/securities/_form.html.erb:20:in `block in _app_views_securities__form_html_erb___4300643067908635330_70094097263760__4309602473825410919'
+  app/views/securities/_form.html.erb:1:in `_app_views_securities__form_html_erb___4300643067908635330_70094097263760__4309602473825410919'
+  app/views/securities/new.html.erb:3:in `_app_views_securities_new_html_erb__1274715777144862574_70094097361760_1350863831446182960'
+  app/controllers/securities_controller.rb:53:in `block (2 levels) in create'
+  app/controllers/securities_controller.rb:48:in `create'
+
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.4ms)
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (7.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-08-19 20:52:07 -0400
+  Processing by AdminController#home as HTML
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "companies"[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "entities"
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "securities"[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "kinds"
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "transactions"[0m
+Rendered admin/home.html.haml within layouts/application (4.3ms)
+Completed 200 OK in 66ms (Views: 7.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/securities" for 127.0.0.1 at 2011-08-19 20:52:08 -0400
+  [1m[35mKind Load (0.7ms)[0m  SELECT "kinds".* FROM "kinds"
+  Processing by SecuritiesController#index as HTML
+  [1m[36mSecurity Load (0.2ms)[0m  [1mSELECT "securities".* FROM "securities"[0m
+Rendered securities/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 12ms (Views: 4.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 20:52:10 -0400
+  [1m[35mKind Load (0.6ms)[0m  SELECT "kinds".* FROM "kinds"
+  Processing by SecuritiesController#new as HTML
+Rendered securities/_form.html.erb (9.4ms)
+Rendered securities/new.html.erb within layouts/application (10.5ms)
+Completed 500 Internal Server Error in 23ms
+
+ActionView::Template::Error (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.map):
+    17:   </div>
+    18:   <div class="field">
+    19:     <%= f.label :kind %><br />
+    20:     <%= f.select(:kind, options_for_select(@kinds)) %>
+    21:   </div>
+    22:   <div class="field">
+    23:     <%= f.label :rank %><br />
+  app/views/securities/_form.html.erb:20:in `block in _app_views_securities__form_html_erb___4300643067908635330_70094100334520__4309602473825410919'
+  app/views/securities/_form.html.erb:1:in `_app_views_securities__form_html_erb___4300643067908635330_70094100334520__4309602473825410919'
+  app/views/securities/new.html.erb:3:in `_app_views_securities_new_html_erb__1274715777144862574_70094100362220_1350863831446182960'
+  app/controllers/securities_controller.rb:32:in `new'
+
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.3ms)
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (24.9ms)
+
+
+Started GET "/securities/new" for 127.0.0.1 at 2011-08-19 20:53:07 -0400
+  Processing by SecuritiesController#new as HTML
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+Rendered securities/_form.html.erb (14.1ms)
+Rendered securities/new.html.erb within layouts/application (16.9ms)
+Completed 200 OK in 39ms (Views: 19.8ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/securities" for 127.0.0.1 at 2011-08-19 20:53:13 -0400
+  Processing by SecuritiesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0K8TqCGDZjCd+hnSbhwXh7jqK+cqloofBO2TgGNLaVA=", "security"=>{"name"=>"", "kind"=>"c_debt", "rank"=>"", "liq_pref"=>"", "disc_fact"=>"", "warrant_cov"=>"", "participating"=>"0", "partic_cap"=>"", "int_rate"=>"", "div_rate"=>""}, "commit"=>"Create Security"}
+  [1m[35mKind Load (0.2ms)[0m  SELECT "kinds".* FROM "kinds"
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT 1 FROM "securities" WHERE ("securities"."name" = '') LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  SELECT 1 FROM "securities" WHERE ("securities"."rank" IS NULL) LIMIT 1
+Rendered securities/_form.html.erb (8.6ms)
+Rendered securities/new.html.erb within layouts/application (11.2ms)
+Completed 200 OK in 61ms (Views: 14.3ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/securities" for 127.0.0.1 at 2011-08-19 20:53:43 -0400
+  Processing by SecuritiesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0K8TqCGDZjCd+hnSbhwXh7jqK+cqloofBO2TgGNLaVA=", "security"=>{"name"=>"", "kind"=>"common", "rank"=>"-90", "liq_pref"=>"", "disc_fact"=>"", "warrant_cov"=>"", "participating"=>"0", "partic_cap"=>"", "int_rate"=>"", "div_rate"=>""}, "commit"=>"Create Security"}
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT 1 FROM "securities" WHERE ("securities"."name" = '') LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mSELECT 1 FROM "securities" WHERE ("securities"."rank" = -90) LIMIT 1[0m
+Rendered securities/_form.html.erb (9.7ms)
+Rendered securities/new.html.erb within layouts/application (12.1ms)
+Completed 200 OK in 65ms (Views: 15.0ms | ActiveRecord: 0.4ms)

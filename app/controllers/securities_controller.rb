@@ -1,4 +1,5 @@
 class SecuritiesController < ApplicationController
+  
   # GET /securities
   # GET /securities.xml
   def index
@@ -42,6 +43,7 @@ class SecuritiesController < ApplicationController
   # POST /securities.xml
   def create
     @security = Security.new(params[:security])
+    @kinds = Kind.all.map(&:name)
 
     respond_to do |format|
       if @security.save
