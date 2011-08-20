@@ -1,7 +1,24 @@
 %h1 Admin Dashboard
 %p this page will contain links to the data layer, as needed to test development/progress.
-%p= link_to 'companies', '/companies'
-%p= link_to 'entities', '/entities'
-%p= link_to 'securities', '/securities'
-%p= link_to 'transactions', '/transactions'
+
+%ul
+  %li
+    = link_to('companies', '/companies')
+    = " . count = "
+    = @c_count
+
+  %li
+    =link_to('entities', '/entities')
+    = " . count = "
+    = @e_count
+
+  %li
+    =link_to('securities', '/securities')
+    = " . count = "
+    = @s_count
+
+  %li
+    =link_to('transactions', '/transactions')
+    = " . count = "
+    = @t_count
 

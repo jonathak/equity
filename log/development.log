@@ -515,3 +515,143 @@ Started POST "/transactions" for 127.0.0.1 at 2011-08-19 16:37:27 -0400
 Rendered transactions/_form.html.erb (16.0ms)
 Rendered transactions/new.html.erb within layouts/application (18.6ms)
 Completed 200 OK in 68ms (Views: 21.6ms | ActiveRecord: 0.0ms)
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from service at /Users/jonkaufman/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/1.9.1/webrick/httpserver.rb:111)
+
+
+Started GET "/" for 127.0.0.1 at 2011-08-19 19:52:37 -0400
+  Processing by AdminController#home as HTML
+Rendered admin/home.html.haml within layouts/application (3.2ms)
+Completed 200 OK in 7ms (Views: 6.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/companies" for 127.0.0.1 at 2011-08-19 19:52:40 -0400
+  Processing by CompaniesController#index as HTML
+  [1m[36mCompany Load (0.8ms)[0m  [1mSELECT "companies".* FROM "companies"[0m
+Rendered companies/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 64ms (Views: 7.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-08-19 19:56:23 -0400
+  Processing by AdminController#home as HTML
+Rendered admin/home.html.haml within layouts/application (3.2ms)
+Completed 200 OK in 6ms (Views: 6.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-08-19 19:59:16 -0400
+  Processing by AdminController#home as HTML
+Rendered admin/home.html.haml within layouts/application (5.6ms)
+Completed 500 Internal Server Error in 9ms
+
+ActionView::Template::Error (undefined local variable or method `c_count' for #<#<Class:0x007fdbccc08118>:0x007fdbccc00530>):
+    5:   %li
+    6:     = link_to('companies', '/companies')
+    7:     = " . count = "
+    8:     = c_count
+    9: 
+    10:   %li
+    11:     =link_to('entities', '/entities')
+  app/views/admin/home.html.haml:8:in `_app_views_admin_home_html_haml__1025927774352786729_70291004846820_2313226644829174867'
+
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.4ms)
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (7.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-08-19 20:01:57 -0400
+  Processing by AdminController#home as HTML
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "companies"
+Rendered admin/home.html.haml within layouts/application (3.8ms)
+Completed 200 OK in 15ms (Views: 6.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/companies" for 127.0.0.1 at 2011-08-19 20:02:03 -0400
+  Processing by CompaniesController#index as HTML
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies"[0m
+Rendered companies/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 10ms (Views: 4.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/companies/new" for 127.0.0.1 at 2011-08-19 20:02:04 -0400
+  Processing by CompaniesController#new as HTML
+Rendered companies/_form.html.erb (67.0ms)
+Rendered companies/new.html.erb within layouts/application (70.3ms)
+Completed 200 OK in 84ms (Views: 75.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/companies" for 127.0.0.1 at 2011-08-19 20:02:08 -0400
+  Processing by CompaniesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0K8TqCGDZjCd+hnSbhwXh7jqK+cqloofBO2TgGNLaVA=", "company"=>{"name"=>"bob"}, "commit"=>"Create Company"}
+  [1m[35mSQL (0.1ms)[0m  SELECT 1 FROM "companies" WHERE (LOWER("companies"."name") = LOWER('bob')) LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mAREL (0.8ms)[0m  INSERT INTO "companies" ("name", "created_at", "updated_at") VALUES ('bob', '2011-08-20 00:02:08.629229', '2011-08-20 00:02:08.629229')
+Redirected to http://localhost:3000/companies/1
+Completed 302 Found in 52ms
+
+
+Started GET "/companies/1" for 127.0.0.1 at 2011-08-19 20:02:08 -0400
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCompany Load (0.1ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 1 LIMIT 1[0m
+Rendered companies/show.html.erb within layouts/application (6.1ms)
+Completed 200 OK in 17ms (Views: 9.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-08-19 20:02:12 -0400
+  Processing by AdminController#home as HTML
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "companies"
+Rendered admin/home.html.haml within layouts/application (3.6ms)
+Completed 200 OK in 14ms (Views: 6.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-08-19 20:09:37 -0400
+  Processing by AdminController#home as HTML
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "companies"[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "entities"
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "securities"[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM "transactions"
+Rendered admin/home.html.haml within layouts/application (0.8ms)
+Completed 500 Internal Server Error in 58ms
+
+ActionView::Template::Error (Inconsistent indentation: 2 spaces were used for indentation, but the rest of the document was indented using 4 spaces.):
+    6:     = " . count = "
+    7:     = @c_count
+    8: 
+    9:   %li
+    10:     =link_to('entities', '/entities')
+    11:     = " . count = "
+    12:     = @e_count
+  app/views/admin/home.html.haml:9
+
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.0ms)
+Rendered /Users/jonkaufman/.rvm/gems/ruby-1.9.2-p290@rails309/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-08-19 20:10:00 -0400
+  Processing by AdminController#home as HTML
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "companies"[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "entities"
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "securities"[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM "transactions"
+Rendered admin/home.html.haml within layouts/application (4.1ms)
+Completed 200 OK in 61ms (Views: 7.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/companies" for 127.0.0.1 at 2011-08-19 20:10:12 -0400
+  Processing by CompaniesController#index as HTML
+  [1m[36mCompany Load (0.4ms)[0m  [1mSELECT "companies".* FROM "companies"[0m
+Rendered companies/index.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 17ms (Views: 9.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-08-19 20:10:15 -0400
+  Processing by AdminController#home as HTML
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "companies"
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "entities"[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM "securities"
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "transactions"[0m
+Rendered admin/home.html.haml within layouts/application (4.2ms)
+Completed 200 OK in 39ms (Views: 7.2ms | ActiveRecord: 0.5ms)
