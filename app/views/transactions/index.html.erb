@@ -17,7 +17,7 @@
 
 <% @transactions.each do |transaction| %>
   <tr>
-    <td><%= transaction.company_id %></td>
+    <td><%= transaction.company.id %></td>
     <td><%= transaction.security_id %></td>
     <td><%= transaction.seller_id %></td>
     <td><%= transaction.buyer_id %></td>
