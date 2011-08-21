@@ -5,4 +5,5 @@ class Security < ActiveRecord::Base
   validates_numericality_of :disc_fact, :warrant_cov, :int_rate, :div_rate, 
     {:greater_than => 0, :less_than => 1.0, :allow_nil => true}
   belongs_to :company
+  has_many :transactions
 end
