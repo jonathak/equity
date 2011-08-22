@@ -30,6 +30,26 @@ div.field, div.actions {
   display: table;
 }
 
+.field_trans {
+  margin-bottom: 10px;
+  display: none;
+}
+
+.field_equity {
+  margin-bottom: 10px;
+  display: none;
+}
+
+.field_money {
+  margin-bottom: 10px;
+  display: none;
+}
+
+.field_opt {
+  margin-bottom: 10px;
+  display: none;
+}
+
 .field_liq {
   margin-bottom: 10px;
   display: none;
