@@ -2,6 +2,20 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 $(document).ready(function() {
+  jQuery("#transaction_company").change(function(){ 
+    jQuery.ajax({
+      async:true,
+      url: $(this).data("url"),
+      data: {company_id: jQuery(this).val() },
+      type:'GET',
+      dataType:"script",
+      success: function(data){},
+      error:function(request){ alert('Error') }
+    });
+  });
+});
+
+$(document).ready(function() {
   jQuery("#security_kind").change(function(){ 
 	
 	// c_debt

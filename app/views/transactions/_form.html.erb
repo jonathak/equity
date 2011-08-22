@@ -13,11 +13,11 @@
 
   <div class="field">
     <%= f.label :company_id %><br />
-    <%= f.select(:company, options_for_select(@companies.map{|i| [i.name, i.id.to_s]})) %>
+    <%= collection_select(:transaction, :company, @companies, :id, :name, {}, 'data-url' => 'sec') %>
   </div>
   <div class="field">
     <%= f.label :security_id %><br />
-    <%= f.text_field :security_id %>
+    <%= f.select(:security_id, options_for_select([])) %>
   </div>
   <div class="field">
     <%= f.label :seller_id %><br />

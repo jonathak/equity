@@ -3,6 +3,7 @@ Equity::Application.routes.draw do
 
   resources :kinds
 
+  match 'transactions/sec' => 'transactions#sec', as: 'sec'
   resources :transactions
 
   resources :securities
@@ -12,6 +13,8 @@ Equity::Application.routes.draw do
   get "admin/home"
 
   resources :companies
+  
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
