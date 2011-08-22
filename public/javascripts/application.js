@@ -31,7 +31,7 @@ $(document).ready(function() {
 	  $('.field_liq').slideDown();
 	  $('.field_pref').slideDown();
 	  $('.field_cov').slideDown();
-	  $('.field_debt').slideUpt();
+	  $('.field_debt').slideUp();
 	}	
 	
 	// common || options
