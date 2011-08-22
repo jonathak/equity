@@ -20,18 +20,18 @@ $(document).ready(function() {
 	
 	// c_debt
     if ($(this).val() == '3'){
-	  $('.field_liq').fadeIn();
-	  $('.field_debt').fadeIn();
-	  $('.field_cov').fadeIn();
-	  $('.field_pref').fadeOut();
+	  $('.field_liq').slideDown();
+	  $('.field_debt').slideDown();
+	  $('.field_cov').slideDown();
+	  $('.field_pref').slideUp();
 	}
 	
 	// preferred
 	if ($(this).val() == '4'){
-	  $('.field_liq').fadeIn();
-	  $('.field_pref').fadeIn();
-	  $('.field_cov').fadeIn();
-	  $('.field_debt').fadeOut();
+	  $('.field_liq').slideDown();
+	  $('.field_pref').slideDown();
+	  $('.field_cov').slideDown();
+	  $('.field_debt').slideUpt();
 	}	
 	
 	// common || options
