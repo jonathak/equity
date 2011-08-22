@@ -94,18 +94,4 @@ class TransactionsController < ApplicationController
     end
   end
   
-  def extra
-    company = Company.find(session[:company_id])
-    @securities=session[:security_ids].map(&:security)
-    @kind=params[:security_id].to_i.security.kind
-    s_id = params[:security_id].to_i
-    @sellers = company.entities.uniq.select {|i| (i.name == company.name) || i.sec.include?(s_id)}
-    if company.entities.select{|i| i.name == "Option Pool"}.first.has_shares?
-      @sellers += company.entities.select{|i| i.name == "Option Pool"}
-    end
-    respond_to do |format|
-      format.js
-    end
-  end
-  
 end

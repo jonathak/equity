@@ -15,7 +15,7 @@
     <%= f.label :company_id %><br />
     <%= collection_select(:transaction, :company, @companies, :id, :name, {}, 'data-url' => 'sec') %>
   </div>
-  <div class="field">
+  <div id="sec_div" class="field" style="display: none;">
     <%= f.label :security_id %><br />
     <%= f.select(:security_id, options_for_select([])) %>
   </div>
