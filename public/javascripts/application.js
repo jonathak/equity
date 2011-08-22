@@ -1,6 +1,7 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
+// this is used in transaction#new
 $(document).ready(function() {
   jQuery("#transaction_company").change(function(){ 
     jQuery.ajax({
@@ -15,6 +16,7 @@ $(document).ready(function() {
   });
 });
 
+// this is used in security#new
 $(document).ready(function() {
   jQuery("#security_kind").change(function(){ 
 	
