@@ -92,7 +92,7 @@ class TransactionsController < ApplicationController
     end
   end
   
-  def ent
+  def sel
     security = params[:security_id].to_i.security
     @sellers = security.sellers
     respond_to do |format|
