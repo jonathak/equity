@@ -7,4 +7,6 @@ class Security < ActiveRecord::Base
     {:greater_than => 0, :less_than => 1.0, :allow_nil => true}
   belongs_to :company
   has_many :transactions
+  has_many :buyers, :through => :transactions
+  has_many :sellers, :through => :transactions
 end

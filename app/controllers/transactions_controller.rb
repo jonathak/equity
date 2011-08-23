@@ -26,8 +26,7 @@ class TransactionsController < ApplicationController
   def new
     @transaction = Transaction.new
     @companies = Company.all
-    # @securities = need something like companies.securities!!!!
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @transaction }
@@ -86,9 +85,16 @@ class TransactionsController < ApplicationController
   
   def sec
     company = params[:company_id].to_i.company
-    puts ".............company.........#{company}"
     @securities = company.securities
-    puts ".............................. #{@securities}"
+    @entities = company.entities
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  def ent
+    security = params[:security_id].to_i.security
+    @sellers = security.sellers
     respond_to do |format|
       format.js
     end

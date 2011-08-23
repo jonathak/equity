@@ -21,11 +21,11 @@
   </div>
   <div class="field_trans">
     <%= f.label :seller_id %><br />
-    <%= f.text_field :seller_id %>
+    <%= f.select(:seller_id, options_for_select([])) %>
   </div>
   <div class="field_trans">
     <%= f.label :buyer_id %><br />
-    <%= f.text_field :buyer_id %>
+    <%= f.select(:buyer_id, options_for_select([])) %>
   </div>
   <div class="field_equity">
     <%= f.label :shares %><br />
