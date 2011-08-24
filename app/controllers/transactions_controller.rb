@@ -26,6 +26,7 @@ class TransactionsController < ApplicationController
   def new
     @transaction = Transaction.new
     @companies = Company.all
+    @securities =Security.all
     
     respond_to do |format|
       format.html # new.html.erb
@@ -85,6 +86,8 @@ class TransactionsController < ApplicationController
   
   def sec
     company = params[:company_id].to_i.company
+    puts "********************** #{company.name}"
+    puts "********************** #{company.securities.map(&:name)}"
     @securities = company.securities
     @entities = company.entities
     respond_to do |format|
@@ -94,7 +97,7 @@ class TransactionsController < ApplicationController
   
   def sel
     security = params[:security_id].to_i.security
-    @sellers = security.sellers
+    @owners = security.buyers
     respond_to do |format|
       format.js
     end

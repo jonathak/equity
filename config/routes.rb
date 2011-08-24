@@ -4,6 +4,7 @@ Equity::Application.routes.draw do
   resources :kinds
 
   match 'transactions/sec' => 'transactions#sec', as: 'sec'
+    match 'transactions/sel' => 'transactions#sel', as: 'sel'
   resources :transactions
 
   resources :securities

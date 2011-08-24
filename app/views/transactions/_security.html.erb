@@ -1,6 +1,7 @@
+<% puts "........................ #{@securities.map(&:name)}"%>
 <% @securities.sort {|a,b| a.name.downcase <=> b.name.downcase}.each do |s| %>
   <option value=
-  <%= "'#{s.id}'" %>  > 
+  <%= "'#{s.id}'" %> >
   <%= "#{s.name}" %> 
   </option>
 <% end %>

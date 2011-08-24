@@ -17,7 +17,7 @@
   </div>
   <div id="sec_div" class="field" style="display: none;">
     <%= f.label :security_id %><br />
-    <%= f.select(:security_id, options_for_select([])) %>
+    <%= collection_select(:transaction, :security, @securities, :id, :name, {}, 'data-url' => 'sel') %>
   </div>
   <div class="field_trans">
     <%= f.label :seller_id %><br />
