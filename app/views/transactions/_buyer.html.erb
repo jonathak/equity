@@ -1,6 +1,8 @@
 <% @entities.sort {|a,b| a.name.downcase <=> b.name.downcase}.each do |e| %>
-  <option value=
-  <%= "'#{e.id}'" %>  > 
-  <%= "#{e.name}" %> 
-  </option>
+  <% if e.id != @seller_id %>
+    <option value=
+    <%= "'#{e.id}'" %>  > 
+    <%= "#{e.name}" %> 
+    </option>
+  <% end %>
 <% end %>

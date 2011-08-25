@@ -61,6 +61,36 @@ $(document).ready(function() {
   });
 });
 
+// this is used in transaction#new
+$(document).ready(function() {
+  jQuery("#transaction_seller").click(function(){ 
+    jQuery.ajax({
+      async:true,
+      url: $(this).data("url"),
+      data: {seller_id: jQuery(this).val() },
+      type:'GET',
+      dataType:"script",
+      success: function(data){},
+      error:function(request){ alert('Error') }
+    });
+  });
+});
+
+// this is used in transaction#new
+$(document).ready(function() {
+  jQuery("#transaction_seller").change(function(){ 
+    jQuery.ajax({
+      async:true,
+      url: $(this).data("url"),
+      data: {seller_id: jQuery(this).val() },
+      type:'GET',
+      dataType:"script",
+      success: function(data){},
+      error:function(request){ alert('Error') }
+    });
+  });
+});
+
 // this is used in security#new
 $(document).ready(function() {
   jQuery("#security_kind").change(function(){ 

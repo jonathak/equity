@@ -21,9 +21,9 @@
   </div>
   <div id="field_trans_sel" class="field_trans">
     <%= f.label :seller_id %><br />
-    <%= f.select(:seller_id, options_for_select([])) %>
+    <%= collection_select(:transaction, :seller, @sellers, :id, :name, {}, 'data-url' => 'sel') %>
   </div>
-  <div class="field_trans">
+  <div id="field_trans_buy" class="field_trans">
     <%= f.label :buyer_id %><br />
     <%= f.select(:buyer_id, options_for_select([])) %>
   </div>

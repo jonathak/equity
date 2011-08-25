@@ -26,7 +26,8 @@ class TransactionsController < ApplicationController
   def new
     @transaction = Transaction.new
     @companies = Company.all
-    @securities =Security.all
+    @securities = []
+    @sellers = []
     
     respond_to do |format|
       format.html # new.html.erb
@@ -85,6 +86,8 @@ class TransactionsController < ApplicationController
   end
   
   def com
+    company_id = params[:company_id].to_i
+    session[:company_id] = company_id
     company = params[:company_id].to_i.company
     puts "********************** #{company.name}"
     puts "********************** #{company.securities.map(&:name)}"
@@ -96,16 +99,33 @@ class TransactionsController < ApplicationController
   end
   
   def sec
-    if params[:security_id] && (params[:security_id].to_i > 0)
+    security_id = params[:security_id].to_i
+    if security_id > 0
+      session[:security_id] = security_id
       security = params[:security_id].to_i.security
       puts "********************** #{security.name}"
       puts "********************** #{security.buyers.map(&:name)}"
       @owners = security.buyers
-      @entities = security.company.entities
+      @entities = session[:company_id].company.entities
     else
       @owners = []
       @entities = []
     end
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  def sel
+    @seller_id = params[:seller_id].to_i
+    if @seller_id > 0
+      company = session[:company_id].company
+      @entities = company.entities
+    else
+      @entities = []
+    end
+    puts "qqqqqqqqqqq seller id #{@seller_id}"
+    puts "qqqqqqqqqqq entities #{@entities.map(&:name)}"
     respond_to do |format|
       format.js
     end

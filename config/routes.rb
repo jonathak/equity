@@ -5,6 +5,7 @@ Equity::Application.routes.draw do
 
   match 'transactions/com' => 'transactions#com', as: 'com'
   match 'transactions/sec' => 'transactions#sec', as: 'sec'
+  match 'transactions/sel' => 'transactions#sel', as: 'sel'
   resources :transactions
 
   resources :securities
