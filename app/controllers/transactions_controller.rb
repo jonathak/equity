@@ -101,6 +101,7 @@ class TransactionsController < ApplicationController
   def sec
     security_id = params[:security_id].to_i
     if security_id > 0
+      kind = security_id.security.kind
       session[:security_id] = security_id
       security = params[:security_id].to_i.security
       puts "********************** #{security.name}"
@@ -112,7 +113,22 @@ class TransactionsController < ApplicationController
       @entities = []
     end
     respond_to do |format|
-      format.js
+      format.js {
+        puts "nnnnnnnnnnn kind #{kind}"
+        case kind.to_i
+          when 1
+            puts "kkkkkkkkk hello"
+            render "sec_com"
+          when 2
+            render "sec_opt"
+          when 3
+            render "sec_debt"
+          when 4
+            render "sec_debt"
+          else
+            render "sec"
+        end
+      }
     end
   end
   
