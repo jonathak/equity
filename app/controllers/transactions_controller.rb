@@ -84,7 +84,7 @@ class TransactionsController < ApplicationController
     end
   end
   
-  def sec
+  def com
     company = params[:company_id].to_i.company
     puts "********************** #{company.name}"
     puts "********************** #{company.securities.map(&:name)}"
@@ -95,9 +95,17 @@ class TransactionsController < ApplicationController
     end
   end
   
-  def sel
-    security = params[:security_id].to_i.security
-    @owners = security.buyers
+  def sec
+    if params[:security_id] && (params[:security_id].to_i > 0)
+      security = params[:security_id].to_i.security
+      puts "********************** #{security.name}"
+      puts "********************** #{security.buyers.map(&:name)}"
+      @owners = security.buyers
+      @entities = security.company.entities
+    else
+      @owners = []
+      @entities = []
+    end
     respond_to do |format|
       format.js
     end

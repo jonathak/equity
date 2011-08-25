@@ -3,6 +3,21 @@
 
 // this is used in transaction#new
 $(document).ready(function() {
+  jQuery("#transaction_company").click(function(){ 
+    jQuery.ajax({
+      async:true,
+      url: $(this).data("url"),
+      data: {company_id: jQuery(this).val() },
+      type:'GET',
+      dataType:"script",
+      success: function(data){},
+      error:function(request){ alert('Error') }
+    });
+  });
+});
+
+// this is used in transaction#new
+$(document).ready(function() {
   jQuery("#transaction_company").change(function(){ 
     jQuery.ajax({
       async:true,
@@ -18,7 +33,17 @@ $(document).ready(function() {
 
 // this is used in transaction#new
 $(document).ready(function() {
-  jQuery("#transaction_company").change();
+  jQuery("#transaction_security").click(function(){ 
+    jQuery.ajax({
+      async:true,
+      url: $(this).data("url"),
+      data: {security_id: jQuery(this).val() },
+      type:'GET',
+      dataType:"script",
+      success: function(data){},
+      error:function(request){ alert('Error') }
+    });
+  });
 });
 
 // this is used in transaction#new
@@ -35,8 +60,6 @@ $(document).ready(function() {
     });
   });
 });
-
-
 
 // this is used in security#new
 $(document).ready(function() {

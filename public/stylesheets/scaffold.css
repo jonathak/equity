@@ -35,17 +35,22 @@ div.field, div.actions {
   display: none;
 }
 
-.field_equity {
+.field_trans_sec {
   margin-bottom: 10px;
   display: none;
 }
 
-.field_money {
+.field_trans_equity {
   margin-bottom: 10px;
   display: none;
 }
 
-.field_opt {
+.field_trans_money {
+  margin-bottom: 10px;
+  display: none;
+}
+
+.field_trans_opt {
   margin-bottom: 10px;
   display: none;
 }
@@ -68,6 +73,11 @@ div.field, div.actions {
 .field_cov {
   margin-bottom: 10px;
   display: none;
+}
+
+.actions_trans {
+	margin-bottom: 10px;
+	display: none;
 }
 
 #error_explanation {
