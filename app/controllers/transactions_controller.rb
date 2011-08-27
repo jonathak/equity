@@ -24,6 +24,7 @@ class TransactionsController < ApplicationController
   # GET /transactions/new
   # GET /transactions/new.xml
   def new
+    puts "..............debug transaction.new company.session is #{session[:company_id]}"
     @transaction = Transaction.new
     @companies = Company.all
     @securities = []
