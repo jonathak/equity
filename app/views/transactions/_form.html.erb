@@ -12,10 +12,9 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :company_id %><br />
-    <%= collection_select(:transaction, :company, @companies, :id, :name, {}, 'data-url' => 'com') %>
+    <b><%= f.label "session: #{@company.name}" %></b><br />
   </div>
-  <div id="field_trans_sec" class="field" style="display: none;">
+  <div id="field_trans_sec" class="field">
     <%= f.label :security_id %><br />
     <%= collection_select(:transaction, :security, @securities, :id, :name, {}, 'data-url' => 'sec') %>
   </div>
