@@ -1,6 +1,6 @@
 class Transaction < ActiveRecord::Base
-  validates_presence_of :company_id, :security_id, :seller_id, :buyer_id, :date
-  validates_numericality_of :company_id, :security_id, :seller_id, :buyer_id, {:greater_than => 0, :only_integer => true}
+  validates_presence_of :security_id, :seller_id, :buyer_id, :date
+  validates_numericality_of :security_id, :seller_id, :buyer_id, {:greater_than => 0, :only_integer => true}
   validates_numericality_of :dollars, :ex_price, {:greater_than => 0, :allow_nil => true}
   validates_numericality_of :shares, {:greater_than => 0, :allow_nil => true, :only_integer => true}
   validate :buyer_must_be_different_from_seller

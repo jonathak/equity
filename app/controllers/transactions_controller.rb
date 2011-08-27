@@ -28,6 +28,7 @@ class TransactionsController < ApplicationController
     @company = session[:company_id].company
     @transaction = Transaction.new
     @securities = @company.securities
+    @entities = @company.entities
     @sellers = []
     
     respond_to do |format|
@@ -45,7 +46,6 @@ class TransactionsController < ApplicationController
   # POST /transactions.xml
   def create
     @transaction = Transaction.new(params[:transaction])
-    @companies = Company.all
 
     respond_to do |format|
       if @transaction.save
@@ -108,7 +108,6 @@ class TransactionsController < ApplicationController
       puts "********************** #{security.name}"
       puts "********************** #{security.buyers.map(&:name)}"
       @owners = security.buyers
-      @entities = session[:company_id].company.entities
     else
       @owners = []
       @entities = []

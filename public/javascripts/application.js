@@ -3,7 +3,7 @@
 
 // this is used in transaction#new
 $(document).ready(function() {
-  jQuery("#transaction_security").click(function(){ 
+  jQuery("#transaction_security_id").click(function(){ 
     jQuery.ajax({
       async:true,
       url: $(this).data("url"),
@@ -18,7 +18,7 @@ $(document).ready(function() {
 
 // this is used in transaction#new
 $(document).ready(function() {
-  jQuery("#transaction_security").change(function(){ 
+  jQuery("#transaction_security_id").change(function(){ 
     jQuery.ajax({
       async:true,
       url: $(this).data("url"),
@@ -33,7 +33,7 @@ $(document).ready(function() {
 
 // this is used in transaction#new
 $(document).ready(function() {
-  jQuery("#transaction_seller").click(function(){ 
+  jQuery("#transaction_seller_id").click(function(){ 
     jQuery.ajax({
       async:true,
       url: $(this).data("url"),
@@ -48,7 +48,7 @@ $(document).ready(function() {
 
 // this is used in transaction#new
 $(document).ready(function() {
-  jQuery("#transaction_seller").change(function(){ 
+  jQuery("#transaction_seller_id").change(function(){ 
     jQuery.ajax({
       async:true,
       url: $(this).data("url"),

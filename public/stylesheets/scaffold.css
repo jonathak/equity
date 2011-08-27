@@ -40,6 +40,11 @@ div.field, div.actions {
   display: none;
 }
 
+.field_trans_buy {
+  margin-bottom: 10px;
+  display: none;
+}
+
 .field_trans_equity {
   margin-bottom: 10px;
   display: none;
