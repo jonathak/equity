@@ -12,12 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :company_id %><br />
-    <%= f.text_field :company_id %>
+    <%= f.label 'Investor' %><br />
+    <%= f.select(:company_id, @companies.map{|c| [c.name, c.id]}) %>
   </div>
   <div class="field">
-    <%= f.label :entity_id %><br />
-    <%= f.text_field :entity_id %>
+    <%= f.label "Investee's entity" %><br />
+    <%= f.select(:entity_id, @entities.map{|e| ["#{e.company.name}: #{e.name}", e.id]}) %>
   </div>
   <div class="actions">
     <%= f.submit %>

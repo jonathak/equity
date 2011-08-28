@@ -25,6 +25,8 @@ class InvestmentsController < ApplicationController
   # GET /investments/new.xml
   def new
     @investment = Investment.new
+    @companies = Company.all
+    @entities = Entity.all
 
     respond_to do |format|
       format.html # new.html.erb
