@@ -1,4 +1,6 @@
 Equity::Application.routes.draw do
+  resources :users
+
   resources :investments
 
   resources :kinds

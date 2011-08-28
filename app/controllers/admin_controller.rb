@@ -6,6 +6,7 @@ class AdminController < ApplicationController
     @k_count = Kind.count
     @t_count = Transaction.count
     @i_count = Investment.count
+    @u_count = User.count
   end
 
 end

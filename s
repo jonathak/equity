@@ -1142,4 +1142,17 @@ Started GET "/companies/2" for 127.0.0.1 at 2011-08-28 00:58:28 -0400
   [1m[35mCompany Load (0.2ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 2 LIMIT 1
   [1m[36mInvestment Load (0.2ms)[0m  [1mSELECT "investments".* FROM "investments" WHERE ("investments".company_id = 2)[0m
   [1m[35mEntity Load (0.2ms)[0m  SELECT "entities".* FROM "entities" WHERE "entities"."id" = 1 LIMIT 1
-  [1m[36mCompany Loa
+  [1m[36mCompany Load (0.1ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 1 LIMIT 1[0m
+Rendered companies/show.html.haml within layouts/application (12.8ms)
+Completed 200 OK in 79ms (Views: 16.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/companies/2" for 127.0.0.1 at 2011-08-28 00:58:55 -0400
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mCompany Load (0.1ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 2 LIMIT 1
+  [1m[36mInvestment Load (0.2ms)[0m  [1mSELECT "investments".* FROM "investments" WHERE ("investments".company_id = 2)[0m
+  [1m[35mEntity Load (0.2ms)[0m  SELECT "entities".* FROM "entities" WHERE "entities"."id" = 1 LIMIT 1
+  [1m[36mCompany Load (0.2ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 1 LIMIT 1[0m
+Rendered companies/show.html.haml within layouts/application (13.5ms)
+Completed 200 OK in 79ms (Views: 16.4ms | ActiveRecord: 0.6ms)
