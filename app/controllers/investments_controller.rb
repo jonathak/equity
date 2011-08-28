@@ -43,6 +43,8 @@ class InvestmentsController < ApplicationController
   # POST /investments.xml
   def create
     @investment = Investment.new(params[:investment])
+    @companies = Company.all
+    @entities = Entity.all
 
     respond_to do |format|
       if @investment.save
