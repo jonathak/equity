@@ -23,8 +23,15 @@ class Company < ActiveRecord::Base
   
   # array of company_ids representing linked investors
   def owners
-    entities.map do |e|
-      e.investment.company.id if e.investment
+    entities.map{|e| (e.investment.company.id if e.investment)}.reject{|i| i == nil}
+  end
+  
+  # array of company_id chains downsteam of cash flow distributions
+  def owner_chains
+    if owners == []
+      [[self.id]]
+    else
+      owners.map(&:c).map(&:owner_chains).reduce(:+).map{|i| [self.id]+i}
     end
   end
   

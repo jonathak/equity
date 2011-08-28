@@ -41,6 +41,7 @@ class EntitiesController < ApplicationController
   # POST /entities.xml
   def create
     @entity = Entity.new(params[:entity])
+    @entity.company_id = session[:company_id]
 
     respond_to do |format|
       if @entity.save
