@@ -1,0 +1,19 @@
+
+%p{:id => "notice"}= notice
+
+%p
+  %b
+    Name:
+    = @company.name
+
+%table
+  %tr
+    %td= "Direct Investmets:"
+  - @entities.each do |e|
+    %tr
+      %td= "#{e.company.name}: #{e.name}"
+      
+%br
+= link_to 'Edit', edit_company_path(@company)
+= " | "
+= link_to 'Back', companies_path

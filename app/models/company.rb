@@ -5,5 +5,10 @@ class Company < ActiveRecord::Base
   has_many :securities
   has_many :entities
   has_many :investments
-  has_many :alias_id, :foreign_key => :entity_id, :class_name => 'Investments'
+  
+  # id's of entity objects that represents company as an investor
+  def alias_ids
+    investments.map(&:entity_id)
+  end
+  
 end

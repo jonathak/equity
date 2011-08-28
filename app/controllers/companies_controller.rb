@@ -15,7 +15,7 @@ class CompaniesController < ApplicationController
   def show
     @company = Company.find(params[:id])
     session[:company_id] = @company.id
-    
+    @entities = @company.alias_ids.map(&:e)
 
     respond_to do |format|
       format.html # show.html.erb

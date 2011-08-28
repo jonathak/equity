@@ -5,5 +5,4 @@ class Entity < ActiveRecord::Base
   has_many :sales, :foreign_key => :seller_id, :class_name => "Transaction"
   has_many :buys, :foreign_key => :buyer_id, :class_name => "Transaction"
   has_one :investment
-  has_one :alias_id, :foreign_key => :company_id, :class_name => "Investments"
 end
