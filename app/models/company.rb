@@ -4,5 +4,6 @@ class Company < ActiveRecord::Base
   has_many :transactions, :through => :securities
   has_many :securities
   has_many :entities
+  has_many :investments
   has_many :alias_id, :foreign_key => :entity_id, :class_name => 'Investments'
 end

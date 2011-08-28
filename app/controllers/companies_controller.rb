@@ -15,7 +15,7 @@ class CompaniesController < ApplicationController
   def show
     @company = Company.find(params[:id])
     session[:company_id] = @company.id
-    puts "..............debug company.show company.session is #{session[:company_id]}"
+    
 
     respond_to do |format|
       format.html # show.html.erb

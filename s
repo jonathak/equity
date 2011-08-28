@@ -243,3 +243,112 @@ Started GET "/" for 127.0.0.1 at 2011-08-27 23:41:31 -0400
   [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "investments"[0m
 Rendered admin/home.html.haml within layouts/application (5.4ms)
 Completed 200 OK in 94ms (Views: 8.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/companies" for 127.0.0.1 at 2011-08-27 23:42:27 -0400
+  Processing by CompaniesController#index as HTML
+  [1m[35mCompany Load (0.4ms)[0m  SELECT "companies".* FROM "companies"
+Rendered companies/index.html.erb within layouts/application (8.9ms)
+Completed 200 OK in 24ms (Views: 12.2ms | ActiveRecord: 0.4ms)
+..............debug company.show company.session is 1
+
+
+Started GET "/companies/1" for 127.0.0.1 at 2011-08-27 23:42:38 -0400
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mCompany Load (0.1ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 1 LIMIT 1
+Rendered companies/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 21ms (Views: 5.1ms | ActiveRecord: 0.6ms)
+..............debug company.show company.session is 1
+
+
+Started GET "/companies/1" for 127.0.0.1 at 2011-08-27 23:43:13 -0400
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCompany Load (0.2ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 1 LIMIT 1[0m
+Rendered companies/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 22ms (Views: 5.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-08-27 23:43:24 -0400
+  Processing by AdminController#home as HTML
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "companies"
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "entities"[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM "securities"
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "kinds"[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "transactions"
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "investments"[0m
+Rendered admin/home.html.haml within layouts/application (5.5ms)
+Completed 200 OK in 114ms (Views: 8.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/investments" for 127.0.0.1 at 2011-08-27 23:43:31 -0400
+  Processing by InvestmentsController#index as HTML
+  [1m[35mInvestment Load (0.3ms)[0m  SELECT "investments".* FROM "investments"
+Rendered investments/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 32ms (Views: 5.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/investments/new" for 127.0.0.1 at 2011-08-27 23:43:34 -0400
+  Processing by InvestmentsController#new as HTML
+  [1m[36mCompany Load (0.2ms)[0m  [1mSELECT "companies".* FROM "companies"[0m
+  [1m[35mEntity Load (0.2ms)[0m  SELECT "entities".* FROM "entities"
+  [1m[36mCompany Load (0.2ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 1 LIMIT 1
+Rendered investments/_form.html.erb (84.2ms)
+Rendered investments/new.html.erb within layouts/application (86.9ms)
+Completed 200 OK in 142ms (Views: 89.8ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/investments" for 127.0.0.1 at 2011-08-27 23:43:39 -0400
+  Processing by InvestmentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9ju5Y8SRHbPuigEa1lhX2oUlk9RVW4MacBvIDxv2q/w=", "investment"=>{"company_id"=>"2", "entity_id"=>"1"}, "commit"=>"Create Investment"}
+  [1m[36mCompany Load (0.2ms)[0m  [1mSELECT "companies".* FROM "companies"[0m
+  [1m[35mEntity Load (0.2ms)[0m  SELECT "entities".* FROM "entities"
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT 1 FROM "investments" WHERE "investments"."entity_id" = 1 AND ("investments"."company_id" = 2) LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT 1 FROM "investments" WHERE ("investments"."entity_id" = 1) LIMIT 1
+  [1m[36mEntity Load (0.1ms)[0m  [1mSELECT "entities".* FROM "entities" WHERE "entities"."id" = 1 LIMIT 1[0m
+  [1m[35mCompany Load (0.1ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 1 LIMIT 1
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "investments" ("company_id", "entity_id", "created_at", "updated_at") VALUES (2, 1, '2011-08-28 03:43:39.278755', '2011-08-28 03:43:39.278755')[0m
+Redirected to http://localhost:3000/investments/4
+Completed 302 Found in 90ms
+
+
+Started GET "/investments/4" for 127.0.0.1 at 2011-08-27 23:43:39 -0400
+  Processing by InvestmentsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[35mInvestment Load (0.1ms)[0m  SELECT "investments".* FROM "investments" WHERE "investments"."id" = 4 LIMIT 1
+Rendered investments/show.html.erb within layouts/application (6.5ms)
+Completed 200 OK in 20ms (Views: 9.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-08-27 23:43:44 -0400
+  Processing by AdminController#home as HTML
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "companies"[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "entities"
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "securities"[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "kinds"
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "transactions"[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "investments"
+Rendered admin/home.html.haml within layouts/application (5.8ms)
+Completed 200 OK in 114ms (Views: 9.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/companies" for 127.0.0.1 at 2011-08-27 23:43:47 -0400
+  Processing by CompaniesController#index as HTML
+  [1m[36mCompany Load (0.4ms)[0m  [1mSELECT "companies".* FROM "companies"[0m
+Rendered companies/index.html.erb within layouts/application (7.6ms)
+Completed 200 OK in 22ms (Views: 10.7ms | ActiveRecord: 1.4ms)
+..............debug company.show company.session is 2
+
+
+Started GET "/companies/2" for 127.0.0.1 at 2011-08-27 23:43:48 -0400
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mCompany Load (0.1ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 2 LIMIT 1
+Rendered companies/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 41ms (Views: 5.1ms | ActiveRecord: 0.1ms)
