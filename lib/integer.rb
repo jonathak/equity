@@ -13,4 +13,8 @@ class Integer
     Entity.find(self)
   end
   
+  alias :c :company
+  alias :s :security
+  alias :e :entity
+  
 end
