@@ -45,6 +45,8 @@ class SecuritiesController < ApplicationController
   def create
     @security = Security.new(params[:security])
     @kinds = Kind.all
+    company_id = session[:company_id].to_i
+    @security.company_id = company_id
 
     respond_to do |format|
       if @security.save
