@@ -7,6 +7,7 @@ class AdminController < ApplicationController
     @t_count = Transaction.count
     @i_count = Investment.count
     @u_count = User.count
+    @in_count = Invitation.count
   end
 
 end

@@ -8,4 +8,10 @@ class UserMailer < ActionMailer::Base
          :subject => "Welcome to 77Shares")
   end
   
+  def invitation_email(invitation)
+    @invitation = invitation
+    mail(:to => invitation.email,
+         :subject => "77Shares Link Request")
+  end
+  
 end

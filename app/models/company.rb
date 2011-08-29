@@ -5,6 +5,7 @@ class Company < ActiveRecord::Base
   has_many :securities
   has_many :entities
   has_many :investments
+  has_many :invitations
   
   # id's of entity objects that represents company as an investor
   def alias_ids
