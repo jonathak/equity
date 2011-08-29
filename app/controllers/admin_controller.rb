@@ -8,6 +8,7 @@ class AdminController < ApplicationController
     @i_count = Investment.count
     @u_count = User.count
     @in_count = Invitation.count
+    @ki_count = King.count
   end
 
 end
