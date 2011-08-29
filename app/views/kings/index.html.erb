@@ -1,0 +1,25 @@
+<h1>Listing kings</h1>
+
+<table>
+  <tr>
+    <th>Company</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @kings.each do |king| %>
+  <tr>
+    <td><%= king.company_id %></td>
+    <td><%= king.user_id %></td>
+    <td><%= link_to 'Show', king %></td>
+    <td><%= link_to 'Edit', edit_king_path(king) %></td>
+    <td><%= link_to 'Destroy', king, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New King', new_king_path %>
