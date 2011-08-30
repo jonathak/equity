@@ -1,3 +1,4 @@
+# a king object is an authorization for a user to have complete access to company information
 class King < ActiveRecord::Base
   belongs_to :company
   belongs_to :user

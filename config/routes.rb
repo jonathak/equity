@@ -1,4 +1,6 @@
 Equity::Application.routes.draw do
+  resources :requests
+
   resources :kings
 
   resources :invitations

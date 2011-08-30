@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Entity:</b>
+  <%= @request.entity_id %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @request.email %>
+</p>
+
+
+<%= link_to 'Edit', edit_request_path(@request) %> |
+<%= link_to 'Back', requests_path %>
