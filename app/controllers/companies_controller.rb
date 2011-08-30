@@ -30,11 +30,15 @@ class CompaniesController < ApplicationController
   # GET /companies/new
   # GET /companies/new.xml
   def new
-    @company = Company.new
+    if session[:user_id].to_i > 0
+      @company = Company.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @company }
+      respond_to do |format|
+        format.html # new.html.erb
+        format.xml  { render :xml => @company }
+      end
+    else
+      redirect_to :error
     end
   end
 
@@ -50,6 +54,9 @@ class CompaniesController < ApplicationController
 
     respond_to do |format|
       if @company.save
+        
+        King.create(:company_id => @company.id, :user_id => session[:user_id].to_i )
+        
         format.html { redirect_to(@company, :notice => 'Company was successfully created.') }
         format.xml  { render :xml => @company, :status => :created, :location => @company }
       else

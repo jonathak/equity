@@ -10,5 +10,8 @@ class AdminController < ApplicationController
     @in_count = Invitation.count
     @ki_count = King.count
   end
+  
+  def error
+  end
 
 end
