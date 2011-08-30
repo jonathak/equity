@@ -14,4 +14,10 @@ class UserMailer < ActionMailer::Base
          :subject => "77Shares Link Request")
   end
   
+  def request_email(request)
+    @request = request
+    mail(:to => request.email,
+         :subject => "77Shares Link Request")
+  end
+  
 end

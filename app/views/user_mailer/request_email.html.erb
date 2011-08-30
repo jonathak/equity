@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p>77shares Connection Request from, <b><%= @request.entity.company.name %></b></p>
+    <p><%= @request.entity.company.name %> invites you to view you cap-table information. To do so, just follow this link: <%= link_to("#{@request.entity.company.name}_invitation", "http://localhost:3000/requests/#{@request.id}") %>.</p>
+  </body>
+</html>
