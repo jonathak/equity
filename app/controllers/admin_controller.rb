@@ -9,6 +9,7 @@ class AdminController < ApplicationController
     @u_count = User.count
     @in_count = Invitation.count
     @ki_count = King.count
+    @r_count = Request.count
   end
   
   def error

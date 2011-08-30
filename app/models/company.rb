@@ -8,6 +8,7 @@ class Company < ActiveRecord::Base
   has_many :invitations
   has_many :kings
   has_many :users, :through => :kings
+  has_many :requests
   
   # id's of entity objects that represents company as an investor
   def alias_ids

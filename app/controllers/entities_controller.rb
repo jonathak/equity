@@ -19,6 +19,7 @@ class EntitiesController < ApplicationController
   # GET /entities/1.xml
   def show
     @entity = Entity.find(params[:id])
+    session[:entity_id] = @entity.id
 
     respond_to do |format|
       format.html # show.html.erb

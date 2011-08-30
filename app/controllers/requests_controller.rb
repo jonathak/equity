@@ -41,15 +41,22 @@ class RequestsController < ApplicationController
   # POST /requests.xml
   def create
     @request = Request.new(params[:request])
+    if session[:entity_id].to_i > 0    
+      @request.entity_id = session[:entity_id].to_i
 
-    respond_to do |format|
-      if @request.save
-        format.html { redirect_to(@request, :notice => 'Request was successfully created.') }
-        format.xml  { render :xml => @request, :status => :created, :location => @request }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @request.errors, :status => :unprocessable_entity }
+      respond_to do |format|
+        if @request.save
+          UserMailer.request_email(@request).deliver
+          format.html { redirect_to(@request, :notice => 'Request was successfully created.') }
+          format.xml  { render :xml => @request, :status => :created, :location => @request }
+        else
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @request.errors, :status => :unprocessable_entity }
+        end
       end
+    else
+      flash[:error_message] = "you must have active entity session."
+      redirect_to :error
     end
   end
 
