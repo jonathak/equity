@@ -2,19 +2,40 @@
 class Integer
     
   def company
-    Company.find(self)
+    begin
+      Company.find(self)
+    rescue
+      nil
+    end
   end
   
   def security
-    Security.find(self)
+    begin
+      Security.find(self)
+    rescue
+      nil
+    end
   end
   
   def entity
-    Entity.find(self)
+    begin
+      Entity.find(self)
+    rescue
+      nil
+    end
+  end
+  
+  def user
+    begin
+      User.find(self)
+    rescue
+      nil
+    end
   end
   
   alias :c :company
   alias :s :security
   alias :e :entity
+  alias :u :user
   
 end

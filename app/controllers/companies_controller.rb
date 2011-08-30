@@ -15,11 +15,15 @@ class CompaniesController < ApplicationController
   def show
     @company = Company.find(params[:id])
     session[:company_id] = @company.id
-    @entities = @company.alias_ids.map(&:e)
+    if (@company.users.map(&:id).include?(session[:user_id]))
+      @entities = @company.alias_ids.map(&:e)
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @company }
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @company }
+      end
+    else
+      redirect_to(:error, :notice => 'Company was successfully created.') 
     end
   end
 

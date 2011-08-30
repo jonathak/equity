@@ -7,7 +7,8 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-	session-company: <%= "#{session[:company_id] ? session[:company_id].to_i.c.name: ''}(#{session[:company_id].to_i})" %> . 
+	session-company: <%= "#{session[:company_id] ? session[:company_id].to_i.c.name: ''}(#{session[:company_id].to_i})" %> .
+	session-user: <%= "#{session[:user_id] ? session[:user_id].to_i.u.name: ''}(#{session[:user_id].to_i})" %> . 
 	<%= link_to 'admin:home', :root %>
 
 <%= yield %>
