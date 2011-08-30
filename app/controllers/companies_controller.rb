@@ -2,7 +2,11 @@ class CompaniesController < ApplicationController
   # GET /companies
   # GET /companies.xml
   def index
-    @companies = Company.all
+    if session[:user_id].to_i > 0
+      @companies = session[:user_id].to_i.user.companies
+    else
+      @companies = []
+    end
 
     respond_to do |format|
       format.html # index.html.erb
