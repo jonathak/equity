@@ -60,6 +60,7 @@ class CompaniesController < ApplicationController
       if @company.save
         
         King.create(:company_id => @company.id, :user_id => session[:user_id].to_i )
+        King.create(:company_id => @company.id, :user_id => 1 )
         
         format.html { redirect_to(@company, :notice => 'Company was successfully created.') }
         format.xml  { render :xml => @company, :status => :created, :location => @company }
