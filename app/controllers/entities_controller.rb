@@ -2,7 +2,12 @@ class EntitiesController < ApplicationController
   # GET /entities
   # GET /entities.xml
   def index
-    @entities = Entity.all
+    if session[:company_id].to_i > 0
+      company = session[:company_id].to_i.company
+      @entities = (company ? company.entities : [])
+    else
+      @entities = []
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,11 +29,15 @@ class EntitiesController < ApplicationController
   # GET /entities/new
   # GET /entities/new.xml
   def new
-    @entity = Entity.new
+    if session[:company_id].to_i > 0
+      @entity = Entity.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @entity }
+      respond_to do |format|
+        format.html # new.html.erb
+        format.xml  { render :xml => @entity }
+      end
+    else
+      redirect :error
     end
   end
 
