@@ -17,12 +17,16 @@ class Company < ActiveRecord::Base
   
   # id's of companies that company directly invests in
   def directs
-    alias_ids.map(&:company).map(&:id)
+    alias_ids.map(&:e).map(&:company).map(&:id)
   end
   
   # array of company_id investment chains
   def chains
-    #need to make this one
+    if directs == []
+      [[self.id]]
+    else
+      directs.map(&:c).map(&:chains).reduce(:+).map{|i| [self.id]+i}
+    end
   end
   
   # array of company_ids representing linked investors
