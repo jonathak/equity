@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label "Investee's entity" %><br />
-    <%= f.select(:entity_id, @entities.map{|e| ["#{e.company.name}: #{e.name}", e.id]}) %>
+    <%= f.label "#{@entity.company.name} : #{@entity.name}" %>
   </div>
   <div class="actions">
     <%= f.submit %>

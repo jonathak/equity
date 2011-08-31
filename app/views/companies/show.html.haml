@@ -9,10 +9,17 @@
 %table
   %tr
     %td= "Direct Investmets:"
-  - @entities.each do |e|
+  - @investment_entities.each do |e|
     %tr
       %td= "#{e.company.name}: #{e.name}"
       
+%table
+  %tr
+    %td= "Investors:"
+  - @company.entities.each do |e|
+    %tr
+      %td= link_to" #{e.name}", "/entities/#{e.id}"
+
 %br
 = link_to 'Edit', edit_company_path(@company)
 = " | "

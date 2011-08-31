@@ -26,7 +26,10 @@ class InvestmentsController < ApplicationController
   def new
     @investment = Investment.new
     @companies = Company.all
-    @entities = Entity.all
+    @entity = params[:entity_id].to_i.e
+    puts ".................#{params[:entity_id]}"
+    session[:entity_id] = @entity.id
+    puts ".................#{session[:entity_id]}"
 
     respond_to do |format|
       format.html # new.html.erb
@@ -44,7 +47,8 @@ class InvestmentsController < ApplicationController
   def create
     @investment = Investment.new(params[:investment])
     @companies = Company.all
-    @entities = Entity.all
+    @investment.entity_id = session[:entity_id].to_i
+    @entity = session[:entity_id].to_i.e
 
     respond_to do |format|
       if @investment.save

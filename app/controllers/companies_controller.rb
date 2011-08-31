@@ -20,7 +20,7 @@ class CompaniesController < ApplicationController
     @company = Company.find(params[:id])
     session[:company_id] = @company.id
     if (@company.users.map(&:id).include?(session[:user_id]))
-      @entities = @company.alias_ids.map(&:e)
+      @investment_entities = @company.alias_ids.map(&:e)
 
       respond_to do |format|
         format.html # show.html.erb
