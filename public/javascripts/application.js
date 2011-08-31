@@ -1,6 +1,14 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
+// this is used in companies index
+$(document).ready(function() {
+  	jQuery(".company_expand").click(function(){
+	  $(".company_list_hidden").slideUp();
+	  $($(this).data('id')).slideDown();
+	});
+});
+
 // this is used in transaction#new
 $(document).ready(function() {
   jQuery("#transaction_security_id").click(function(){ 

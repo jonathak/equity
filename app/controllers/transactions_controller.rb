@@ -24,16 +24,20 @@ class TransactionsController < ApplicationController
   # GET /transactions/new
   # GET /transactions/new.xml
   def new
-    puts "..............debug transaction.new company.session is #{session[:company_id]}"
-    @company = session[:company_id].company
-    @transaction = Transaction.new
-    @securities = @company.securities
-    @entities = @company.entities
-    @sellers = []
+    if session[:company_id].to_i > 0
+      @company = session[:company_id].company
+      @transaction = Transaction.new
+      @securities = @company.securities
+      @entities = @company.entities
+      @sellers = []
     
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @transaction }
+      respond_to do |format|
+        format.html # new.html.erb
+        format.xml  { render :xml => @transaction }
+      end
+    else
+      flash[:error_message] = "must have an active company session to make a transaction."
+      redirect_to :error
     end
   end
 

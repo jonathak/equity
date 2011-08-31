@@ -109,3 +109,8 @@ div.field, div.actions {
   font-size: 12px;
   list-style: square;
 }
+
+.company_list_hidden {
+  margin-bottom: 10px;
+  display: none;
+}
