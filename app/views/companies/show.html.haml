@@ -5,13 +5,6 @@
   %b
     Name:
     = @company.name
-
-%table
-  %tr
-    %td= "Direct Investmets:"
-  - @investment_entities.each do |e|
-    %tr
-      %td= "#{e.company.name}: #{e.name}"
       
 %table
   %tr

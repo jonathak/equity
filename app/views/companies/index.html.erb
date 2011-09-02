@@ -1,8 +1,7 @@
-<h1>Listing companies</h1>
-
+<br /><br />
 <table>
   <tr>
-    <th>Name</th>
+    <th></th>
     <th></th>
     <th></th>
     <th></th>
@@ -10,11 +9,11 @@
 
 <% @companies.each do |company| %>
   <tr>
-    <td><%= company.name %></td>
-    <td><%= link_to 'direct investments', "#", :class => "company_expand", 'data-id' => "\#company_list_hidden_#{company.id}" %> . </td>
-    <td><%= link_to 'Show & create session', company %> . </td>
-    <td><%= link_to 'Edit', edit_company_path(company) %> . </td>
-    <td><%= link_to 'Destroy', company, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><b><%= company.name %></b></td>
+    <td><%= link_to 'show direct investments', "#", :class => "company_expand", 'data-id' => "\#company_list_hidden_#{company.id}" %> . </td>
+    <td><%= link_to "manage ownership of #{company.name}", company %> . </td>
+    <td><%= link_to 'rename', edit_company_path(company) %> . </td>
+    <td><%= link_to 'delete', company, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
   <tbody class="company_list_hidden" id="company_list_hidden_<%= company.id %>">
 	<% company.directs.each do |d| %>
@@ -26,4 +25,4 @@
 
 <br />
 
-<%= link_to 'New Company', new_company_path %>
+<%= link_to 'Add New Company', new_company_path %>
