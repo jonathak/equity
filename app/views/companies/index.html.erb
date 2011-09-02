@@ -11,13 +11,15 @@
 <% @companies.each do |company| %>
   <tr>
     <td><%= company.name %></td>
-    <td><%= link_to 'expand', "#", :class => "company_expand", 'data-id' => "\#company_list_hidden_#{company.id}" %> . </td>
+    <td><%= link_to 'direct investments', "#", :class => "company_expand", 'data-id' => "\#company_list_hidden_#{company.id}" %> . </td>
     <td><%= link_to 'Show & create session', company %> . </td>
     <td><%= link_to 'Edit', edit_company_path(company) %> . </td>
     <td><%= link_to 'Destroy', company, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
   <tbody class="company_list_hidden" id="company_list_hidden_<%= company.id %>">
-	<tr><td><%= "company #{company.name} detailed info will go here."%></td></tr>
+	<% company.directs.each do |d| %>
+	  <tr><td><%= "#{d.c.name}"%></td></tr>
+	<% end %>
   </tbody>
 <% end %>
 </table>
