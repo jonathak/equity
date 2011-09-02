@@ -1,4 +1,12 @@
 Equity::Application.routes.draw do
+  get "entry/home"
+
+  get "entry/login"
+
+  get "entry/signup"
+  
+  post "entry/authorize"
+
   resources :requests
 
   resources :kings
@@ -77,7 +85,7 @@ Equity::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "admin#home"
+  root :to => "entry#home"
 
   # See how all your routes lay out with "rake routes"
 
