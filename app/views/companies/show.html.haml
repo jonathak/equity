@@ -1,19 +1,13 @@
 
 %p{:id => "notice"}= notice
-
-%p
-  %b
-    Name:
-    = @company.name
       
 %table
   %tr
-    %td= "Investors:"
+    %td
+      %b= "#{@company.name} investors:"
   - @company.entities.each do |e|
     %tr
       %td= link_to" #{e.name}", "/entities/#{e.id}"
 
 %br
-= link_to 'Edit', edit_company_path(@company)
-= " | "
 = link_to 'Back', companies_path
