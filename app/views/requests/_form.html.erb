@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label "recipient's email address:" %><br />
+    <%= f.label "#{session[:entity_id].e.name}'s email address:" %><br />
     <%= f.text_field :email %>
   </div>
   <div class="actions">

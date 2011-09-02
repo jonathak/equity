@@ -35,7 +35,7 @@ class InvestmentsController < ApplicationController
         format.xml  { render :xml => @investment }
       end
     rescue
-      flash[:error_message] = "investment must be initiated from an entity page."
+      flash[:error_message] = "to create a new investment, please start by sending an invitation to your portfolio company."
       redirect_to :error
     end
   end

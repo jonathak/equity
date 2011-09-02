@@ -11,15 +11,16 @@
     </div>
   <% end %>
 
+ <p><%= "#{@entity.company.name} has invited you to securely view your equity holdings data via 77Shares.com."%>
+
   <div class="field">
-    <%= f.label 'Investor' %><br />
-    <%= f.select(:company_id, @companies.map{|c| [c.name, c.id]}) %>
+    <%= link_to "login", "#"%> or <%= link_to "sign_up", "#"%>
   </div>
-  <div class="field">
+  <div class="hidden_field">
     <%= f.label "Investee's entity" %><br />
     <%= f.label "#{@entity.company.name} : #{@entity.name}" %>
   </div>
-  <div class="actions">
+  <div id="investment_submit" class="actions">
     <%= f.submit %>
   </div>
 <% end %>
