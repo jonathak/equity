@@ -24,16 +24,19 @@ class InvestmentsController < ApplicationController
   # GET /investments/new
   # GET /investments/new.xml
   def new
-    @investment = Investment.new
-    @companies = Company.all
-    @entity = params[:entity_id].to_i.e
-    puts ".................#{params[:entity_id]}"
-    session[:entity_id] = @entity.id
-    puts ".................#{session[:entity_id]}"
+    begin
+      @investment = Investment.new
+      @companies = Company.all
+      @entity = params[:entity_id].to_i.e
+      session[:entity_id] = @entity.id
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @investment }
+      respond_to do |format|
+        format.html # new.html.erb
+        format.xml  { render :xml => @investment }
+      end
+    rescue
+      flash[:error_message] = "investment must be initiated from an entity page."
+      redirect_to :error
     end
   end
 

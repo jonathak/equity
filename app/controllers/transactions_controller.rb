@@ -94,8 +94,6 @@ class TransactionsController < ApplicationController
     company_id = params[:company_id].to_i
     session[:company_id] = company_id
     company = params[:company_id].to_i.company
-    puts "********************** #{company.name}"
-    puts "********************** #{company.securities.map(&:name)}"
     @securities = company.securities
     @entities = company.entities
     respond_to do |format|
@@ -109,8 +107,6 @@ class TransactionsController < ApplicationController
       kind = security_id.security.kind
       session[:security_id] = security_id
       security = params[:security_id].to_i.security
-      puts "********************** #{security.name}"
-      puts "********************** #{security.buyers.map(&:name)}"
       @owners = security.buyers
     else
       @owners = []
@@ -118,10 +114,8 @@ class TransactionsController < ApplicationController
     end
     respond_to do |format|
       format.js {
-        puts "nnnnnnnnnnn kind #{kind}"
         case kind.to_i
           when 1
-            puts "kkkkkkkkk hello"
             render "sec_com"
           when 2
             render "sec_opt"
@@ -144,8 +138,6 @@ class TransactionsController < ApplicationController
     else
       @entities = []
     end
-    puts "qqqqqqqqqqq seller id #{@seller_id}"
-    puts "qqqqqqqqqqq entities #{@entities.map(&:name)}"
     respond_to do |format|
       format.js
     end
