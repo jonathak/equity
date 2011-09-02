@@ -23,14 +23,14 @@ Equity::Application.routes.draw do
   match 'transactions/sec' => 'transactions#sec', as: 'sec'
   match 'transactions/sel' => 'transactions#sel', as: 'sel'
   match 'admin/error' => 'admin#error', as: 'error'
+  match 'admin/logout' => 'admin#logout', as: 'logout'
+  match 'admin/home' => 'admin#home', as: 'home'
   
   resources :transactions
 
   resources :securities
 
   resources :entities
-
-  get "admin/home"
 
   resources :companies
   

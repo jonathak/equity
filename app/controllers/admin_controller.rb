@@ -14,5 +14,12 @@ class AdminController < ApplicationController
   
   def error
   end
+  
+  def logout
+    session[:user_id] = nil
+    session[:company_id] = nil
+    session[:entity_id] = nil
+    redirect_to '/entry/home'
+  end
 
 end
