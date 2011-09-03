@@ -15,6 +15,13 @@ $(document).ready(function() {
   });
 });
 
+// this is used in investment#new
+$(document).ready(function() {
+  jQuery("#investment_cont").click(function(){ 
+    jQuery.ajax('cont');
+  });
+});
+
 // this is used in companies index
 $(document).ready(function() {
   	jQuery(".company_expand").click(function(){

@@ -24,7 +24,7 @@ class InvestmentsController < ApplicationController
   # GET /investments/new
   # GET /investments/new.xml
   def new
-    begin
+    #begin
       @investment = Investment.new
       @companies = Company.all
       @entity = params[:entity_id].to_i.e
@@ -34,10 +34,10 @@ class InvestmentsController < ApplicationController
         format.html # new.html.erb
         format.xml  { render :xml => @investment }
       end
-    rescue
-      flash[:error_message] = "to create a new investment, please start by sending a invitation/request to your portfolio company."
-      redirect_to :error
-    end
+    #rescue
+    #  flash[:error_message] = "to create a new investment, please start by sending a invitation/request to your portfolio company."
+    #  redirect_to :error
+    #end
   end
 
   # GET /investments/1/edit
@@ -91,35 +91,36 @@ class InvestmentsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-end
 
-def inv_log
-  session[:inv] = :login
-  respond_to do |format|
-    format.js
+  def inv_log
+    session[:inv] = :log
+    respond_to do |format|
+      format.js
+    end
   end
-end
 
-def inv_sign
-  session[:inv]= :sign
-  respond_to do |format|
-    format.js
+  def inv_sign
+    session[:inv]= :sign
+    respond_to do |format|
+      format.js
+    end
   end
-end
 
-def continue    
-  respond_to do |format|
-    format.js {
-      case session[:inv]
-        when :log
-          puts "......log....."
-          render "log"
-        when :sign
-          puts "......sign......"
-          render "sign"
-        else
-          redirect_to :error
-      end
-    }
+  def cont 
+    respond_to do |format|
+      format.js {
+        puts "session[:inv] #{session[:inv]}"
+        case session[:inv]
+          when :log
+            puts "......log....."
+            render "log"
+          when :sign
+            puts "......sign......"
+            render "sign"
+          else
+            redirect_to :error
+        end
+      }
+    end
   end
 end

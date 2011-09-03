@@ -1,46 +1,32 @@
 Equity::Application.routes.draw do
-  get "entry/home"
-
-  get "entry/login"
-
-  get "entry/signup"
   
+  get "entry/home"
+  get "entry/login"
+  get "entry/signup"
   post "entry/authorize"
-
-  resources :requests
-
-  resources :kings
-
-  resources :invitations
-
-  resources :users
-
-
-
-  resources :kinds
-
+  
   match 'transactions/com' => 'transactions#com', as: 'com'
   match 'transactions/sec' => 'transactions#sec', as: 'sec'
   match 'transactions/sel' => 'transactions#sel', as: 'sel'
   
   match 'investments/inv_log' => 'investments#inv_log', as: 'inv_log'
   match 'investments/inv_sign' => 'investments#inv_sign', as: 'inv_sign'
-  match 'investments/continue' => 'investments#continue', as: 'continue'
+  match 'investments/cont' => 'investments#cont', as: 'cont'
   
   match 'admin/error' => 'admin#error', as: 'error'
   match 'admin/logout' => 'admin#logout', as: 'logout'
   match 'admin/home' => 'admin#home', as: 'home'
-  
+
+  resources :requests
+  resources :kings
+  resources :invitations
+  resources :users
+  resources :kinds
   resources :transactions
   resources :investments
-
   resources :securities
-
   resources :entities
-
   resources :companies
-  
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
