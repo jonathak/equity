@@ -24,25 +24,20 @@ class InvestmentsController < ApplicationController
   # GET /investments/new
   # GET /investments/new.xml
   def new
-    #begin
-      puts "1"
+    begin
       @investment = Investment.new
-      puts "2"
       @companies = Company.all
-      puts "3"
       @entity = params[:entity_id].to_i.e
-      puts "4"
       session[:entity_id] = @entity.id
-      puts "5"
 
       respond_to do |format|
         format.html # new.html.erb
         format.xml  { render :xml => @investment }
       end
-    #rescue
-    #  flash[:error_message] = "to create a new investment, please start by sending a invitation/request to your portfolio company."
-    #  redirect_to :error
-    #end
+    rescue
+      flash[:error_message] = "to create a new investment, please start by sending a invitation/request to your portfolio company."
+      redirect_to :error
+    end
   end
 
   # GET /investments/1/edit
@@ -112,18 +107,19 @@ def inv_sign
   end
 end
 
-def continue
-  if session[:inv] == :sign
-    
+def continue    
   respond_to do |format|
     format.js {
       case session[:inv]
         when :log
+          puts "......log....."
           render "log"
         when :sign
+          puts "......sign......"
           render "sign"
         else
           redirect_to :error
       end
     }
+  end
 end
