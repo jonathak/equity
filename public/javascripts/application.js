@@ -20,8 +20,8 @@ $(document).ready(function() {
   jQuery("#investment_cont").click(function(){ 
     jQuery.ajax('cont', {
 	  data: {
-		email: '...email...',
-		password: '...password...'
+		email: jQuery('.inv_log_field #email').val(),
+		password: jQuery('.inv_log_field #login').val()
       }
 	});
   });

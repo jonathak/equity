@@ -112,6 +112,15 @@ class InvestmentsController < ApplicationController
       # check if credential are correct
       puts "email #{params[:email]}"
       puts "password #{params[:password]}"
+      if User.where(:email => params[:email]).exists?
+        if ((user =User.where(:email => params[:email]).first).login) == params[:password]
+          puts "... YES..."
+        else
+          puts "... NO..."
+        end
+      else
+        puts "... NOOO..."
+      end
       #
       # if correct, then create investment for the resulting company
       # if login fails, go to error page
