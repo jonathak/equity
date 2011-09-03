@@ -23,10 +23,17 @@
     <%= text_field_tag :login %><br />
     <%= link_to("continue", '#', {:id => :investment_cont})%>
   </div>
+
+  <div id="inv_comp_select" style = "display: none;">
+    <%= label_tag "choose company:" %><br />
+    <%= select_tag(:company_id, options_for_select(['nil'])) %>
+  </div>
+
   <div class="hidden_field">
     <%= f.label "Investee's entity" %><br />
     <%= f.label "#{@entity.company.name} : #{@entity.name}" %>
   </div>
+  <br />
   <div id="investment_submit" class="actions" style="display: none;">
     <%= f.submit %>
   </div>

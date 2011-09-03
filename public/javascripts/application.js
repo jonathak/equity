@@ -27,6 +27,18 @@ $(document).ready(function() {
   });
 });
 
+// this is used in investment#new
+$(document).ready(function() {
+  jQuery("#inv_comp_select select").click(function(){ 
+	alert(jQuery(this).val());
+    jQuery.ajax('inv_submit', {
+	  data: {
+		company_id: jQuery(this).val()
+	  }
+	});
+  });
+});
+
 // this is used in companies index
 $(document).ready(function() {
   	jQuery(".company_expand").click(function(){

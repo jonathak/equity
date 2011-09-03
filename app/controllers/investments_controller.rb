@@ -51,6 +51,7 @@ class InvestmentsController < ApplicationController
     @investment = Investment.new(params[:investment])
     @companies = Company.all
     @investment.entity_id = session[:entity_id].to_i
+    @investment.company_id = session[:company_id].to_i
     @entity = session[:entity_id].to_i.e
 
     respond_to do |format|
@@ -105,6 +106,13 @@ class InvestmentsController < ApplicationController
       format.js
     end
   end
+  
+  def inv_submit
+    session[:company_id] = params[:company_id].to_i
+    respond_to do |format|
+      format.js
+    end
+  end
 
   def cont 
     case session[:inv]
@@ -115,6 +123,8 @@ class InvestmentsController < ApplicationController
       if User.where(:email => params[:email]).exists?
         if ((user =User.where(:email => params[:email]).first).login) == params[:password]
           puts "... YES..."
+          session[:user_id] = user.id
+          @companies = user.companies
         else
           puts "... NO..."
         end

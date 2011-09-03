@@ -12,6 +12,7 @@ Equity::Application.routes.draw do
   match 'investments/inv_log' => 'investments#inv_log', as: 'inv_log'
   match 'investments/inv_sign' => 'investments#inv_sign', as: 'inv_sign'
   match 'investments/cont' => 'investments#cont', as: 'cont'
+  match 'investments/inv_submit' => 'investments#inv_submit', as: 'inv_submit'
   
   match 'admin/error' => 'admin#error', as: 'error'
   match 'admin/logout' => 'admin#logout', as: 'logout'
