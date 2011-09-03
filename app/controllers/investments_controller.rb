@@ -110,10 +110,16 @@ class InvestmentsController < ApplicationController
     case session[:inv]
     when :log
       # check if credential are correct
+      puts "email #{params[:email]}"
+      puts "password #{params[:password]}"
+      #
       # if correct, then create investment for the resulting company
       # if login fails, go to error page
     when :sign
       # create new user account
+      puts "email #{params[:email]}"
+      puts "password #{params[:password]}"
+      #
       # ask for company name
       #create company, and create investment for the resulting company
     else

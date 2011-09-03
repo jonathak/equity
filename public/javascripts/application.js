@@ -18,7 +18,12 @@ $(document).ready(function() {
 // this is used in investment#new
 $(document).ready(function() {
   jQuery("#investment_cont").click(function(){ 
-    jQuery.ajax('cont');
+    jQuery.ajax('cont', {
+	  data: {
+		email: '...email...',
+		password: '...password...'
+      }
+	});
   });
 });
 
