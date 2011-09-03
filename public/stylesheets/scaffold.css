@@ -24,6 +24,11 @@ div.field, div.actions {
 	display: none;
 }
 
+.inv_log_field {
+	margin-bottom: 10px;
+	display: none;
+}
+
 #notice {
   color: green;
 }

@@ -1,6 +1,20 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
+// this is used in investment#new
+$(document).ready(function() {
+  jQuery("#investment_login").click(function(){ 
+    jQuery.ajax('inv_log');
+  });
+});
+
+// this is used in investment#new
+$(document).ready(function() {
+  jQuery("#investment_sign_up").click(function(){ 
+    jQuery.ajax('inv_sign');
+  });
+});
+
 // this is used in companies index
 $(document).ready(function() {
   	jQuery(".company_expand").click(function(){

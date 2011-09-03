@@ -14,13 +14,20 @@
  <p><%= "#{@entity.company.name} has invited you to securely view your equity holdings data via 77Shares.com."%>
 
   <div class="field">
-    <%= link_to "login", "#"%> or <%= link_to "sign_up", "#"%>
+    <%= link_to("login", "#", {:id => :investment_login})%> or <%= link_to("sign_up", "#", {:id => :investment_sign_up})%>
+  </div>
+  <div class="inv_log_field">
+    <%= label_tag :email %><br />
+    <%= text_field_tag :email %><br />
+    <%= label_tag :login %><br />
+    <%= text_field_tag :login %><br />
+    <%= link_to("continue", '#', {:id => :investment_continue})%>
   </div>
   <div class="hidden_field">
     <%= f.label "Investee's entity" %><br />
     <%= f.label "#{@entity.company.name} : #{@entity.name}" %>
   </div>
-  <div id="investment_submit" class="actions">
+  <div id="investment_submit" class="actions" style="display: none;">
     <%= f.submit %>
   </div>
 <% end %>
