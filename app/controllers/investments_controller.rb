@@ -107,15 +107,24 @@ class InvestmentsController < ApplicationController
   end
 
   def cont 
+    case session[:inv]
+    when :log
+      # check if credential are correct
+      # if correct, then create investment for the resulting company
+      # if login fails, go to error page
+    when :sign
+      # create new user account
+      # ask for company name
+      #create company, and create investment for the resulting company
+    else
+      redirect_to :error
+    end
     respond_to do |format|
       format.js {
-        puts "session[:inv] #{session[:inv]}"
         case session[:inv]
           when :log
-            puts "......log....."
             render "log"
           when :sign
-            puts "......sign......"
             render "sign"
           else
             redirect_to :error
