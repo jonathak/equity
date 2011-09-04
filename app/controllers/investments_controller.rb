@@ -122,23 +122,19 @@ class InvestmentsController < ApplicationController
   def cont 
     case session[:inv]
     when :log
-      # check if credential are correct
       puts "email #{params[:email]}"
       puts "password #{params[:password]}"
       if User.where(:email => params[:email]).exists?
         if ((user =User.where(:email => params[:email]).first).login) == params[:password]
-          puts "... YES..."
           session[:user_id] = user.id
           @companies = user.companies
         else
-          puts "... NO..."
+          flash[:error_message] = incorrect login credentials.
+          redirect_to :error
         end
       else
-        puts "... NOOO..."
+        flash[:error_message] = incorrect login credentials.
       end
-      #
-      # if correct, then create investment for the resulting company
-      # if login fails, go to error page
     when :sign
       # create new user account
       puts "email #{params[:email]}"
