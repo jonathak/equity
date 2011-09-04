@@ -48,7 +48,7 @@ class InvestmentsController < ApplicationController
   # POST /investments
   # POST /investments.xml
   def create
-    if session[:company_id] > 0
+    if (session[:company_id] && (session[:company_id] > 0))
       @investment = Investment.new(params[:investment])
       @companies = Company.all
       @investment.entity_id = session[:entity_id].to_i
@@ -121,29 +121,34 @@ class InvestmentsController < ApplicationController
 
   def cont 
     case session[:inv]
-    when :log
-      puts "email #{params[:email]}"
-      puts "password #{params[:password]}"
-      if User.where(:email => params[:email]).exists?
-        if ((user =User.where(:email => params[:email]).first).login) == params[:password]
-          session[:user_id] = user.id
-          @companies = user.companies
+      when :log
+        # log in to existing user account
+        if User.where(:email => params[:email]).exists?
+          if ((user =User.where(:email => params[:email]).first).login) == params[:password]
+            session[:user_id] = user.id
+            @companies = user.companies
+          else
+            flash[:error_message] = "incorrect login credentials."
+            redirect_to :error
+          end
         else
-          flash[:error_message] = incorrect login credentials.
-          redirect_to :error
+          flash[:error_message] = "incorrect login credentials."
         end
+      when :sign
+        # create new user account
+        user = User.new
+        user.email = params[:email]
+        user.login = params[:password]
+        user.save
+        session[:user_id] = user.id.to_i
+        # assume company name is same as requesting entity name.
+        company = Company.new
+        company.name = session[:entity_name]
+        company.save
+        session[:company_id] = company.id
+        puts "................... #{company.id}"
       else
-        flash[:error_message] = incorrect login credentials.
-      end
-    when :sign
-      # create new user account
-      puts "email #{params[:email]}"
-      puts "password #{params[:password]}"
-      #
-      # ask for company name
-      #create company, and create investment for the resulting company
-    else
-      redirect_to :error
+        redirect_to :error
     end
     respond_to do |format|
       format.js {

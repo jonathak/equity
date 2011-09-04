@@ -29,6 +29,11 @@
     <%= select_tag(:company_id, options_for_select(['nil'])) %>
   </div>
 
+  <div id="inv_comp_input" style = "display: none;">
+    <%= label_tag "name of company:" %><br />
+    <%= text_field_tag(:company_name) %>
+  </div>
+
   <div class="hidden_field">
     <%= f.label "Investee's entity" %><br />
     <%= f.label "#{@entity.company.name} : #{@entity.name}" %>
