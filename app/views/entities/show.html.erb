@@ -6,7 +6,7 @@
 </p>
 
 <p>
-	<%= link_to "Invite #{@entity.name} to 77shares.", "/requests/new" %>
+  <%= link_to("Invite #{@entity.name} to 77shares.", "/requests/new")  unless @entity.investment %>
 </p>
 
 
