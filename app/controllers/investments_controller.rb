@@ -133,6 +133,7 @@ class InvestmentsController < ApplicationController
           end
         else
           flash[:error_message] = "incorrect login credentials."
+          redirect_to :error
         end
       when :sign
         # create new user account
