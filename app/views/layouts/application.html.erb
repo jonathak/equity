@@ -8,7 +8,7 @@
 </head>
 <body>
 	<b>session data: </b>
-	company: <%= "#{session[:company_id] ? session[:company_id].to_i : ''}(#{session[:company_id].to_i})" %> .
+	company: <%= "#{(session[:company_id] && session[:company_id] > 0) ? session[:company_id].to_i.c.name : ''}(#{session[:company_id].to_i})" %> .
 	user: <%= "#{session[:user_id] ? session[:user_id].to_i.u.name : ''}(#{session[:user_id].to_i})" %> . 
 	entity: <%= "#{session[:entity_id] ? session[:entity_id].to_i.e.name : ''}(#{session[:entity_id].to_i})" %> . 
 	<%= link_to "logout", "/admin/logout"%>

@@ -48,20 +48,25 @@ class InvestmentsController < ApplicationController
   # POST /investments
   # POST /investments.xml
   def create
-    @investment = Investment.new(params[:investment])
-    @companies = Company.all
-    @investment.entity_id = session[:entity_id].to_i
-    @investment.company_id = session[:company_id].to_i
-    @entity = session[:entity_id].to_i.e
+    if session[:company_id] > 0
+      @investment = Investment.new(params[:investment])
+      @companies = Company.all
+      @investment.entity_id = session[:entity_id].to_i
+      @investment.company_id = session[:company_id].to_i
+      @entity = session[:entity_id].to_i.e
 
-    respond_to do |format|
-      if @investment.save
-        format.html { redirect_to(@investment, :notice => 'Investment was successfully created.') }
-        format.xml  { render :xml => @investment, :status => :created, :location => @investment }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @investment.errors, :status => :unprocessable_entity }
+      respond_to do |format|
+        if @investment.save
+          format.html { redirect_to(@investment, :notice => 'Investment was successfully created.') }
+          format.xml  { render :xml => @investment, :status => :created, :location => @investment }
+        else
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @investment.errors, :status => :unprocessable_entity }
+        end
       end
+    else
+      flash[:error_message] = "must choose a company. if you do not already have one, please create on before accepting the invitation to link to a portfolio company."
+      redirect_to :error
     end
   end
 

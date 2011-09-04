@@ -1,3 +1,7 @@
+<option value=
+<%= "'0'" %>  > 
+<%= "choose one" %> 
+</option>
 <% @companies.sort {|a,b| a.name.downcase <=> b.name.downcase}.each do |c| %>
   <option value=
   <%= "'#{c.id}'" %>  > 
