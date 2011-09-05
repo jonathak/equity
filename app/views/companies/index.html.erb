@@ -17,7 +17,7 @@
   </tr>
   <tbody class="company_list_hidden" id="company_list_hidden_<%= company.id %>">
 	<% company.directs.each do |d| %>
-	  <tr><td><%= "#{d.c.name}"%></td></tr>
+	  <tr><td colspan=5><%= "#{d.c.name}"%></td></tr>
 	<% end %>
   </tbody>
 <% end %>

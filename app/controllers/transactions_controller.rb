@@ -27,7 +27,7 @@ class TransactionsController < ApplicationController
     if session[:company_id].to_i > 0
       @company = session[:company_id].company
       @transaction = Transaction.new
-      @securities = @company.securities
+      @securities = [Security.new(:name => "select one")] + @company.securities
       @entities = @company.entities
       @sellers = []
     
@@ -111,7 +111,9 @@ class TransactionsController < ApplicationController
       kind = security_id.security.kind
       session[:security_id] = security_id
       security = params[:security_id].to_i.security
-      @owners = [security.company.entities.where(:name => security.company.name).first] + security.buyers
+      @owners = [Entity.new(:name => "select one")] + 
+                [security.company.entities.where(:name => security.company.name).first] +
+                security.buyers
     else
       @owners = []
       @entities = []
@@ -138,7 +140,9 @@ class TransactionsController < ApplicationController
     @seller_id = params[:seller_id].to_i
     if @seller_id > 0
       company = session[:company_id].company
-      @entities = company.entities + [Entity.new(:name => "new investor")]
+      @entities = [Entity.new(:name => "select one")] +
+                  company.entities +
+                  [Entity.new(:name => "new investor")]
     else
       @entities = []
     end

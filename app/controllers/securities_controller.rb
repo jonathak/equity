@@ -63,10 +63,16 @@ class SecuritiesController < ApplicationController
   # PUT /securities/1.xml
   def update
     @security = Security.find(params[:id])
+    if (@security.name == "common")
+      params[:security][:name] = "common" 
+      notice = "cannot rename common"
+    else
+      notice = 'Security was successfully updated.'
+    end
 
     respond_to do |format|
       if @security.update_attributes(params[:security])
-        format.html { redirect_to(@security, :notice => 'Security was successfully updated.') }
+        format.html { redirect_to(@security, :notice => notice) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -78,11 +84,15 @@ class SecuritiesController < ApplicationController
   # DELETE /securities/1
   # DELETE /securities/1.xml
   def destroy
-    @security = Security.find(params[:id])
-    @security.destroy
+    unless @security.name == "common"
+      @security = Security.find(params[:id])
+      @security.transactions.each(&:destroy)
+      @security.destroy
+    end
+    @security.name == "common" ? notice = "cannot destroy common" : notice = ""
 
     respond_to do |format|
-      format.html { redirect_to(securities_url) }
+      format.html { redirect_to(securities_url, :notice => notice) }
       format.xml  { head :ok }
     end
   end

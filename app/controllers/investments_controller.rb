@@ -24,7 +24,7 @@ class InvestmentsController < ApplicationController
   # GET /investments/new
   # GET /investments/new.xml
   def new
-    #begin
+    begin
       @investment = Investment.new
       @companies = Company.all
       @entity = params[:entity_id].to_i.e
@@ -34,10 +34,10 @@ class InvestmentsController < ApplicationController
         format.html # new.html.erb
         format.xml  { render :xml => @investment }
       end
-    #rescue
-    #  flash[:error_message] = "to create a new investment, please start by sending a invitation/request to your portfolio company."
-    #  redirect_to :error
-    #end
+    rescue
+      flash[:error_message] = "to create a new investment, please start by sending a invitation/request to your portfolio company."
+      redirect_to :error
+    end
   end
 
   # GET /investments/1/edit

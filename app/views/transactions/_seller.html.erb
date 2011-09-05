@@ -1,4 +1,4 @@
-<% @owners.sort {|a,b| a.name.downcase <=> b.name.downcase}.each do |o| %>
+<% @owners.each do |o| %>
   <option value=
   <%= "'#{o.id}'" %>  > 
   <%= "#{o.name}" %> 

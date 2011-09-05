@@ -16,10 +16,10 @@
 
 <% @transactions.each do |transaction| %>
   <tr>
-    <td><%= transaction.company.id %></td>
-    <td><%= transaction.security_id %></td>
-    <td><%= transaction.seller_id %></td>
-    <td><%= transaction.buyer_id %></td>
+    <td><%= transaction.company.name %></td>
+    <td><%= transaction.security_id.s.name %></td>
+    <td><%= transaction.seller_id.e.name %></td>
+    <td><%= transaction.buyer_id.e.name %></td>
     <td><%= transaction.shares %></td>
     <td><%= transaction.dollars %></td>
     <td><%= transaction.ex_price %></td>
@@ -33,4 +33,5 @@
 
 <br />
 
+<%= link_to "manage #{session[:company_id].to_i.c.name}", session[:company_id].to_i.c %> . 
 <%= link_to 'New Transaction', new_transaction_path %>
