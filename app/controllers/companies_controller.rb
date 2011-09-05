@@ -111,6 +111,8 @@ class CompaniesController < ApplicationController
       s.transactions.each(&:destroy)
       s.destroy
     end
+    session[:company_id] = nil
+    session[:entity_id] = nil
 
     respond_to do |format|
       format.html { redirect_to(companies_url) }
