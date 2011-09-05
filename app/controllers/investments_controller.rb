@@ -57,7 +57,7 @@ class InvestmentsController < ApplicationController
 
       respond_to do |format|
         if @investment.save
-          format.html { redirect_to(@investment, :notice => 'Investment was successfully created.') }
+          format.html { redirect_to(:companies, :notice => 'Investment was successfully created.') }
           format.xml  { render :xml => @investment, :status => :created, :location => @investment }
         else
           format.html { render :action => "new" }
@@ -140,14 +140,18 @@ class InvestmentsController < ApplicationController
         user = User.new
         user.email = params[:email]
         user.login = params[:password]
-        user.save
+        user.save(:validate => false)
         session[:user_id] = user.id.to_i
         # assume company name is same as requesting entity name.
         company = Company.new
-        company.name = session[:entity_name]
-        company.save
+        company.name = session[:entity_id].to_i.e.name
+        company.save(:validate => false)
         session[:company_id] = company.id
-        puts "................... #{company.id}"
+        # link user to company
+        king = King.new
+        king.company_id = session[:company_id]
+        king.user_id = session[:user_id]
+        king.save(:validate => false)
       else
         redirect_to :error
     end
