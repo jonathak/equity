@@ -7,7 +7,21 @@
       %b= "#{@company.name} investors:"
   - @company.entities.each do |e|
     %tr
-      %td= link_to" #{e.name}", "/entities/#{e.id}"
-
+      %td= link_to(" #{e.name}", "/entities/#{e.id}")
+  %tr
+    %td= link_to("add new investor", "/entities/new")
 %br
-= link_to 'Back', companies_path
+%table
+  %tr
+    %td
+      %b= "#{@company.name} securities:"
+  - @company.securities.each do |s|
+    %tr
+      %td= link_to(" #{s.name}", "/securities/#{s.id}")
+  %tr
+    %td= link_to("add new security", "/securities/new")
+%br
+%i= link_to("(link to #{@company.name}'s transactions)", transactions_path)
+%br
+%br
+= link_to 'Back to list of companies', companies_path
