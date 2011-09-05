@@ -59,8 +59,19 @@ class CompaniesController < ApplicationController
     respond_to do |format|
       if @company.save
         
+        # company creator gets full access
         King.create(:company_id => @company.id, :user_id => session[:user_id].to_i )
+        
+        # super user gets full access
         King.create(:company_id => @company.id, :user_id => 1 )
+        
+        # company always has itself as an entity
+        Entity.create(:company_id => @company.id, :name => @company.name)
+        
+        # company always has common stock
+        Security.create(:company_id => @company.id, 
+                        :name       => 'common',
+                        :kind       => 'common')
         
         format.html { redirect_to(@company, :notice => 'Company was successfully created.') }
         format.xml  { render :xml => @company, :status => :created, :location => @company }
@@ -92,6 +103,14 @@ class CompaniesController < ApplicationController
   def destroy
     @company = Company.find(params[:id])
     @company.destroy
+    @company.entities.each do |e|
+      e.destroy if e.investment
+      e.destroy
+    end
+    @company.securities.each do |s|
+      s.transactions.each(&:destroy)
+      s.destroy
+    end
 
     respond_to do |format|
       format.html { redirect_to(companies_url) }
