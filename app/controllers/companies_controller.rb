@@ -71,7 +71,7 @@ class CompaniesController < ApplicationController
         # company always has common stock
         Security.create(:company_id => @company.id, 
                         :name       => 'common',
-                        :kind       => 'common')
+                        :kind       => 1)
         
         format.html { redirect_to(@company, :notice => 'Company was successfully created.') }
         format.xml  { render :xml => @company, :status => :created, :location => @company }

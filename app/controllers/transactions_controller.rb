@@ -50,6 +50,10 @@ class TransactionsController < ApplicationController
   # POST /transactions.xml
   def create
     @transaction = Transaction.new(params[:transaction])
+    @company = session[:company_id].company
+    @securities = @company.securities
+    @entities = @company.entities
+    @sellers = []
 
     respond_to do |format|
       if @transaction.save
