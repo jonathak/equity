@@ -24,16 +24,11 @@ class InvitationsController < ApplicationController
   # GET /invitations/new
   # GET /invitations/new.xml
   def new
-    if session[:company_id].to_i > 0
-      @invitation = Invitation.new
-
-      respond_to do |format|
-        format.html # new.html.erb
-        format.xml  { render :xml => @invitation }
-      end
-    else
-      flash[:error_message] = "you must have an active company session to create an invitation."
-      redirect_to :error
+    @invitation = Invitation.new
+    puts "...........pppp #{params}"
+    session[:company_id] = params[:company_id].to_i
+    respond_to do |format|
+      format.html # new.html.erb
     end
   end
 

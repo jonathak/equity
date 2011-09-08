@@ -19,7 +19,7 @@
 	<% company.directs.each do |d| %>
 	  <tr><td colspan=5><%= "#{d.c.name}"%></td></tr>
 	<% end %>
-	<tr><td colspan=5 id="newinvite"><%= link_to "(add ownership stake)", "/invitations/new" %><td><tr>
+	<tr><td colspan=5 class="newinvite"><%= link_to "(add ownership stake)", "invitations/new?company_id=#{company.id}" %><td><tr>
   </tbody>
 <% end %>
 </table>
