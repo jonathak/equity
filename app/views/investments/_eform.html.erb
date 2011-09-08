@@ -13,32 +13,43 @@
 
  <p><%= "#{@entity.company.name} has invited you to securely view your equity holdings data via 77Shares.com."%>
 
+  <!-- clicking either of these links sets session[:inv] to :log or :sign -->
+  <!-- also displays login fields below -->
   <div class="field">
-    <%= link_to("login", "#", {:id => :investment_login})%> or <%= link_to("sign_up", "#", {:id => :investment_sign_up})%>
+    <%= link_to("login", "#", {:id => :investment_login_e})%> or <%= link_to("sign_up", "#", {:id => :investment_sign_up_e})%>
   </div>
+
+  <!-- this div visible after login or signup link (above) is clicked -->
   <div class="inv_log_field">
     <%= label_tag :email %><br />
     <%= text_field_tag :email %><br />
     <%= label_tag :login %><br />
     <%= password_field_tag :login %><br />
+
+    <!-- clicking link below invokes cont action who's effects depend on value of session[:inv] -->
     <%= link_to("continue", '#', {:id => :investment_cont})%>
   </div>
 
+  <!-- becomes visible and populated if/when session[:inv] == :log_e -->
   <div id="inv_comp_select" style = "display: none;">
     <%= label_tag "choose company:" %><br />
     <%= select_tag(:company_id, options_for_select(['nil'])) %>
   </div>
 
+  <!-- this tag below may no longer be used for anything. -->
   <div id="inv_comp_input" style = "display: none;">
     <%= label_tag "name of company:" %><br />
     <%= text_field_tag(:company_name) %>
   </div>
 
+  <!-- this tag below may no longer be used for anything. -->
   <div class="hidden_field">
     <%= f.label "Investee's entity" %><br />
     <%= f.label "#{@entity.company.name} : #{@entity.name}" %>
   </div>
   <br />
+
+  <!-- becomes visible if/when session[:inv] == :log or :sign -->
   <div id="investment_submit" class="actions" style="display: none;">
     <%= f.submit %>
   </div>

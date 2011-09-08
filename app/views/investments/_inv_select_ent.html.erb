@@ -2,9 +2,9 @@
 <%= "'0'" %>  > 
 <%= "choose one" %> 
 </option>
-<% @companies.each do |c| %>
+<% @entities.each do |e| %>
   <option value=
-  <%= "'#{c.id}'" %>  > 
-  <%= "#{c.name}" %> 
+  <%= "'#{e.id}'" %>  > 
+  <%= "#{e.name}" %> 
   </option>
 <% end %>

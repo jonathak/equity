@@ -1,0 +1,55 @@
+<%= form_for(@investment) do |f| %>
+  <% if @investment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@investment.errors.count, "error") %> prohibited this investment from being saved:</h2>
+
+      <ul>
+      <% @investment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <p><%= "#{@company.name} has invited you to securely view your equity holdings data via 77Shares.com."%>
+
+  <!-- clicking either of these links sets session[:inv] to :log or :sign -->
+  <!-- also displays login fields below -->
+  <div class="field">
+    <%= link_to("login", "#", {:id => :investment_login_c})%> or <%= link_to("sign_up", "#", {:id => :investment_sign_up_c})%>
+  </div>
+
+  <!-- this div visible after login or signup link (above) is clicked -->
+  <div class="inv_log_field">
+    <%= label_tag :email %><br />
+    <%= text_field_tag :email %><br />
+    <%= label_tag :login %><br />
+    <%= password_field_tag :login %><br />
+
+    <!-- clicking link below invokes cont action who's effects depend on value of session[:inv] -->
+    <%= link_to("continue", '#', {:id => :investment_cont})%>
+  </div>
+
+  <!-- becomes visible and populated if/when session[:inv] == :log_c -->
+  <div id="inv_comp_select_c" style = "display: none;">
+    <%= label_tag "choose company:" %><br />
+    <%= select_tag(:company_id, options_for_select(['nil'])) %>
+  </div>
+
+  <!-- becomes visible and populated if/when inv_comp_select_c (above) is changed -->
+  <div id="inv_ent_select" style = "display: none;">
+    <%= label_tag "choose entity:" %><br />
+    <%= select_tag(:entity_id, options_for_select(['nil'])) %>
+  </div>
+
+  <!-- becomes visible and populated if/when session[:inv] == :sign_c -->
+  <div id="inv_comp_text" style = "display: none;">
+    <%= label_tag "company name:" %><br />
+    <%= text_field_tag(:company_name) %>
+  </div>
+
+  <!-- becomes visible if/when session[:inv] == :log or :sign -->
+  <div id="investment_submit" class="actions" style="display: none;">
+    <%= f.submit %>
+  </div>
+<% end %>

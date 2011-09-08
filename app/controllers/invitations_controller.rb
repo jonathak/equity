@@ -46,7 +46,7 @@ class InvitationsController < ApplicationController
   # POST /invitations.xml
   def create
     @invitation = Invitation.new(params[:invitation])
-    @invitation.company_id = session[:company_id]
+    @invitation.company_id = session[:company_id].to_i
 
     respond_to do |format|
       if @invitation.save

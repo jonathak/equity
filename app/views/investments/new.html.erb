@@ -1,3 +1,9 @@
 <br /><br />
 
-<%= render 'form' %>
+<% if @entity %>
+  <%= render 'eform' %>
+<% elsif @company %>
+  <%= render 'cform'%>
+<% else %>
+  <%= render :error %>
+<% end %>

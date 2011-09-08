@@ -3,15 +3,29 @@
 
 // this is used in investment#new
 $(document).ready(function() {
-  jQuery("#investment_login").click(function(){ 
-    jQuery.ajax('inv_log');
+  jQuery("#investment_login_e").click(function(){ 
+    jQuery.ajax('inv_log_e');
   });
 });
 
 // this is used in investment#new
 $(document).ready(function() {
-  jQuery("#investment_sign_up").click(function(){ 
-    jQuery.ajax('inv_sign');
+  jQuery("#investment_sign_up_e").click(function(){ 
+    jQuery.ajax('inv_sign_e');
+  });
+});
+
+// this is used in investment#new
+$(document).ready(function() {
+  jQuery("#investment_login_c").click(function(){ 
+    jQuery.ajax('inv_log_c');
+  });
+});
+
+// this is used in investment#new
+$(document).ready(function() {
+  jQuery("#investment_sign_up_c").click(function(){ 
+    jQuery.ajax('inv_sign_c');
   });
 });
 
@@ -30,7 +44,7 @@ $(document).ready(function() {
 // this is used in investment#new
 $(document).ready(function() {
   jQuery("#inv_comp_select select").click(function(){ 
-    jQuery.ajax('inv_submit', {
+    jQuery.ajax('inv_submit_e', {
 	  data: {
 		company_id: jQuery(this).val()
 	  }
@@ -41,9 +55,42 @@ $(document).ready(function() {
 // this is used in investment#new
 $(document).ready(function() {
   jQuery("#inv_comp_select select").change(function(){ 
-    jQuery.ajax('inv_submit', {
+    jQuery.ajax('inv_submit_e', {
 	  data: {
 		company_id: jQuery(this).val()
+	  }
+	});
+  });
+});
+
+// this is used in investment#new
+$(document).ready(function() {
+  jQuery("#inv_comp_select_c select").change(function(){ 
+    jQuery.ajax('inv_comp_c', {
+	  data: {
+		company_id: jQuery(this).val()
+	  }
+	});
+  });
+});
+
+// this is used in investment#new
+$(document).ready(function() {
+  jQuery("#inv_comp_text input").focusout(function(){ 
+    jQuery.ajax('inv_comp_text', {
+	  data: {
+		company_name: jQuery(this).val()
+	  }
+	});
+  });
+});
+
+// this is used in investment#new
+$(document).ready(function() {
+  jQuery("#inv_ent_select select").change(function(){ 
+    jQuery.ajax('inv_submit_c', {
+	  data: {
+		entity_id: jQuery(this).val()
 	  }
 	});
   });

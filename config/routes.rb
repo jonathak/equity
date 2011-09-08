@@ -9,10 +9,15 @@ Equity::Application.routes.draw do
   match 'transactions/sec' => 'transactions#sec', as: 'sec'
   match 'transactions/sel' => 'transactions#sel', as: 'sel'
   
-  match 'investments/inv_log' => 'investments#inv_log', as: 'inv_log'
-  match 'investments/inv_sign' => 'investments#inv_sign', as: 'inv_sign'
+  match 'investments/inv_log_e' => 'investments#inv_log_e', as: 'inv_log_e'
+  match 'investments/inv_sign_e' => 'investments#inv_sign_e', as: 'inv_sign_e'
+  match 'investments/inv_log_c' => 'investments#inv_log_c', as: 'inv_log_c'
+  match 'investments/inv_sign_c' => 'investments#inv_sign_c', as: 'inv_sign_c'
   match 'investments/cont' => 'investments#cont', as: 'cont'
-  match 'investments/inv_submit' => 'investments#inv_submit', as: 'inv_submit'
+  match 'investments/inv_submit_e' => 'investments#inv_submit_e', as: 'inv_submit_e'
+  match 'investments/inv_submit_c' => 'investments#inv_submit_c', as: 'inv_submit_c'
+  match 'investments/inv_comp_c' => 'investments#inv_comp_c', as: 'inv_comp_c'
+  match 'investments/inv_comp_text' => 'investments#inv_comp_text', as: 'inv_comp_text'
   
   match 'admin/error' => 'admin#error', as: 'error'
   match 'admin/logout' => 'admin#logout', as: 'logout'
