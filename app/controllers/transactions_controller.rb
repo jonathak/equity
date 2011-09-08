@@ -57,7 +57,7 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       if @transaction.save
-        format.html { redirect_to(@transaction, :notice => 'Transaction was successfully created.') }
+        format.html { redirect_to(session[:company_id].to_i.c, :notice => 'Transaction was successfully created.') }
         format.xml  { render :xml => @transaction, :status => :created, :location => @transaction }
       else
         format.html { render :action => "new" }
@@ -73,7 +73,7 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])
-        format.html { redirect_to(@transaction, :notice => 'Transaction was successfully updated.') }
+        format.html { redirect_to(session[:company_id].to_i.c, :notice => 'Transaction was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -98,8 +98,8 @@ class TransactionsController < ApplicationController
     company_id = params[:company_id].to_i
     session[:company_id] = company_id
     company = params[:company_id].to_i.company
-    @securities = company.securities
-    @entities = company.entities
+    @securities = company.securities.uniq
+    @entities = company.entities.uniq
     respond_to do |format|
       format.js
     end
@@ -113,7 +113,7 @@ class TransactionsController < ApplicationController
       security = params[:security_id].to_i.security
       @owners = [Entity.new(:name => "select one")] + 
                 [security.company.entities.where(:name => security.company.name).first] +
-                security.buyers
+                security.buyers.uniq
     else
       @owners = []
       @entities = []
@@ -141,7 +141,7 @@ class TransactionsController < ApplicationController
     if @seller_id > 0
       company = session[:company_id].company
       @entities = [Entity.new(:name => "select one")] +
-                  company.entities +
+                  company.entities.uniq +
                   [Entity.new(:name => "new investor")]
     else
       @entities = []

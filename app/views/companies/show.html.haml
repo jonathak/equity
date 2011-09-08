@@ -21,7 +21,7 @@
   %tr
     %td= link_to("add new security", "/securities/new")
 %br
-%i= link_to("(link to #{@company.name}'s transactions)", transactions_path)
+%i= link_to("(add/list #{@company.name}'s transactions)", transactions_path)
 %br
 %br
 = link_to 'Back to list of companies', companies_path

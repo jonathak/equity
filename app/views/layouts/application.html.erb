@@ -20,6 +20,10 @@
 	<% end %>
 	  
 	<%= link_to "logout", "/admin/logout"%>
+	<% if (session[:company_id] && session[:company_id] > 0) %>
+	   . 
+	  <%= link_to("list_companies", companies_path) %>
+	<% end %>
 
 <%= yield %>
 
