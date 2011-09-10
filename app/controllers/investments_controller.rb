@@ -142,16 +142,33 @@ class InvestmentsController < ApplicationController
   end
   
   def inv_comp_text
+    
+    # create a new company
     company = Company.new(:name => params[:company_name])
     company.save(:validate => false)
+    
+    #link the new user to the new company
     king = King.new
     king.company_id = company.id
     king.user_id = session[:user_id].to_i
     king.save(:validate => false)
+    
+    # entity associated with the invitation
     entity = Entity.new(:name => session[:company_id].to_i.c.name)
     entity.company_id = company.id
     entity.save(:validate => false)
     session[:entity_id] = entity.id
+    
+    # entity that represents the new company
+    entity = Entity.new(:name => company.name)
+    entity.company_id = company.id
+    entity.save(:validate => false)
+    
+    # common stock for the new company
+    security = Security.new(:name => "common", :kind => 1)
+    security.company_id = company.id
+    security.save(:validate => false)
+    
   end
   
   def inv_submit_e
