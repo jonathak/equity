@@ -46,6 +46,11 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         
+        company = Company.new
+        company.name = "your personal investments"
+        company.save
+        King.create(:user_id => @user.id, :company_id => company.id)
+        
         session[:user_id] = @user.id
         UserMailer.welcome_email(@user).deliver
         
