@@ -1,5 +1,5 @@
 <br /><br />
-<table>
+<table align="center">
   <tr>
     <th>Company</th>
     <th>Security</th>
@@ -33,5 +33,7 @@
 
 <br />
 
+<center>
 <%= link_to "manage #{session[:company_id].to_i.c.name}", session[:company_id].to_i.c %> . 
 <%= link_to 'New Transaction', new_transaction_path %>
+</center>

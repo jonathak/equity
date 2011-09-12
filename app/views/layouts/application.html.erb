@@ -7,6 +7,14 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
+	
+	<center><%= image_tag "logo.png"%></center>
+	
+  <%= yield %>
+	
+  <div id="footer">
+	<br /><br />
+  <center>
 	<b>session data: </b>
 	<% begin %>
 	  company: <%= "#{(session[:company_id] && session[:company_id] > 0) ? session[:company_id].to_i.c.name : ''}(#{session[:company_id].to_i})" %> .
@@ -24,8 +32,8 @@
 	   . 
 	  <%= link_to("list_companies", companies_path) %>
 	<% end %>
-
-<%= yield %>
+  </center>
+  </div> <!-- end footer -->
 
 </body>
 </html>
