@@ -29,6 +29,14 @@ class Company < ActiveRecord::Base
     end
   end
   
+  # id's of companies that company indirectly invests in
+  def indirects
+    temp = chains.flatten.uniq
+    temp.delete(id)
+    directs.each{|d| temp.delete(d)}
+    temp
+  end
+  
   # array of company_ids representing linked investors
   def owners
     entities.map{|e| (e.investment.company.id if e.investment)}.reject{|i| i == nil}
