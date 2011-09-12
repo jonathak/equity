@@ -123,3 +123,8 @@ div.field, div.actions {
   margin-bottom: 10px;
   display: none;
 }
+
+.company_indirects_hidden {
+  margin-bottom: 10px;
+  display: none;
+}

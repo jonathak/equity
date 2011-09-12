@@ -100,6 +100,14 @@ $(document).ready(function() {
 $(document).ready(function() {
   	jQuery(".company_expand").click(function(){
 	  $(".company_list_hidden").slideUp();
+	  $(".company_indirects_hidden").slideUp();
+	  $($(this).data('id')).slideDown();
+	});
+});
+
+// this is used in companies index
+$(document).ready(function() {
+  	jQuery(".show_indirects").click(function(){
 	  $($(this).data('id')).slideDown();
 	});
 });

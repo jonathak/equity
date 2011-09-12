@@ -1,9 +1,10 @@
-%p
-  = form_tag({:controller => "entry", :action => "authorize"}, :method => "post")
-  = label_tag(:email, "email:")
-  = text_field_tag(:email)
-  %br
-  = label_tag(:password, "password:")
-  = password_field_tag(:password)
-  %br
-  = submit_tag "sign in"
+%center
+  %p
+    = form_tag({:controller => "entry", :action => "authorize"}, :method => "post")
+    = label_tag(:email, "email:")
+    = text_field_tag(:email)
+    %br
+    = label_tag(:password, "password:")
+    = password_field_tag(:password)
+    %br
+    = submit_tag "sign in"
