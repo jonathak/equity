@@ -19,9 +19,16 @@
   </tr>
   <tbody class="company_list_hidden" id="company_list_hidden_<%= company.id %>">
 	<% company.directs.each do |d| %>
-	  <tr><td colspan=5><%= "#{d.c.name}"%></td></tr>
+	  <tr><td></td><td colspan=4><%= "#{d.c.name}"%></td></tr>
 	<% end %>
-	<tr><td colspan=5 class="newinvite"><%= link_to "(add ownership stake)", "invitations/new?company_id=#{company.id}" %><td><tr>
+	<tr>
+		<td></td>
+		<td colspan=4 class="newinvite"><%= link_to "(add ownership stake)", "invitations/new?company_id=#{company.id}" %>
+		<% if company.directs.count > 0 %>
+		  <%= link_to "(show indirect investments)", "#" %>
+		<% end %>
+		</td>
+	<tr>
   </tbody>
 <% end %>
 </table>
