@@ -5,6 +5,6 @@
   </head>
   <body>
     <p>77shares Connection Request from, <b><%= @invitation.company.name %></b></p>
-    <p><%= @invitation.company.name %> would like you to link the appropriate entity in your cap-table to our account. To do so, just follow this link: <%= link_to("#{@invitation.company.name}_invitation", "http://localhost:3000/investments/new?company_id=#{@invitation.company.id}") %>.</p>
+    <p><%= @invitation.company.name %> would like you to link the appropriate entity in your cap-table to our account. To do so, just follow this link: <%= link_to("#{@invitation.company.name}_invitation", "http://equity.heroku/investments/new?company_id=#{@invitation.company.id}") %>.</p>
   </body>
 </html>
