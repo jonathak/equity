@@ -15,6 +15,11 @@ class Company < ActiveRecord::Base
     investments.map(&:entity_id)
   end
   
+  # id of entity object that represents company as an investor in "direct (d)" investment of company
+  def alias_id(d)
+    alias_ids.select{|e_id| e_id.entity.company_id == d}.first
+  end
+  
   # id's of companies that company directly invests in
   def directs
     alias_ids.map(&:e).map(&:company).map(&:id)

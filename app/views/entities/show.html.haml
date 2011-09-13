@@ -1,0 +1,14 @@
+- user = session[:user_id].to_i.u
+- entities =[]
+- (companies = user.companies) if user
+- (entities = companies.map(&:entities).flatten.map(&:id)) if companies
+- (entities += companies.map(&:alias_ids).flatten) if companies
+- if (entities.include?(@entity.id))
+  %center
+    %p{:id => "notice"}= notice
+    %p
+      %b
+        transaction statement for:
+      = @entity.name
+- else
+  %center= "not authorized"
