@@ -44,6 +44,11 @@ class TransactionsController < ApplicationController
   # GET /transactions/1/edit
   def edit
     @transaction = Transaction.find(params[:id])
+    @company = session[:company_id].company
+    @transaction = Transaction.new
+    @securities = [Security.new(:name => "select one")] + @company.securities
+    @entities = @company.entities
+    @sellers = []
   end
 
   # POST /transactions
@@ -57,7 +62,7 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       if @transaction.save
-        format.html { redirect_to(session[:company_id].to_i.c, :notice => 'Transaction was successfully created.') }
+        format.html { redirect_to(transactions_path, :notice => 'Transaction was successfully created.') }
         format.xml  { render :xml => @transaction, :status => :created, :location => @transaction }
       else
         format.html { render :action => "new" }
@@ -70,6 +75,10 @@ class TransactionsController < ApplicationController
   # PUT /transactions/1.xml
   def update
     @transaction = Transaction.find(params[:id])
+    @company = session[:company_id].company
+    @securities = @company.securities
+    @entities = @company.entities
+    @sellers = []
 
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])
@@ -108,9 +117,9 @@ class TransactionsController < ApplicationController
   def sec
     security_id = params[:security_id].to_i
     if security_id > 0
-      kind = security_id.security.kind
+      kind = security_id.s.kind
       session[:security_id] = security_id
-      security = params[:security_id].to_i.security
+      security = security_id.s
       @owners = [Entity.new(:name => "select one")] + 
                 [security.company.entities.where(:name => security.company.name).first] +
                 security.buyers.uniq
@@ -128,7 +137,7 @@ class TransactionsController < ApplicationController
           when 3
             render "sec_debt"
           when 4
-            render "sec_debt"
+            render "sec_pref"
           else
             render "sec"
         end

@@ -11,35 +11,35 @@
     </div>
   <% end %>
 
-  <div id="field_trans_sec" class="field">
+  <div class="field">
     <%= f.label :security_id %><br />
-    <%= collection_select(:transaction, :security_id, @securities, :id, :name, {}, 'data-url' => 'sec') %>
+    <%= collection_select(:transaction, :security_id, @securities, :id, :name, {}, :id => '') %>
   </div>
-  <div id="field_trans_sel" class="field_trans">
+  <div class="field">
     <%= f.label :seller_id %><br />
-    <%= collection_select(:transaction, :seller_id, @sellers, :id, :name, {}, 'data-url' => 'sel') %>
+    <%= collection_select(:transaction, :seller_id, @sellers, :id, :name, {}, :id => '') %>
   </div>
-  <div id="field_trans_buy" class="field_trans">
+  <div class="field">
     <%= f.label :buyer_id %><br />
     <%= f.select(:buyer_id, options_for_select(@entities.map{|i| [i.name, i.id.to_s]})) %>
   </div>
-  <div class="field_trans_equity">
+  <div class="field">
     <%= f.label :shares %><br />
     <%= f.text_field :shares %>
   </div>
-  <div class="field_trans_money">
+  <div class="field">
     <%= f.label :dollars %><br />
     <%= f.text_field :dollars %>
   </div>
-  <div class="field_trans_opt">
+  <div class="field">
     <%= f.label :ex_price %><br />
     <%= f.text_field :ex_price %>
   </div>
-  <div class="field_trans">
+  <div class="field">
     <%= f.label :date %><br />
     <%= f.date_select :date %>
   </div>
-  <div class="actions_trans">
+  <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>

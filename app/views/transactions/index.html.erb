@@ -25,7 +25,6 @@
     <td><%= transaction.ex_price %></td>
     <td><%= transaction.date %></td>
     <td><%= link_to 'Show', transaction %></td>
-    <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
     <td><%= link_to 'Destroy', transaction, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
@@ -35,5 +34,5 @@
 
 <center>
 <%= link_to "manage #{session[:company_id].to_i.c.name}", session[:company_id].to_i.c %> . 
-<%= link_to 'New Transaction', new_transaction_path %>
+<%= link_to 'new transaction', new_transaction_path %>
 </center>

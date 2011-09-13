@@ -1,4 +1,5 @@
-<p id="notice"><%= notice %></p>
+<center>
+	<p id="notice"><%= notice %></p>
 
 <p>
   <b>Company:</b>
@@ -41,5 +42,5 @@
 </p>
 
 
-<%= link_to "manage #{session[:company_id].to_i.c.name}", session[:company_id].to_i.c %> |
-<%= link_to "#{session[:company_id].to_i.c.name}'s transactions", transactions_path %>
+<%= link_to "return to #{session[:company_id].to_i.c.name}'s transactions", transactions_path %>
+</center>
