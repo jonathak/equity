@@ -8,7 +8,7 @@
       %b= "#{@company.name} investors:"
   - @company.entities.reject{|i| i.name == @company.name}.each do |e|
     %tr
-      %td= " #{e.name}"
+      %td= link_to(" #{e.name}", "/entities/#{e.id}")
       %td= link_to("Invite", "/requests/new?entity_id=#{e.id}")  unless (e.investment || (e.name == @company.name))
       %td= link_to('Edit', edit_entity_path(e))
       %td= link_to('Destroy', e, :confirm => 'Are you sure?', :method => :delete)

@@ -5,10 +5,45 @@
 - (entities += companies.map(&:alias_ids).flatten) if companies
 - if (entities.include?(@entity.id))
   %center
-    %p{:id => "notice"}= notice
     %p
-      %b
-        transaction statement for:
-      = @entity.name
+      %b= "#{@entity.company.name} statement for: #{@entity.name}#{"(#{@entity.investment.company.name})" if (@entity.investment && (@entity.investment.company.name != @entity.name))}"
+    %br
+    - if (@entity.buys.count > 0)
+      %b= "purchases:"
+      %table
+        %tr
+          %td 
+            %u date
+          %td
+            %u seller
+          %td
+            %u shares
+          %td
+            %u dollars
+        - @entity.buys.each do |buy|
+          %tr
+            %td= buy.date
+            %td= buy.seller.name
+            %td= buy.shares ? buy.shares : ''
+            %td= buy.dollars ? buy.dollars : ''
+    %br
+    - if (@entity.sales.count > 0)
+      %b= "sales:"
+      %table
+        %tr
+          %td 
+            %u date
+          %td
+            %u seller
+          %td
+            %u shares
+          %td
+            %u dollars
+        - @entity.sales.each do |buy|
+          %tr
+            %td= buy.date
+            %td= buy.seller.name
+            %td= buy.shares ? buy.shares : ''
+            %td= buy.dollars ? buy.dollars : ''
 - else
   %center= "not authorized"
