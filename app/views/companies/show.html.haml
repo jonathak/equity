@@ -1,13 +1,17 @@
 
-%p{:id => "notice"}= notice
+%center
+  %p{:id => "notice"}= notice
       
 %table{:align => "center"}
   %tr
     %td
       %b= "#{@company.name} investors:"
-  - @company.entities.each do |e|
+  - @company.entities.reject{|i| i.name == @company.name}.each do |e|
     %tr
       %td= link_to(" #{e.name}", "/entities/#{e.id}")
+      %td= link_to("Invite", "/requests/new?entity_id=#{e.id}")  unless (e.investment || (e.name == @company.name))
+      %td= link_to('Edit', edit_entity_path(e))
+      %td= link_to('Destroy', e, :confirm => 'Are you sure?', :method => :delete)
   %tr
     %td= link_to("add new investor", "/entities/new")
 %br
@@ -18,6 +22,9 @@
   - @company.securities.each do |s|
     %tr
       %td= link_to(" #{s.name}", "/securities/#{s.id}")
+      %td= link_to('Show', s)
+      %td= link_to('Edit', edit_entity_path(s))
+      %td= link_to('Destroy', s, :confirm => 'Are you sure?', :method => :delete)
   %tr
     %td= link_to("add new security", "/securities/new")
 %br

@@ -55,7 +55,7 @@ class EntitiesController < ApplicationController
 
     respond_to do |format|
       if @entity.save
-        format.html { redirect_to(@entity, :notice => 'Entity was successfully created.') }
+        format.html { redirect_to(session[:company_id].c, :notice => 'Entity was successfully created.') }
         format.xml  { render :xml => @entity, :status => :created, :location => @entity }
       else
         format.html { render :action => "new" }
@@ -71,7 +71,7 @@ class EntitiesController < ApplicationController
 
     respond_to do |format|
       if @entity.update_attributes(params[:entity])
-        format.html { redirect_to(@entity, :notice => 'Entity was successfully updated.') }
+        format.html { redirect_to(session[:company_id].c, :notice => 'Entity was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -83,12 +83,15 @@ class EntitiesController < ApplicationController
   # DELETE /entities/1
   # DELETE /entities/1.xml
   def destroy
+    c = session[:company_id].c
     @entity = Entity.find(params[:id])
-    @entity.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(entities_url) }
-      format.xml  { head :ok }
+    if (@entity.name == c.name)
+      redirect_to :error, :message => "cannot destroy the entity representation of your company."
+    elsif ((@entity.buys.count == 0) && (@entity.sales.count == 0))
+      @entity.destroy
+      redirect_to c
+    else
+      redirect_to :error, :message => "cannot destroy entity if it has transactions."
     end
   end
 end

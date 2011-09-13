@@ -25,6 +25,7 @@ class RequestsController < ApplicationController
   # GET /requests/new.xml
   def new
     @request = Request.new
+    session[:entity_id] = params[:entity_id].to_i
 
     respond_to do |format|
       format.html # new.html.erb
