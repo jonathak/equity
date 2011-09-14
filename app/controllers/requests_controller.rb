@@ -2,7 +2,7 @@ class RequestsController < ApplicationController
   # GET /requests
   # GET /requests.xml
   def index
-    @requests = Request.all
+    session[:user_id] == 1 ? @requests = Request.all : @requests = []
 
     respond_to do |format|
       format.html # index.html.erb

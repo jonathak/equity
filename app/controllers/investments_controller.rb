@@ -25,6 +25,8 @@ class InvestmentsController < ApplicationController
   # GET /investments/new.xml
   def new
     #begin
+      session[:company_id] = nil
+      session[:entity_id] = nil
       @investment = Investment.new
       @companies = Company.all
       if params[:entity_id]
@@ -55,8 +57,6 @@ class InvestmentsController < ApplicationController
   # POST /investments
   # POST /investments.xml
   def create
-    puts "................... #{session[:company_id]}"
-    puts "................... #{session[:entity_id]}"
     if ((session[:company_id] && (session[:company_id] > 0)) &&
         (session[:entity_id]  && (session[:entity_id]  > 0))   )
       @investment = Investment.new

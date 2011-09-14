@@ -47,7 +47,7 @@ class UsersController < ApplicationController
       if @user.save
         
         company = Company.new
-        company.name = "your personal investments"
+        company.name = "personal"
         company.save
         King.create(:user_id => @user.id, :company_id => company.id)
         
