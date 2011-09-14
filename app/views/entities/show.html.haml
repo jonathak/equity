@@ -45,5 +45,8 @@
             %td= buy.seller.name
             %td= buy.shares ? buy.shares : ''
             %td= buy.dollars ? buy.dollars : ''
+    = link_to('company_list', '/companies') if companies.map(&:alias_ids).flatten.include?(@entity.id)
+    = " . "
+    = link_to("#{session[:company_id].to_i.c.name}", session[:company_id].to_i.c) if companies.map(&:alias_ids).flatten.include?(@entity.id)
 - else
   %center= "not authorized"
