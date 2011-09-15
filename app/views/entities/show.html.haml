@@ -51,8 +51,7 @@
             %td= sale.shares ? sale.shares : ''
             %td= sale.dollars ? sale.dollars : ''
             %td= sale.security ? sale.security.name : ''
-    = link_to('company_list', '/companies') if companies.map(&:alias_ids).flatten.include?(@entity.id)
-    = " . "
-    = link_to("#{session[:company_id].to_i.c.name}", session[:company_id].to_i.c) if (session[:company_id] && companies.map(&:alias_ids).flatten.include?(@entity.id))
+    %FORM
+      %INPUT{:TYPE => "button", :VALUE => "Back", :onClick => "history.go(-1);return true;"} 
 - else
   %center= "not authorized"
