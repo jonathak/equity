@@ -21,7 +21,7 @@
 	<% company.directs.each do |d| %>
 	  <% entity_id = company.alias_id(d) %>
 	  <% entity = entity_id.e %>
-	  <tr><td></td><td colspan=4><%= "#{d.c.name}"%> <%= "(#{entity.net_dollars} dollars invested)" %> (<%= link_to('statement', "/entities/#{entity_id}") %>)</td></tr>
+	  <tr><td></td><td colspan=4><%= "#{d.c.name}"%> <%= "(#{entity.net_dollars} dollars invested)" %> <%= "(#{0} liq. pref.)" %> (<%= link_to('statement', "/entities/#{entity_id}") %>)</td></tr>
 	<% end %>
 	<tr><td></td><td colspan=4 class="newinvite"><%= link_to "(add ownership stake)", "invitations/new?company_id=#{company.id}" %></td><tr>
 	<tr><td></td><td colspan=4><%= link_to("(show indirect investments)", "#", :class => "show_indirects", 'data-id' => "\#company_indirects_hidden_#{company.id}") if (company.indirects.count > 0) %></td><tr>
