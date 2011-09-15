@@ -17,11 +17,15 @@
             %u amount
           %td
             %u of total
+          %td
+            %u cumulative total
+        - cum_tot = 0.0
         - @c_lc.ranks.each do |rank|
           %tr
             %td= rank
             %td= @e_lc.amount :priority => @e_lc.priority(rank)
-            %td= @c_lc.amount :rank => rank
+            %td= tot = @c_lc.amount :rank => rank
+            %td= cum_tot += tot
     %br
     %FORM
       %INPUT{:TYPE => "button", :VALUE => "Back", :onClick => "history.go(-1);return true;"} 
