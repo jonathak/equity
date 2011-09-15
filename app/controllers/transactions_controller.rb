@@ -2,11 +2,14 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.xml
   def index
-    @transactions = Transaction.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @transactions }
+    u_id = session[:user_id].to_i
+    c_id = session[:company_id].to_i
+    (u_id > 0) ? user = u_id.u : user = nil
+    (c_id > 0) ? company = c_id.c : company = nil
+    if (user && company && (user.companies.include?(company)))
+      @transactions = company.transactions
+    else
+      @transactions = []
     end
   end
 

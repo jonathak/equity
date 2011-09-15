@@ -4,33 +4,33 @@
       
 %table{:align => "center"}
   %tr
-    %td
+    %td{:colspan => 4}
       %b= "#{@company.name} investors:"
   - @company.entities.reject{|i| i.name == @company.name}.each do |e|
     %tr
-      %td= link_to(" #{e.name}", "/entities/#{e.id}")
-      %td= link_to("Invite", "/requests/new?entity_id=#{e.id}")  unless (e.investment || (e.name == @company.name))
-      %td= link_to('Edit', edit_entity_path(e))
-      %td= link_to('Destroy', e, :confirm => 'Are you sure?', :method => :delete)
+      %td
+        %b= link_to(" #{e.name}", "/entities/#{e.id}")
+      %td= link_to(" . invite", "/requests/new?entity_id=#{e.id}")  unless (e.investment || (e.name == @company.name))
+      %td= link_to(' . edit', edit_entity_path(e))
+      %td= link_to(' . delete', e, :confirm => 'Are you sure?', :method => :delete)
   %tr
-    %td= link_to("add new investor", "/entities/new")
+    %td{:colspan => 4}= link_to("(add new investor)", "/entities/new")
 %br
 %table{:align => "center"}
   %tr
-    %td
+    %td{:colspan => 4}
       %b= "#{@company.name} securities:"
   - @company.securities.each do |s|
     %tr
-      %td= "#{s.name}"
-      %td= link_to('Show', s)
-      %td= link_to('Edit', edit_entity_path(s))
-      %td= link_to('Destroy', s, :confirm => 'Are you sure?', :method => :delete)
+      %td
+        %b= link_to("#{s.name}", s)
+      %td= link_to(' . edit', edit_entity_path(s))
+      %td= link_to(' . delete', s, :confirm => 'Are you sure?', :method => :delete)
   %tr
-    %td= link_to("add new security", "/securities/new")
+    %td{:colspan => 4}= link_to("(add new security)", "/securities/new")
 %br
 %center
-  %i
-    %b= link_to("(go to #{@company.name}'s transactions)", transactions_path)
+  %i= link_to("(go to #{@company.name}'s transactions)", transactions_path)
   %br
   %br
   = link_to 'Back to list of companies', companies_path
