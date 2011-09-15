@@ -20,12 +20,15 @@
             %u shares
           %td
             %u dollars
+          %td
+            %u security
         - @entity.buys.each do |buy|
           %tr
             %td= buy.date
             %td= buy.seller.name
             %td= buy.shares ? buy.shares : ''
             %td= buy.dollars ? buy.dollars : ''
+            %td= buy.security ? buy.security.name : ''
     %br
     - if (@entity.sales.count > 0)
       %b= "sales:"
@@ -39,12 +42,15 @@
             %u shares
           %td
             %u dollars
-        - @entity.sales.each do |buy|
+          %td
+            %u security
+        - @entity.sales.each do |sale|
           %tr
-            %td= buy.date
-            %td= buy.seller.name
-            %td= buy.shares ? buy.shares : ''
-            %td= buy.dollars ? buy.dollars : ''
+            %td= sale.date
+            %td= sale.seller.name
+            %td= sale.shares ? sale.shares : ''
+            %td= sale.dollars ? sale.dollars : ''
+            %td= sale.security ? sale.security.name : ''
     = link_to('company_list', '/companies') if companies.map(&:alias_ids).flatten.include?(@entity.id)
     = " . "
     = link_to("#{session[:company_id].to_i.c.name}", session[:company_id].to_i.c) if (session[:company_id] && companies.map(&:alias_ids).flatten.include?(@entity.id))
