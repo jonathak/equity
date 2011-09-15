@@ -28,4 +28,22 @@ class Entity < ActiveRecord::Base
     end
   end
   
+  #creates a current liquidation chart
+  #see the LiqChart class in lib directory
+  def liq_chart
+    temp =[]
+    l_c = LiqChart.new
+    liq_secs = securities.where('liq_pref > 0.0').uniq
+    liq_secs.each do |liq_sec|
+      amount = buys.where("security_id = #{liq_sec.id}").sum("dollars") - sales.where("security_id = #{liq_sec.id}").sum("dollars")
+      temp += [[liq_sec.rank, amount*liq_sec.liq_pref]]
+    end
+    ranks = temp.map{|t| t[0]}.uniq.sort
+    pairs = ranks.map{|r| [r, temp.select{|t| t[0] == r}.map{|tt| tt[1]}.sum ]}
+    pairs.each do |pair|
+      l_c.push pair
+    end
+    l_c
+  end
+  
 end
