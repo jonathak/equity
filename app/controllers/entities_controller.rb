@@ -26,6 +26,13 @@ class EntitiesController < ApplicationController
       format.xml  { render :xml => @entity }
     end
   end
+  
+  def liquidity
+    @entity = Entity.find(params[:entity_id])
+    session[:entity_id] = @entity.id
+    @e_lc = @entity.liq_chart
+    @c_lc = @entity.company.liq_chart
+  end
 
   # GET /entities/new
   # GET /entities/new.xml

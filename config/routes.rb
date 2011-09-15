@@ -9,6 +9,8 @@ Equity::Application.routes.draw do
   match 'transactions/sec' => 'transactions#sec', as: 'sec'
   match 'transactions/sel' => 'transactions#sel', as: 'sel'
   
+  match 'entities/liquidity' => 'entities#liquidity', as: 'liquidity'
+  
   match 'investments/inv_log_e' => 'investments#inv_log_e', as: 'inv_log_e'
   match 'investments/inv_sign_e' => 'investments#inv_sign_e', as: 'inv_sign_e'
   match 'investments/inv_log_c' => 'investments#inv_log_c', as: 'inv_log_c'

@@ -1,0 +1,29 @@
+- user = session[:user_id].to_i.u
+- entities =[]
+- (companies = user.companies) if user
+- (entities = companies.map(&:entities).flatten.map(&:id)) if companies
+- (entities += companies.map(&:alias_ids).flatten) if companies
+- if (entities.include?(@entity.id))
+  %center
+    %p
+      %b= "#{@entity.company.name} liquidity analysis: #{@entity.name}#{"(#{@entity.investment.company.name})" if (@entity.investment && (@entity.investment.company.name != @entity.name))}"
+    %br
+    - if (@entity.buys.count > 0)
+      %table
+        %tr
+          %td 
+            %u priority
+          %td
+            %u amount
+          %td
+            %u of total
+        - @c_lc.ranks.each do |rank|
+          %tr
+            %td= rank
+            %td= @e_lc.amount :priority => @e_lc.priority(rank)
+            %td= @c_lc.amount :rank => rank
+    %br
+    %FORM
+      %INPUT{:TYPE => "button", :VALUE => "Back", :onClick => "history.go(-1);return true;"} 
+- else
+  %center= "not authorized"
