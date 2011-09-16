@@ -81,4 +81,9 @@ class Company < ActiveRecord::Base
     l_c
   end
   
+  # number of common shares in company on fully diluted basis
+  def shares_common
+    securities.uniq.map(&:shares_common).sum
+  end
+  
 end

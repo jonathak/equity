@@ -47,4 +47,13 @@ class Entity < ActiveRecord::Base
     l_c
   end
   
+  # ownership (of a given security) as converted to common
+  def shares_common(security_id = nil)
+    if security_id
+      security_id.to_i.s.shares_common(id)
+    else
+      securities.uniq.map{|s| s.shares_common(id)}.sum
+    end
+  end
+  
 end
