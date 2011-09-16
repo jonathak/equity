@@ -2,11 +2,10 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
   def index
-    @users = User.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @users }
+    if session[:user_id] && (session[:user_id] == 1)
+      @users = User.all
+    else
+      redirect_to "/"
     end
   end
 

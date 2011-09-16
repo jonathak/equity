@@ -33,6 +33,12 @@ class EntitiesController < ApplicationController
     @e_lc = @entity.liq_chart
     @c_lc = @entity.company.liq_chart
   end
+  
+  def liquidity_chart
+    @entity = session[:entity_id].to_i.e
+    @e_lc = @entity.liq_chart
+    @c_lc = @entity.company.liq_chart
+  end
 
   # GET /entities/new
   # GET /entities/new.xml

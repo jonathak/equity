@@ -27,7 +27,8 @@
             %td= tot = @c_lc.amount :rank => rank
             %td= cum_tot += tot
     %br
+    %button{:id => "liq_chart"} chart
     %FORM
-      %INPUT{:TYPE => "button", :VALUE => "Back", :onClick => "history.go(-1);return true;"} 
+      %INPUT{:TYPE => "button", :VALUE => "Back", :onClick => "history.go(-1);return true;"}
 - else
   %center= "not authorized"

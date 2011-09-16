@@ -1,6 +1,7 @@
 %center
   %p
     Welcome to 77Shares.com.
+  %p= flash[:message] if flash[:message]
 
   %p
     = link_to("sign in,", "/entry/login")

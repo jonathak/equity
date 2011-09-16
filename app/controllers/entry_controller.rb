@@ -11,10 +11,12 @@ class EntryController < ApplicationController
         session[:user_id] = user.id
         redirect_to :companies
       else
-        redirect_to :error
+        flash[:message] = "incorrect login"
+        redirect_to "/"
       end
     else
-      redirect_to :error
+      flash[:message] = "incorrect login"
+      redirect_to "/"
     end   
   end
 

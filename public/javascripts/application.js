@@ -1,6 +1,14 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
+//this is used in entities#liquidity
+$(document).ready(function() {
+  $('#liq_chart').popupWindow({ 
+    centerBrowser:1,
+    windowURL:'/entities/liquidity_chart'
+  });
+});
+
 // this is used in investment#new
 $(document).ready(function() {
   jQuery("#investment_login_e").click(function(){ 
