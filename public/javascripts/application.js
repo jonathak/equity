@@ -13,7 +13,9 @@ $(document).ready(function() {
 $(document).ready(function() {
   $('#percentage_chart').popupWindow({ 
     centerBrowser:1,
-    windowURL:'/entities/percentage_chart'
+    windowURL:'/entities/percentage_chart',
+    height:500,
+    width:600
   });
 });
 

@@ -21,7 +21,7 @@
         var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
         chart.draw(data, {width: 400, height: 240, title: '',
                           isStacked: true, legend: 'top',
-                          series: {0:{color: 'A5A5A5', visibleInLegend: true}, 1:{color: '0089BD', visibleInLegend: true}},
+                          series: {0:{color: <%= Color.s_blue %>, visibleInLegend: true}, 1:{color: <%= Color.s_grey %>, visibleInLegend: true}},
                           hAxis: {title: 'proceeds ($) for each liquidity preference traunch'},
                          });
 

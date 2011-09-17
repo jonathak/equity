@@ -20,6 +20,19 @@ class PercentageChart
   def data
     @data
   end
+  
+  def rows
+    @data.count + 1
+  end
+  
+  def colors
+    a = (0..(rows-2)).to_a.map{|i| Color.blue[i]} + [Color.s_grey]
+    s = "["
+    a.each{|i| s += "#{i},"}
+    s.chop!
+    s += "]"
+    s
+  end
     
   def securities
     begin
