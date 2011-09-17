@@ -56,4 +56,9 @@ class Entity < ActiveRecord::Base
     end
   end
   
+  # percent ownership of company on a fully diluted basis
+  def fully_diluted
+    100 * (shares_common.to_f / company.shares_common.to_f)
+  end
+  
 end
