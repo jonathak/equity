@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'priority');
+        data.addColumn('number', 'your proceeds');
+        data.addColumn('number', "others' proceeds");
+        data.addRows(<%= @c_lc.ranks.count %>);
+        <% @c_lc.ranks.each do |rank| %>
+          <% total = @c_lc.amount(:rank => rank) %>
+          <% yours = @e_lc.amount(:priority => @c_lc.priority(rank)) %>
+          data.setValue(<%= rank %>, 0, <%= "'#{rank == 0 ? 'first' : 'next'} $#{total}'" %>);
+          data.setValue(<%= rank %>, 1, <%= yours %>);
+          data.setValue(<%= rank %>, 2, <%= total - yours %>);
+        <% end %>
+
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+        chart.draw(data, {width: 400, height: 240, title: '',
+                          isStacked: true, legend: 'top',
+                          series: {0:{color: 'A5A5A5', visibleInLegend: true}, 1:{color: '0089BD', visibleInLegend: true}},
+                          hAxis: {title: 'proceeds ($) for each liquidity preference traunch'},
+                         });
+
+      }
+    </script>
+  </head>
+
+  <body>
+    <center>
+	<b>Liquidity Preference Analysis</b>
+	<br /><div id="chart_div"></div></center>
+  </body>
+</html>

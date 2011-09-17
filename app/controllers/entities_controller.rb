@@ -39,6 +39,17 @@ class EntitiesController < ApplicationController
     @e_lc = @entity.liq_chart
     @c_lc = @entity.company.liq_chart
   end
+  
+  def percentage
+    @entity = Entity.find(params[:entity_id])
+    session[:entity_id] = @entity.id
+    @pc = @entity.percentage_chart
+  end
+  
+  def percentage_chart
+    @entity = session[:entity_id].to_i.e
+    @pc = @entity.percentage_chart
+  end
 
   # GET /entities/new
   # GET /entities/new.xml

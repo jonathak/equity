@@ -11,6 +11,8 @@ Equity::Application.routes.draw do
   
   match 'entities/liquidity' => 'entities#liquidity', as: 'liquidity'
   match 'entities/liquidity_chart' => 'entities#liquidity_chart', as: 'liquidity_chart'
+  match 'entities/percentage' => 'entities#percentage', as: 'percentage'
+  match 'entities/percentage_chart' => 'entities#percentage_chart', as: 'percentage_chart'
   
   match 'investments/inv_log_e' => 'investments#inv_log_e', as: 'inv_log_e'
   match 'investments/inv_sign_e' => 'investments#inv_sign_e', as: 'inv_sign_e'

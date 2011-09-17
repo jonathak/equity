@@ -9,6 +9,14 @@ $(document).ready(function() {
   });
 });
 
+//this is used in entities#percentage
+$(document).ready(function() {
+  $('#percentage_chart').popupWindow({ 
+    centerBrowser:1,
+    windowURL:'/entities/percentage_chart'
+  });
+});
+
 // this is used in investment#new
 $(document).ready(function() {
   jQuery("#investment_login_e").click(function(){ 

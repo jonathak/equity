@@ -61,4 +61,16 @@ class Entity < ActiveRecord::Base
     100 * (shares_common.to_f / company.shares_common.to_f)
   end
   
+  # creates a current percentage chart
+  # see the PercentageChart class in lib directory
+  def percentage_chart
+    p_c = PercentageChart.new
+    p_secs = securities.uniq.map(&:id)
+    total_shares_common = company.shares_common.to_f
+    p_secs.each do |p_sec|
+      p_c.push [p_sec, 100*(shares_common(p_sec).to_f/total_shares_common)]
+    end
+    p_c
+  end
+  
 end

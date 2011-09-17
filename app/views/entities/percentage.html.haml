@@ -1,0 +1,27 @@
+- user = session[:user_id].to_i.u
+- entities =[]
+- (companies = user.companies) if user
+- (entities = companies.map(&:entities).flatten.map(&:id)) if companies
+- (entities += companies.map(&:alias_ids).flatten) if companies
+- if (entities.include?(@entity.id))
+  %center
+    %p
+      %b= "#{@entity.company.name} fully diluted ownership analysis: #{@entity.name}#{"(#{@entity.investment.company.name})" if (@entity.investment && (@entity.investment.company.name != @entity.name))}"
+    %br
+    - if (@pc.data.count > 0)
+      %table
+        %tr
+          %td 
+            %u security
+          %td
+            %u percentage
+        - @pc.data.each do |pair|
+          %tr
+            %td= pair[0].s.name
+            %td= number_to_percentage pair[1], :precision => 2
+    %br
+    %button{:id => "percentage_chart"} chart
+    %FORM
+      %INPUT{:TYPE => "button", :VALUE => "Back", :onClick => "history.go(-1);return true;"}
+- else
+  %center= "not authorized"
