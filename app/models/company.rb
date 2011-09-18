@@ -41,10 +41,16 @@ class Company < ActiveRecord::Base
   
   # id's of companies that company indirectly invests in
   def indirects
-    temp = chains.flatten.uniq
-    temp.delete(id)
-    directs.each{|d| temp.delete(d)}
-    temp
+    chains.map{|c| c.slice(2,c.length-2)}.flatten.uniq
+  end
+  
+  # investment pathway(s) to company having target_id
+  def pathways(target_id)
+    if (target_id && indirects.include?(target_id))
+      hits = chains.select{|chain| chain.slice(2,chain.length-2).include? target_id}
+      paths = hits.map{|chain| chain.first(chain.index(target_id)+1)}
+      paths.uniq
+    end
   end
   
   # array of company_ids representing linked investors
