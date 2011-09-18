@@ -32,7 +32,7 @@
   </tbody>
   <tbody class="company_indirects_hidden" id="company_indirects_hidden_<%= company.id %>">
 	<% company.indirects.each do |d| %>
-      <tr><td></td><td colspan=4><%= "#{d.c.name}"%></td></tr>
+      <tr><td></td><td colspan=4><%= "#{d.c.name}"%><%= link_to("  (pathway)", "#")%></td></tr>
 	<% end %>
   </tbody>
 <% end %>

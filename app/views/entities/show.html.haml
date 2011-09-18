@@ -52,6 +52,8 @@
             %td= sale.dollars ? sale.dollars : ''
             %td= sale.security ? sale.security.name : ''
     %FORM
-      %INPUT{:TYPE => "button", :VALUE => "Back", :onClick => "history.go(-1);return true;"} 
+      %INPUT{:TYPE => "button", :VALUE => "Back", :onClick => "history.go(-1);return true;"}
+      %INPUT{:TYPE => "button", :VALUE => "Liquidation", :onClick => "window.location.replace('/entities/liquidity?entity_id=#{@entity.id}');"} 
+      %INPUT{:TYPE => "button", :VALUE => "Dilution", :onClick => "window.location.replace('/entities/percentage?entity_id=#{@entity.id}');"} 
 - else
   %center= "not authorized"
