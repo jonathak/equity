@@ -130,6 +130,13 @@ $(document).ready(function() {
 	});
 });
 
+//this is used in companies#index
+$(document).ready(function() {
+  $('.path_chart').popupWindow({ 
+    centerBrowser:1
+  });
+});
+
 // this is used in transaction#new
 $(document).ready(function() {
   jQuery("#transaction_security_id").click(function(){ 

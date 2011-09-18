@@ -120,4 +120,10 @@ class CompaniesController < ApplicationController
     end
   end
   
+  def path_chart
+    company = params[:company_id].to_i.c
+    target_id = params[:target_id].to_i
+    @pathways = company.pathways(target_id)
+  end
+  
 end
