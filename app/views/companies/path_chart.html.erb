@@ -11,7 +11,7 @@
         data.addColumn('string', 'Manager');
         data.addColumn('string', 'ToolTip');
         data.addRows([
-	      <% chain = @pathways[indexx] %>
+	      <% chain = @pathways[indexx].reverse! %>
           <% (0...(chain.length - 1)).each do |index| %>
             ['<%= chain[index].c.name %>','<%= chain[index+1].c.name %>','']<%= ',' %>
           <% end %>
