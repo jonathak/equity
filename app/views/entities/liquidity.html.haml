@@ -9,26 +9,28 @@
       %b= "#{@entity.company.name} liquidity analysis: #{@entity.name}#{"(#{@entity.investment.company.name})" if (@entity.investment && (@entity.investment.company.name != @entity.name))}"
     %br
     - if (@entity.buys.count > 0)
-      %table
+      %table{:class => 'basic_table'}
         %tr
-          %td 
-            %u priority
           %td
-            %u amount
+            %u priority*
           %td
-            %u of total
+            %u yours
           %td
-            %u cumulative total
+            %u total
+          %td
+            %u cumulative
         - cum_tot = 0.0
         - @c_lc.ranks.each do |rank|
           %tr
-            %td= rank
-            %td= @e_lc.amount :priority => @e_lc.priority(rank)
-            %td= tot = @c_lc.amount :rank => rank
-            %td= cum_tot += tot
+            %td= link_to "#{rank}", '#', html_options = {:title => "#{@entity.company.priorities.securities(rank).map(&:s).map(&:name)}"}
+            %td= number_to_currency (@e_lc.amount(:priority => @e_lc.priority(rank))), :precision =>0
+            %td= number_to_currency (tot = @c_lc.amount(:rank => rank)), :precision =>0
+            %td= number_to_currency (cum_tot += tot), :precision =>0
     %br
     %button{:id => "liq_chart"} chart
     %FORM
       %INPUT{:TYPE => "button", :VALUE => "Back", :onClick => "history.go(-1);return true;"}
+    %p
+      %i= "hover mouse pointer over priority value for corresponding securities names"
 - else
   %center= "not authorized"

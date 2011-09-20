@@ -10,9 +10,9 @@
     %br
     - if (@entity.buys.count > 0)
       %b= "purchases:"
-      %table
+      %table{:class => 'basic_table'}
         %tr
-          %td 
+          %td
             %u date
           %td
             %u seller
@@ -32,7 +32,7 @@
     %br
     - if (@entity.sales.count > 0)
       %b= "sales:"
-      %table
+      %table{:class => 'basic_table'}
         %tr
           %td 
             %u date

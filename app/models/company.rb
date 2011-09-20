@@ -87,6 +87,14 @@ class Company < ActiveRecord::Base
     l_c
   end
   
+  def priorities
+    result = Priorities.new
+    ranks = securities.where('liq_pref > 0.0').uniq.map(&:rank).sort
+    priorities = (0..(ranks.size-1)).to_a
+    result.set_data (priorities.map{|p| [p,securities.select{|s| s.rank == ranks[p]}.map(&:id)]})
+    result
+  end
+  
   # number of common shares in company on fully diluted basis
   def shares_common
     securities.uniq.map(&:shares_common).sum

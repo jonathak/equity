@@ -9,7 +9,7 @@
       %b= "#{@entity.company.name} fully diluted ownership analysis: #{@entity.name}#{"(#{@entity.investment.company.name})" if (@entity.investment && (@entity.investment.company.name != @entity.name))}"
     %br
     - if (@pc.data.count > 0)
-      %table
+      %table{:class => 'basic_table'}
         %tr
           %td 
             %u security

@@ -128,3 +128,11 @@ div.field, div.actions {
   margin-bottom: 10px;
   display: none;
 }
+
+.basic_table tr:first-child {
+	font-weight: bold;
+}
+
+.basic_table tr:nth-child(even) {
+	background-color: #C4FFFC;
+}
