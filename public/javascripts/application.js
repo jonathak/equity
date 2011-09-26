@@ -1,6 +1,27 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
+//this is used anywhere
+$(document).ready(function() {
+  $('.basic_table tr:odd').css({
+	backgroundColor:'#C4FFFC'
+  });
+});
+
+//this is used in companies#index
+$(document).ready(function() {
+  $('.dashboard_table tbody:nth-child(6n+1)').css({
+	backgroundColor:'#C4FFFC'
+  });
+});
+
+//this is used in companies#index
+$(document).ready(function() {
+  $('.company_list_hidden tr:odd td:not(:first-child)').css({backgroundColor:'#F9ECFF'});
+  $('.company_list_hidden tr:last-child td:last-child').css({backgroundColor:'#FFEEE9'});
+  $('.company_indirects_hidden tr:odd td:last-child').css({backgroundColor:'#FFEEE9'});
+});
+
 //this is used in entities#liquidity
 $(document).ready(function() {
   $('#liq_chart').popupWindow({ 

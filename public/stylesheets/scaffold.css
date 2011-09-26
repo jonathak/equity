@@ -134,5 +134,9 @@ div.field, div.actions {
 }
 
 .basic_table tr:nth-child(even) {
-	background-color: #C4FFFC;
+	/* background-color: #C4FFFC; */
+}
+
+.dashboard_table {
+	/* background-color: #C4FFFC; */
 }

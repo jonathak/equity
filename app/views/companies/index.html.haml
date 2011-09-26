@@ -1,0 +1,48 @@
+%br
+%center
+	%b My Entity List
+%br
+%table{align:"center", class:"dashboard_table", cellpadding:"5", border:"0"}
+	- @companies.each do |company|
+		%tr
+			%td
+				%b= company.name
+			%td= link_to('show investments', "#", :class => "company_expand", 'data-id' => "\#company_list_hidden_#{company.id}")
+			%td= link_to("manage ownership", company)
+			%td= link_to('rename', edit_company_path(company))
+			%td= link_to('delete', company, :confirm => 'Are you sure?', :method => :delete)
+		%tr
+			%tbody{class:"company_list_hidden", id:"company_list_hidden_#{company.id}"}
+				%tr
+					%td
+					%td{colspan:1, align:"left"}= "#{company.name}'s direct investments"
+					%td{colspan:2, class:"newinvite", align:"right"}= link_to("(add ownership stake)", "invitations/new?company_id=#{company.id}")
+				%tr
+					%td
+					%td
+						%i name
+					%td{align:"right"}
+						%i investment
+					%td{align:"right"}
+						%i ownership
+				- company.directs.each do |d|
+					- entity_id = company.alias_id(d)
+					- entity = entity_id.e
+					%tr
+						%td
+						%td
+							%b= "#{d.c.name}" 
+						%td{align:"right"}= link_to("$#{entity.net_dollars}", "/entities/#{entity_id}")
+						%td{align:"right"}= link_to("#{number_to_percentage entity.fully_diluted, :precision => 2}", "/entities/percentage?entity_id=#{entity_id}")
+				%tr
+					%td
+					%td{class:"indirect", colspan:3, align:"center"}= link_to("(click to show #{company.name}'s indirect investments)", "#", :class => "show_indirects", 'data-id' => "\#company_indirects_hidden_#{company.id}") if (company.indirects.count > 0)
+			%tbody{class:"company_indirects_hidden", id:"company_indirects_hidden_#{company.id}"}
+				- company.indirects.each do |d|
+					%tr
+						%td
+						%td{colspan:3, align:"center"}
+							= "#{d.c.name}"
+							= link_to("  (pathway)", "companies/path_chart/?company_id=#{company.id};target_id=#{d}", :class => 'path_chart')
+%br
+%center= link_to('Add New Company', new_company_path)
