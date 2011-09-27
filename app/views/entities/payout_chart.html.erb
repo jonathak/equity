@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('number', 'exit value ($)');
+        data.addColumn('number', 'your proceeds ($)');
+        data.addRows(<%= @c_lc.ranks.count + 3 %>);
+        data.setValue(0, 0, 0);
+        data.setValue(0, 1, 0);
+        <% total = 0.0 %>
+        <% yours = 0.0 %>
+        <% @c_lc.ranks.each do |rank| %>
+          <% total += @c_lc.amount(:rank => rank) %>
+          <% yours += @e_lc.amount(:priority => @c_lc.priority(rank)) %>
+          data.setValue(<%= rank+1 %>, 0, <%= total %>);
+          data.setValue(<%= rank+1 %>, 1, <%= yours %>);
+        <% end %>
+        data.setValue(<%= @c_lc.ranks.count+1 %>, 0, <%= total/(@pc.amount/100) %>);
+        data.setValue(<%= @c_lc.ranks.count+1 %>, 1, <%= yours %>);
+        data.setValue(<%= @c_lc.ranks.count+2 %>, 0, <%= 2.0*total/(@pc.amount/100) %>);
+        data.setValue(<%= @c_lc.ranks.count+2 %>, 1, <%= 2.0*yours %>);
+
+        var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+        chart.draw(data, {width: 600, height: 340, title: '',
+                          isStacked: true, legend: 'none',
+                          lineWidth: 1,
+                          series: {0:{color: <%= Color.s_blue %>, visibleInLegend: true}, 1:{color: <%= Color.s_grey %>, visibleInLegend: true}},
+                          hAxis: {title: 'total company exit proceeds ($)'},
+                          vAxis: {title: 'your proceeds ($)'},
+                         });
+
+      }
+    </script>
+  </head>
+
+  <body>
+    <center>
+	<br />
+	<b>Payout Chart</b>
+	<br />(hover your arrow over data points for quantities.)
+	<br /><div id="chart_div"></div>
+	
+	<FORM>
+      <INPUT TYPE="button" VALUE="Back" onClick="history.go(-1);return true;"></INPUT>
+    </FORM>
+	</center>
+  </body>
+</html>
