@@ -13,7 +13,7 @@
         <% @c_lc.ranks.each do |rank| %>
           <% total = @c_lc.amount(:rank => rank) %>
           <% yours = @e_lc.amount(:priority => @c_lc.priority(rank)) %>
-          data.setValue(<%= rank %>, 0, <%= "'#{rank == 0 ? 'first' : 'next'} $#{total}'" %>);
+          data.setValue(<%= rank %>, 0, <%= "'#{@entity.company.priorities.securities(rank).map(&:s).map(&:name).sum}'" %>);
           data.setValue(<%= rank %>, 1, <%= yours %>);
           data.setValue(<%= rank %>, 2, <%= total - yours %>);
         <% end %>
@@ -31,7 +31,10 @@
 
   <body>
     <center>
+	<br />
 	<b>Liquidity Preference Analysis</b>
+	<br />(hover your arrow over bars for quantities.)
+	<br />(top security has highest priority, followed by next, and so on.)
 	<br /><div id="chart_div"></div></center>
   </body>
 </html>

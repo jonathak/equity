@@ -22,7 +22,7 @@
         - cum_tot = 0.0
         - @c_lc.ranks.each do |rank|
           %tr
-            %td= link_to "#{rank}", '#', html_options = {:title => "#{@entity.company.priorities.securities(rank).map(&:s).map(&:name)}"}
+            %td= "#{@entity.company.priorities.securities(rank).map(&:s).map(&:name)}"
             %td= number_to_currency (@e_lc.amount(:priority => @e_lc.priority(rank))), :precision =>0
             %td= number_to_currency (tot = @c_lc.amount(:rank => rank)), :precision =>0
             %td= number_to_currency (cum_tot += tot), :precision =>0
@@ -30,7 +30,5 @@
     %button{:id => "liq_chart"} chart
     %FORM
       %INPUT{:TYPE => "button", :VALUE => "Back", :onClick => "history.go(-1);return true;"}
-    %p
-      %i= "hover mouse pointer over priority value for corresponding securities names"
 - else
   %center= "not authorized"
