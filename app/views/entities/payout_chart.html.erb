@@ -19,9 +19,9 @@
           data.setValue(<%= rank+1 %>, 0, <%= total %>);
           data.setValue(<%= rank+1 %>, 1, <%= yours %>);
         <% end %>
-        data.setValue(<%= @c_lc.ranks.count+1 %>, 0, <%= total/(@pc.amount/100) %>);
+        data.setValue(<%= @c_lc.ranks.count+1 %>, 0, <%= total/(@entity.fully_diluted/100) %>);
         data.setValue(<%= @c_lc.ranks.count+1 %>, 1, <%= yours %>);
-        data.setValue(<%= @c_lc.ranks.count+2 %>, 0, <%= 2.0*total/(@pc.amount/100) %>);
+        data.setValue(<%= @c_lc.ranks.count+2 %>, 0, <%= 2.0*total/(@entity.fully_diluted/100) %>);
         data.setValue(<%= @c_lc.ranks.count+2 %>, 1, <%= 2.0*yours %>);
 
         var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));

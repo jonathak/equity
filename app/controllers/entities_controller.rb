@@ -50,7 +50,6 @@ class EntitiesController < ApplicationController
     @entity = session[:entity_id].to_i.e
     @e_lc = @entity.liq_chart
     @c_lc = @entity.company.liq_chart
-    @pc = @entity.percentage_chart
   end
   
   def percentage_chart
