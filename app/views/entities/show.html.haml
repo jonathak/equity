@@ -55,6 +55,7 @@
       %INPUT{:TYPE => "button", :VALUE => "Back", :onClick => "history.go(-1);return true;"}
       %INPUT{:TYPE => "button", :VALUE => "Liquidation", :onClick => "window.location.replace('/entities/liquidity?entity_id=#{@entity.id}');"} 
       %INPUT{:TYPE => "button", :VALUE => "Dilution", :onClick => "window.location.replace('/entities/percentage?entity_id=#{@entity.id}');"}
-      %INPUT{:TYPE => "button", :VALUE => "Payout", :onClick => "window.location.replace('/entities/payout_chart?entity_id=#{@entity.id}');"}
+      - if @entity.liq_pref > 0.0
+        %INPUT{:TYPE => "button", :VALUE => "Payout", :onClick => "window.location.replace('/entities/payout_chart?entity_id=#{@entity.id}');"}
 - else
   %center= "not authorized"
