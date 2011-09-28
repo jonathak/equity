@@ -58,10 +58,10 @@ class LiqChart
       elsif column[:rank]
         @data.select{|item| item[0] == priority(column[:rank])}.first[1]
       else
-        nil
+        0.0
       end
     rescue
-      nil
+      0.0
     end
   end
   

@@ -67,6 +67,11 @@ class Company < ActiveRecord::Base
     end
   end
   
+  #total liquidation preference of all securities and entities
+  def liq_pref
+    entities.map(&:liq_pref).sum
+  end
+  
   # creates a current liquidation chart
   # see the LiqChart class in lib directory
   # also see version in entity model
