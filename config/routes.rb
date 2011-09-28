@@ -13,7 +13,6 @@ Equity::Application.routes.draw do
   match 'entities/liquidity_chart' => 'entities#liquidity_chart', as: 'liquidity_chart'
   match 'entities/percentage' => 'entities#percentage', as: 'percentage'
   match 'entities/percentage_chart' => 'entities#percentage_chart', as: 'percentage_chart'
-  match 'entities/payout_chart' => 'entities#payout_chart', as: 'payout_chart'
   
   match 'companies/path_chart' => 'companies#path_chart', as: 'path_chart'
   
