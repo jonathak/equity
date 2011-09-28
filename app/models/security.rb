@@ -40,4 +40,40 @@ class Security < ActiveRecord::Base
     end
   end
   
+  # dollar amount invested less sold
+  def net_dollars
+    transactions.where(:seller_id => company.entity_id).sum(:dollars)
+  end
+  
+  # total liquidation payout associated with the security
+  def liq_payout
+    liq_pref ? net_dollars * liq_pref : 0.0
+  end
+  
+  # security's company's priorities
+  # returned as a Priorities object
+  def priorities
+    p = company.priorities # see priorities.rb in lib
+  end
+  
+  # security's priority
+  # returned as an integer
+  def priority
+    begin
+      priorities.data.select{|p| p[1].include?(id)}.first[0]
+    rescue
+      priorities.data.size
+    end
+  end
+    
+  
+  # amount of liquidity preference that comes ahead of security
+  def senior_liq
+    if priority > 0
+      priorities.data[0, priority].map{|p| p[1]}.flatten.map(&:s).map(&:liq_payout).sum
+    else
+      0.0
+    end
+  end
+  
 end
