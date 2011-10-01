@@ -24,7 +24,7 @@
     %tr
       %td
         %b= link_to("#{s.name}", s)
-      %td= link_to(' . edit', edit_entity_path(s))
+      %td= link_to(' . edit', edit_security_path(s))
       %td= link_to(' . delete', s, :confirm => 'Are you sure?', :method => :delete)
   %tr
     %td{:colspan => 4}= link_to("(add new security)", "/securities/new")

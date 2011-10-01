@@ -105,4 +105,9 @@ class Company < ActiveRecord::Base
     securities.uniq.map(&:shares_common).sum
   end
   
+  # array of LiqPayoutChart objects linked with each security id
+  def liq_payout_charts
+    securities.select{|se| se.liq_payout > 0.0}.map{|s| [s.id, s.liq_payout_chart]}
+  end
+  
 end

@@ -76,4 +76,21 @@ class Security < ActiveRecord::Base
     end
   end
   
+  def percent
+    shares_common.to_f/(company.shares_common.to_f)
+  end
+  
+  # returns LiqPayoutChart object associated with security
+  # i still need to code the perturbation associated slope adjustment when not all convert!
+  def liq_payout_chart
+    lpc = LiqPayoutChart.new
+    one = [0.0,0.0]
+    two = [senior_liq, 0.0]
+    three = [senior_liq + liq_payout, liq_payout]
+    four = [[liq_payout/percent, company.liq_pref].max, liq_payout]
+    five = [2.0*four[0], 2.0*four[1]]
+    lpc.data([one, two, three, four, five])
+    lpc
+  end
+  
 end

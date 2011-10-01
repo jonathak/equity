@@ -126,4 +126,9 @@ class CompaniesController < ApplicationController
     @pathways = company.pathways(target_id)
   end
   
+  def payout_chart
+    company = params[:company_id].to_i.c
+    @lp_charts = company.liq_payout_charts
+  end
+  
 end
