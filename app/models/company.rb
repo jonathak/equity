@@ -107,7 +107,10 @@ class Company < ActiveRecord::Base
   
   # array of LiqPayoutChart objects linked with each security id
   def liq_payout_charts
-    securities.select{|se| se.liq_payout > 0.0}.map{|s| [s.id, s.liq_payout_chart]}
+    basket = securities.select{|se| se.liq_payout > 0.0}.map{|s| [s.id, s.liq_payout_chart_prelim]}
+    equilib = basket.map{|i| i[1].five[0]}.max
+    basket.each{|i| i[1].data[4] = [equilib, equilib*i[0].s.percent]}
+    basket
   end
   
 end

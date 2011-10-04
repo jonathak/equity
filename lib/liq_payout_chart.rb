@@ -22,6 +22,26 @@ class LiqPayoutChart
     end
   end
   
+  def one
+    data[0]
+  end
+  
+  def two
+    data[1]
+  end
+  
+  def three
+    data[2]
+  end
+  
+  def four
+    data[3]
+  end
+  
+  def five
+    data[4]
+  end
+  
   def colors
     a = (0..(rows-2)).to_a.map{|i| Color.blue[i]} + [Color.s_grey]
     s = "["

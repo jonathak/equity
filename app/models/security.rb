@@ -36,7 +36,7 @@ class Security < ActiveRecord::Base
         issued_shares = transactions.where(sell_condition).uniq.map(&:shares).sum
         repurchased_shares = transactions.where(buy_condition).uniq.map(&:shares).sum
         conversion_price = issued_dollars.to_f / issued_shares.to_f
-        (issued_dollars - (repurchased_shares * conversion_price)) / conversion_price
+        issued_shares > 0 ? (issued_dollars - (repurchased_shares * conversion_price)) / conversion_price : 0.0
     end
   end
   
@@ -82,15 +82,22 @@ class Security < ActiveRecord::Base
   
   # returns LiqPayoutChart object associated with security
   # i still need to code the perturbation associated slope adjustment when not all convert!
-  def liq_payout_chart
+  def liq_payout_chart_prelim
     lpc = LiqPayoutChart.new
     one = [0.0,0.0]
     two = [senior_liq, 0.0]
     three = [senior_liq + liq_payout, liq_payout]
     four = [[liq_payout/percent, company.liq_pref].max, liq_payout]
-    five = [2.0*four[0], 2.0*four[1]]
+    five = four
     lpc.data([one, two, three, four, five])
     lpc
+  end
+  
+  # returns LiqPayoutChart object associated with security
+  # with the perturbation associated slope adjustment included
+  def liq_payout_chart
+    basket = company.liq_payout_charts
+    basket.select{|i| i[0] == id}
   end
   
 end
