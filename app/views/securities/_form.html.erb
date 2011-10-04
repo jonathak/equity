@@ -16,7 +16,7 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :kind %><br />
+    <%= f.label "must select kind" %><br />
     <%= f.select(:kind, options_for_select(@kinds.map{|i| [i.name, i.id.to_s]})) %>
   </div>
   <div class="field_liq">
