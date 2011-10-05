@@ -1,34 +1,37 @@
 
 %center
   %p{:id => "notice"}= notice
-      
-%table{:align => "center"}
+
+%table{:align => "center", :cellpadding => "20"}
   %tr
-    %td{:colspan => 4}
-      %b= "#{@company.name} investors:"
-  - @company.entities.reject{|i| i.name == @company.name}.each do |e|
-    %tr
-      %td
-        %b= link_to(" #{e.name}", "/entities/#{e.id}")
-      %td= link_to(" . invite", "/requests/new?entity_id=#{e.id}")  unless (e.investment || (e.name == @company.name))
-      %td= link_to(' . edit', edit_entity_path(e))
-      %td= link_to(' . delete', e, :confirm => 'Are you sure?', :method => :delete)
-  %tr
-    %td{:colspan => 4}= link_to("(add new investor)", "/entities/new")
-%br
-%table{:align => "center"}
-  %tr
-    %td{:colspan => 4}
-      %b= "#{@company.name} securities:"
-  - @company.securities.each do |s|
-    %tr
-      %td
-        %b= link_to("#{s.name}", s)
-      %td= link_to(' . edit', edit_security_path(s))
-      %td= link_to(' . delete', s, :confirm => 'Are you sure?', :method => :delete)
-  %tr
-    %td{:colspan => 4}= link_to("(add new security)", "/securities/new")
-%br
+    %td
+      %table{:align => "center"}
+        %tr
+          %td{:colspan => 4}
+            %b= "#{@company.name} investors:"
+        - @company.entities.reject{|i| i.name == @company.name}.each do |e|
+          %tr
+            %td
+              %b= link_to(" #{e.name}", "/entities/#{e.id}")
+            %td= link_to(" . invite", "/requests/new?entity_id=#{e.id}")  unless (e.investment || (e.name == @company.name))
+            %td= link_to(' . edit', edit_entity_path(e))
+            %td= link_to(' . delete', e, :confirm => 'Are you sure?', :method => :delete)
+        %tr
+          %td{:colspan => 4}= link_to("(add new investor)", "/entities/new")
+    %td
+      %table{:align => "center"}
+        %tr
+          %td{:colspan => 4}
+            %b= "#{@company.name} securities:"
+        - @company.securities.each do |s|
+          %tr
+            %td
+              %b= link_to("#{s.name}", s)
+            %td= link_to(' . edit', edit_security_path(s))
+            %td= link_to(' . delete', s, :confirm => 'Are you sure?', :method => :delete)
+        %tr
+          %td{:colspan => 4}= link_to("(add new security)", "/securities/new")
+
 %center
   %i= link_to("(go to #{@company.name}'s transactions)", transactions_path)
   %br
