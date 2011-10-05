@@ -26,25 +26,28 @@
   <%= yield %>
 	
   <div id="footer">
-	<br /><br />
+	<br />
   <center>
+	
+				<%= link_to("blog", '#' ) %><%= " . "%>
+				<%= link_to("documentation", '#') %><%= " . "%>
+				<%= link_to("about us", '#') %><%= " . "%>
+				<%= link_to("privacy policy", '#') %><%= " . "%>
+				<%= link_to("contact us", '#') %>
+				<br /><br />
+	
 	<b>session data: </b>
 	<% begin %>
 	  company: <%= "#{(session[:company_id] && session[:company_id] > 0) ? session[:company_id].to_i.c.name : ''}(#{session[:company_id].to_i})" %> .
 	  user: <%= "#{(session[:user_id] && session[:user_id] > 0) ? session[:user_id].to_i.u.name : ''}(#{session[:user_id].to_i})" %> . 
-	  entity: <%= "#{(session[:entity_id] && session[:entity_id] > 0) ? session[:entity_id].to_i.e.name : ''}(#{session[:entity_id].to_i})" %> . 
+	  entity: <%= "#{(session[:entity_id] && session[:entity_id] > 0) ? session[:entity_id].to_i.e.name : ''}(#{session[:entity_id].to_i})" %>
 	<% rescue %>
 	  <% session[:company_id] = nil %>
 	  <% session[:user_id] = nil %>
 	  <% session[:entity_id] = nil %>
 	  <b>invalid session. please try logging in again.</b>
 	<% end %>
-	  
-	<%= link_to "logout", "/admin/logout"%>
-	<% if (session[:company_id] && session[:company_id] > 0) %>
-	   . 
-	  <%= link_to("list_companies", companies_path) %>
-	<% end %>
+
 	<!-- <br />git version b63809de73f62deb002e373b2e2c3ccf2f0910af -->
   </center>
   </div> <!-- end footer -->
