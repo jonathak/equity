@@ -76,6 +76,15 @@ class Security < ActiveRecord::Base
     end
   end
   
+  # amount of liquidity preference that comes after security
+  def junior_liq
+    if priority > 0
+      priorities.data[priority+1,priorities.data.length-(priority+1)].map{|p| p[1]}.flatten.map(&:s).map(&:liq_payout).sum
+    else
+      0.0
+    end
+  end
+  
   def percent
     shares_common.to_f/(company.shares_common.to_f)
   end

@@ -105,11 +105,25 @@ class Company < ActiveRecord::Base
     securities.uniq.map(&:shares_common).sum
   end
   
+  #security_id of company's common stock
+  def common_id
+    securities.where('name' == 'common').first.id
+  end
+  
   # array of LiqPayoutChart objects linked with each security id
   def liq_payout_charts
     basket = securities.select{|se| se.liq_payout > 0.0}.map{|s| [s.id, s.liq_payout_chart_prelim]}
     equilib = basket.map{|i| i[1].five[0]}.max
-    basket.each{|i| i[1].data[4] = [equilib, equilib*i[0].s.percent]}
+    basket.each do |i|
+      sec = i[0].s
+      sec.percent
+      sec.liq_pref
+      sec.junior_liq
+      i[1].data[4] = [equilib, equilib*sec.percent]
+      percent_liq = basket.select{|j| j[1].four[0] > i[1].four[0]}.map{|k| k[0].s.percent}.sum
+      extra = sec.junior_liq - (percent_liq/(sec.percent))*sec.liq_payout
+      i[1].data[3][0] += extra
+    end
     basket
   end
   
