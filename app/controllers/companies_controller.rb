@@ -127,7 +127,7 @@ class CompaniesController < ApplicationController
   end
   
   def payout_chart
-    company = params[:company_id].to_i.c
+    company = session[:company_id].to_i.c
     @lp_charts = company.liq_payout_charts
   end
   

@@ -2,13 +2,13 @@
 %center
   %p{:id => "notice"}= notice
 
-%table{:align => "center", :cellpadding => "10"}
+%table{:align => "center", :cellpadding => "3", :border => "0"}
   %tr
     %td{:colspan => 2, :align => 'center'}
       %b= "#{@company.name} "
-      = link_to("rename", edit_company_path(@company))
-      = " "
-      = link_to("delete", @company, :confirm => 'Are you sure?', :method => :delete)
+    %td= link_to("rename", edit_company_path(@company))
+    %td= link_to("delete", @company, :confirm => 'Are you sure?', :method => :delete)
+%table{:align => "center", :cellpadding => "10"}
   %tr
     %td
       %table{:align => "center"}
@@ -37,3 +37,6 @@
             %td= link_to(' . delete', s, :confirm => 'Are you sure?', :method => :delete)
         %tr
           %td{:colspan => 4}= link_to("(add new security)", "/securities/new")
+%table{:align => "center", :cellpadding => "5"}
+  - if @company.liq_pref > 0.0
+    %button{:id => "sec_payout_chart"} Securities Payout Chart

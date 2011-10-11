@@ -20,6 +20,7 @@ class EntitiesController < ApplicationController
   def show
     @entity = Entity.find(params[:id])
     session[:entity_id] = @entity.id
+    session[:company_id] = @entity.company.id.to_i
 
     respond_to do |format|
       format.html # show.html.erb
@@ -30,6 +31,7 @@ class EntitiesController < ApplicationController
   def liquidity
     @entity = Entity.find(params[:entity_id])
     session[:entity_id] = @entity.id
+    session[:company_id] = @entity.company.id.to_i
     @e_lc = @entity.liq_chart
     @c_lc = @entity.company.liq_chart
   end
@@ -43,6 +45,7 @@ class EntitiesController < ApplicationController
   def percentage
     @entity = Entity.find(params[:entity_id])
     session[:entity_id] = @entity.id
+    session[:company_id] = @entity.company.id.to_i
     @pc = @entity.percentage_chart
   end
   
