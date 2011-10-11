@@ -90,7 +90,7 @@ class Security < ActiveRecord::Base
   end
   
   # returns LiqPayoutChart object associated with security
-  # i still need to code the perturbation associated slope adjustment when not all convert!
+  # but does ont include the perturbation associated slope adjustment when not all securities convert.
   def liq_payout_chart_prelim
     lpc = LiqPayoutChart.new
     one = [0.0,0.0]
@@ -103,7 +103,7 @@ class Security < ActiveRecord::Base
   end
   
   # returns LiqPayoutChart object associated with security
-  # with the perturbation associated slope adjustment included
+  # with the perturbation associated slope adjustment included (see liq_payout_chart_prelim)
   def liq_payout_chart
     basket = company.liq_payout_charts
     basket.select{|i| i[0] == id}

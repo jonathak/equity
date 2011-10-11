@@ -2,13 +2,19 @@
 %center
   %p{:id => "notice"}= notice
 
-%table{:align => "center", :cellpadding => "20"}
+%table{:align => "center", :cellpadding => "10"}
+  %tr
+    %td{:colspan => 2, :align => 'center'}
+      %b= "#{@company.name} "
+      = link_to("rename", edit_company_path(@company))
+      = " "
+      = link_to("delete", @company, :confirm => 'Are you sure?', :method => :delete)
   %tr
     %td
       %table{:align => "center"}
         %tr
           %td{:colspan => 4}
-            %b= "#{@company.name} investors:"
+            %b= "Entities List:"
         - @company.entities.reject{|i| i.name == @company.name}.each do |e|
           %tr
             %td
@@ -22,7 +28,7 @@
       %table{:align => "center"}
         %tr
           %td{:colspan => 4}
-            %b= "#{@company.name} securities:"
+            %b= "Securities List:"
         - @company.securities.each do |s|
           %tr
             %td
@@ -31,9 +37,3 @@
             %td= link_to(' . delete', s, :confirm => 'Are you sure?', :method => :delete)
         %tr
           %td{:colspan => 4}= link_to("(add new security)", "/securities/new")
-
-%center
-  %i= link_to("(go to #{@company.name}'s transactions)", transactions_path)
-  %br
-  %br
-  = link_to 'Back to list of companies', companies_path
