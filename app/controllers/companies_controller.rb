@@ -132,6 +132,8 @@ class CompaniesController < ApplicationController
   end
   
   def sec_captable
+    company = session[:company_id].c
+    @securities = company.securities
   end
   
 end

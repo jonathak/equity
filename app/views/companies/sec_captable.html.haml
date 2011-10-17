@@ -1,4 +1,16 @@
 %br
 %center
-	%b CapTable by Security
-%br
+  %b CapTable by Security
+  %br= "(all shares reported 'as converted to common')"
+  %br
+  %table{cellpadding:"3", border:"0"}
+    %th security
+    %th{align:"right"} investment
+    %th{align:"right"} shares
+    %th{align:"right"} percent
+    -@securities.each do |security|
+      %tr
+        %td= security.name
+        %td{align:"right"}= number_to_currency(security.net_dollars, :precision => 0)
+        %td{align:"right"}= number_with_precision(security.shares_common, :precision => 0)
+        %td{align:"right"}= number_to_percentage(100*security.percent, :precision => 2)
