@@ -50,16 +50,6 @@ $(document).ready(function() {
   });
 });
 
-//this is used in company#show
-$(document).ready(function() {
-  $('#sec_captable').popupWindow({ 
-    centerBrowser:1,
-    windowURL:'/companies/sec_captable',
-    height:500,
-    width:600
-  });
-});
-
 // this is used in investment#new
 $(document).ready(function() {
   jQuery("#investment_login_e").click(function(){ 
