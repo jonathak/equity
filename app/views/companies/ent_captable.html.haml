@@ -1,0 +1,18 @@
+%br
+%center
+  %b CapTable by Entity
+  %br= "(all shares reported 'as converted to common')"
+  %br
+  %table{cellpadding:"3", border:"0"}
+    %th entity
+    %th{align:"right"} investment
+    %th{align:"right"} shares
+    %th{align:"right"} percent
+    -@entities.each do |entity|
+      %tr
+        %td= entity.name
+        %td{align:"right"}= number_to_currency(entity.net_dollars, :precision => 0)
+        %td{align:"right"}= number_with_precision(entity.shares_common, :precision => 0)
+        %td{align:"right"}= number_to_percentage(100*(entity.shares_common/@company.shares_common), :precision => 2)
+  %button{:onClick => "window.location.replace('/companies/#{@company.id}')"} back
+  %button{:onClick => "alert('i need to add google chart here.')"} pie chart

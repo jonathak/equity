@@ -15,4 +15,4 @@
         %td{align:"right"}= number_with_precision(security.shares_common, :precision => 0)
         %td{align:"right"}= number_to_percentage(100*security.percent, :precision => 2)
   %button{:onClick => "window.location.replace('/companies/#{@company.id}')"} back
-  %button{:id => "sec_captable_pie"} pie chart
+  %button{:onClick => "alert('i need to add google chart here.')"} pie chart

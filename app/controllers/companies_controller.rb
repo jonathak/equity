@@ -136,4 +136,10 @@ class CompaniesController < ApplicationController
     @securities = @company.securities
   end
   
+  def ent_captable
+    @company = session[:company_id].c
+    @entities = @company.entities.reject{|i| i.name == @company.name}
+    
+  end
+  
 end

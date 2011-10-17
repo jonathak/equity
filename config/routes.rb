@@ -17,6 +17,7 @@ Equity::Application.routes.draw do
   match 'companies/path_chart' => 'companies#path_chart', as: 'path_chart'
   match 'companies/payout_chart' => 'companies#payout_chart', as: 'payout_chart'
   match 'companies/sec_captable' => 'companies#sec_captable', as: 'sec_captable'
+  match 'companies/ent_captable' => 'companies#ent_captable', as: 'ent_captable'
   
   match 'investments/inv_log_e' => 'investments#inv_log_e', as: 'inv_log_e'
   match 'investments/inv_sign_e' => 'investments#inv_sign_e', as: 'inv_sign_e'
