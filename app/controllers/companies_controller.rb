@@ -131,4 +131,7 @@ class CompaniesController < ApplicationController
     @lp_charts = company.liq_payout_charts
   end
   
+  def sec_captable
+  end
+  
 end
