@@ -33,8 +33,8 @@
           %tr
             %td
               %b= link_to("#{s.name}", s)
-            %td= link_to(' . edit', edit_security_path(s))
-            %td= link_to(' . delete', s, :confirm => 'Are you sure?', :method => :delete)
+            %td= link_to(' . edit', edit_security_path(s)) if (s.name != 'common')
+            %td= link_to(' . delete', s, :confirm => 'Are you sure?', :method => :delete) if (s.name != 'common')
         %tr
           %td{:colspan => 4}= link_to("(add new security)", "/securities/new")
 %table{:align => "center", :cellpadding => "5"}
