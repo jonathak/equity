@@ -127,4 +127,9 @@ class Company < ActiveRecord::Base
     basket
   end
   
+  # array of prices where securities convert 
+  # ordered pairs [security_id, exit price]
+  def conversions
+  end
+  
 end
