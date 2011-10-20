@@ -127,6 +127,11 @@ class Company < ActiveRecord::Base
     basket
   end
   
+  # exit price upon which all securities convert to common
+  def equilibrium_price
+    securities.uniq.reject{|s| s.percent == 0.0}.map{|s| s.liq_payout/s.percent}.max
+  end
+  
   # array of prices where securities convert 
   # ordered pairs [security_id, exit price]
   def conversions
