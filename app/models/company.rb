@@ -135,6 +135,7 @@ class Company < ActiveRecord::Base
   # array of prices where securities convert 
   # ordered pairs [security_id, exit price]
   def conversions
+    securities.map(&:id).conversions_helper
   end
   
 end
