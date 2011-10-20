@@ -50,6 +50,11 @@ class Security < ActiveRecord::Base
     liq_pref ? net_dollars * liq_pref : 0.0
   end
   
+  # participation cap
+  def cap
+    partic_cap ? net_dollars * partic_cap : liq_payout
+  end
+  
   # security's company's priorities
   # returned as a Priorities object
   def priorities

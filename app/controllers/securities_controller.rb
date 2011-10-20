@@ -84,6 +84,7 @@ class SecuritiesController < ApplicationController
   # DELETE /securities/1
   # DELETE /securities/1.xml
   def destroy
+    @security = Security.find(params[:id])
     unless @security.name == "common"
       @security = Security.find(params[:id])
       @security.transactions.each(&:destroy)
@@ -92,7 +93,7 @@ class SecuritiesController < ApplicationController
     @security.name == "common" ? notice = "cannot destroy common" : notice = ""
 
     respond_to do |format|
-      format.html { redirect_to(securities_url, :notice => notice) }
+      format.html { redirect_to(@security.company, :notice => notice) }
       format.xml  { head :ok }
     end
   end
