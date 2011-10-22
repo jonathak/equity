@@ -139,12 +139,36 @@ class Company < ActiveRecord::Base
     securities.map(&:id).conversions_helper
   end
   
+  # array of exit prices to be used when integrating security payouts.
   def exit_price_array(n = 100)
     min = liq_pref
     max = equilibrium_price
     range = max - min
     dx = range/n
     (1..n).to_a.map{|i| min + i*dx}
+  end
+  
+  # array of payout arrays organized as such:
+  # [[s_id,[ 1,2,3,...]], [sid, [1,2,3,...]],...]
+  def payouts
+    slopes = {}
+    secs = securities.uniq
+    secs.each{|s| slopes[s.id.to_s] = s.percent}
+    prices = exit_price_array
+    n = prices.size
+    dx = prices[2] - prices[1]
+    temp = secs.map{|sec| [sec, (0..n).to_a]}
+    temp.each do |s|
+      s[1][0] = s[0].security.liq_pref
+    end
+    prices.each do |p|
+      temp.each do |s|
+        # need to place code here to modify slopes in accordance with participation caps
+      end
+      temp.each do |s|
+        s[1][p] = s[1][p-1] + (dx*slope[s[0].to_s])
+      end
+    end
   end
   
 end
