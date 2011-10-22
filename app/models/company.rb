@@ -111,6 +111,7 @@ class Company < ActiveRecord::Base
   end
   
   # array of LiqPayoutChart objects linked with each security id
+  # does not yet account for participating preferred
   def liq_payout_charts
     basket = securities.select{|se| se.liq_payout > 0.0}.map{|s| [s.id, s.liq_payout_chart_prelim]}
     equilib = basket.map{|i| i[1].five[0]}.max
@@ -136,6 +137,14 @@ class Company < ActiveRecord::Base
   # ordered pairs [security_id, exit price]
   def conversions
     securities.map(&:id).conversions_helper
+  end
+  
+  def exit_price_array(n = 100)
+    min = liq_pref
+    max = equilibrium_price
+    range = max - min
+    dx = range/n
+    (1..n).to_a.map{|i| min + i*dx}
   end
   
 end
