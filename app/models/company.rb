@@ -162,8 +162,21 @@ class Company < ActiveRecord::Base
       s[1][0] = s[0].security.liq_pref
     end
     prices.each do |p|
+      clips = []
       temp.each do |s|
-        # need to place code here to modify slopes in accordance with participation caps
+        s_id = s[0].to_s
+        if s[1][p-1]*dx*slopes[s_id] > s.cap
+          clips += s_id
+        end
+        clips_sum = clips.map{|c| s_id.to_i.s.percent}.sum
+      end
+      temp.each do |s|
+        s_id = s[0].to_s
+        if (clips.include?(s_id))
+          slopes[s_id] = 0.0
+        else
+          slopes[s_id] = slopes[s_id]/(1.0-clips_sum)
+        end
       end
       temp.each do |s|
         s[1][p] = s[1][p-1] + (dx*slope[s[0].to_s])
