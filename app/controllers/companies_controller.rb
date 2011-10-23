@@ -131,6 +131,11 @@ class CompaniesController < ApplicationController
     @lp_charts = company.liq_payout_charts
   end
   
+  def new_payout_chart
+    company = session[:company_id].to_i.c
+    @lp_charts = company.liq_payout_charts
+  end
+  
   def sec_captable
     @company = session[:company_id].c
     @securities = @company.securities
