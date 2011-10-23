@@ -157,16 +157,17 @@ class Company < ActiveRecord::Base
     prices = exit_price_array
     n = prices.size
     dx = prices[2] - prices[1]
-    temp = secs.map{|sec| [sec, (0..n).to_a]}
+    temp = secs.map{|sec| [sec.id, (0..n).to_a]}
     temp.each do |s|
       s[1][0] = s[0].security.liq_pref
     end
     prices.each do |p|
       clips = []
+      clips_sum = 0.0
       temp.each do |s|
         s_id = s[0].to_s
-        if s[1][p-1]*dx*slopes[s_id] > s.cap
-          clips += s_id
+        if s[1][p-1]*dx*slopes[s_id] > s[0].security.cap
+          clips += [s_id]
         end
         clips_sum = clips.map{|c| s_id.to_i.s.percent}.sum
       end
@@ -179,9 +180,10 @@ class Company < ActiveRecord::Base
         end
       end
       temp.each do |s|
-        s[1][p] = s[1][p-1] + (dx*slope[s[0].to_s])
+        s[1][p] = s[1][p-1] + (dx*slopes[s[0].to_s])
       end
     end
+    temp
   end
   
 end
