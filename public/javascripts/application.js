@@ -54,7 +54,7 @@ $(document).ready(function() {
 $(document).ready(function() {
   $('#new_sec_payout_chart').popupWindow({ 
     centerBrowser:1,
-    windowURL:'/companies/payout_chart',
+    windowURL:'/companies/new_payout_chart',
     height:500,
     width:600
   });

@@ -1,3 +1,5 @@
+<!-- STILL NEED TO FINISH ADJUSTING THIS FILE FOR THE PARTICIPATION RANGE -->
+
 <html>
   <head>
     <script type='text/javascript' src='https://www.google.com/jsapi'></script>
@@ -7,16 +9,16 @@
       function drawChart() {
         var data = new google.visualization.DataTable();
         data.addColumn('number', 'payout');
-        <% @lp_charts.each do |lp_chart| %>
-          data.addColumn('number', <%= "'#{lp_chart[0].s.name}'" %>);
+        <% @payouts.each do |p| %>
+          data.addColumn('number', <%= "'#{p[0].s.name}'" %>);
         <% end %>
-        <% lines = @lp_charts.length %>
-        data.addRows(<%= 5*lines %>);
+        <% lines = @payouts.length*@exit_prices.length %>
+        data.addRows(<%= lines %>);
         <% (0...lines).to_a.each do |i| %>
-          <% [0,1,2,3,4].each do |j| %>
+          <% @exit_prices.each do |j| %>
             <% puts "i.j #{i},#{j}" %>
-            data.setValue(<%= 5*i+j %>, 0, <%= @lp_charts[i][1].data[j][0] %>);
-            data.setValue(<%= 5*i+j %>, <%= i+1 %>, <%= @lp_charts[i][1].data[j][1] %>);
+            data.setValue(<%= i*lines+j %>, 0, <%= j %>);
+            data.setValue(<%= i*lines+j %>, <%= i+1 %>, <%= @payouts[1][j] %>);
           <% end %>
         <% end %>
 
