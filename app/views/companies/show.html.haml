@@ -39,7 +39,8 @@
           %td{:colspan => 4}= link_to("(add new security)", "/securities/new")
 %table{:align => "center", :cellpadding => "5"}
   - if @company.liq_pref > 0.0
-    %button{:id => "sec_payout_chart"} Securities Payout Chart
-    %button{:id => "new_sec_payout_chart"} New Securities Payout Chart
+    %center
+      %button{:id => "sec_payout_chart"} Securities Payout Chart
+      %button{:id => "new_sec_payout_chart"} New Securities Payout Chart
   %button{:onclick => "window.location.replace('/companies/ent_captable');"} CapTable by Entity
   %button{:onclick => "window.location.replace('/companies/sec_captable');"} CapTable by Security
