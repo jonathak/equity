@@ -12,13 +12,13 @@
         <% @payouts.each do |p| %>
           data.addColumn('number', <%= "'#{p[0].s.name}'" %>);
         <% end %>
-        <% lines = @payouts.length*@exit_prices.length %>
-        data.addRows(<%= lines %>);
-        <% (0...lines).to_a.each do |i| %>
-          <% @exit_prices.each do |j| %>
-            <% puts "i.j #{i},#{j}" %>
-            data.setValue(<%= i*lines+j %>, 0, <%= j %>);
-            data.setValue(<%= i*lines+j %>, <%= i+1 %>, <%= @payouts[1][j] %>);
+        <% lines = @payouts.length %>
+        <% prices = @exit_prices.length %>
+        data.addRows(<%= @exit_prices.length*lines %>);
+        <% (0..(lines-1)).to_a.each do |i| %>
+          <% (0..(prices-1)).to_a.each do |j| %>
+            data.setValue(<%= prices*i+j %>, 0, <%= @exit_prices[j] %>);
+            data.setValue(<%= prices*i+j %>, <%= i+1 %>, <%= @payouts[i][1][j] %>);
           <% end %>
         <% end %>
 
@@ -28,7 +28,7 @@
 		                          vAxis: {title: 'Payout'},
 		                          legend: 'top',
 		                          lineWidth: 1,
-		                          pointSize: 2
+		                          pointSize: 0
 		                         });
       }
     </script>
@@ -38,7 +38,7 @@
   <body>
     <center>
 	<b>Security Payouts</b><br />
-	    <div id="chart_div" %>"></div>
+	    <div id="chart_div" %></div>
 	</center>
   </body>
 </html

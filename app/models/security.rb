@@ -52,7 +52,13 @@ class Security < ActiveRecord::Base
   
   # participation cap
   def cap
-    partic_cap ? net_dollars * partic_cap : liq_payout
+    if participating
+      (partic_cap ? net_dollars * partic_cap : nil)
+    elsif liq_pref
+      liq_pref
+    else
+      nil
+    end
   end
   
   # security's company's priorities

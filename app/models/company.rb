@@ -130,7 +130,7 @@ class Company < ActiveRecord::Base
   
   # exit price upon which all securities convert to common
   def equilibrium_price
-    securities.uniq.reject{|s| s.percent == 0.0}.map{|s| s.liq_payout/s.percent}.max
+    securities.uniq.reject{|s| s.percent == 0.0}.map{|s| (s.cap || 0.0)/s.percent}.max
   end
   
   # array of prices where securities convert 
@@ -157,16 +157,19 @@ class Company < ActiveRecord::Base
     prices = exit_price_array
     n = prices.size
     dx = prices[2] - prices[1]
-    temp = secs.map{|sec| [sec.id, (0..n).to_a]}
+    temp = secs.map{|sec| [sec.id, (0..n-1).to_a]}
     temp.each do |s|
-      s[1][0] = s[0].security.liq_pref
+      s[1][0] = s[0].security.liq_payout || 0.0
     end
-    prices.each do |p|
+    (1..(n-1)).to_a.each do |p|
+      secs.each{|s| slopes[s.id.to_s] = s.percent}
+      puts slopes
       clips = []
       clips_sum = 0.0
       temp.each do |s|
         s_id = s[0].to_s
-        if s[1][p-1]*dx*slopes[s_id] > s[0].security.cap
+        s_cap = s[0].security.cap
+        if s_cap && (s[1][p-1] + dx*slopes[s_id] > s_cap)
           clips += [s_id]
         end
         clips_sum = clips.map{|c| s_id.to_i.s.percent}.sum
