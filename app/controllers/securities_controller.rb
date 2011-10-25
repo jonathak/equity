@@ -46,12 +46,13 @@ class SecuritiesController < ApplicationController
     @security = Security.new(params[:security])
     @kinds = Kind.all
     company_id = session[:company_id].to_i
+    company = company_id.c
     @security.company_id = company_id
 
     respond_to do |format|
       if @security.save
-        format.html { redirect_to(@security, :notice => 'Security was successfully created.') }
-        format.xml  { render :xml => @security, :status => :created, :location => @security }
+        format.html { redirect_to(company, :notice => 'Security was successfully created.') }
+        format.xml  { render :xml => company, :status => :created, :location => @security }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @security.errors, :status => :unprocessable_entity }
