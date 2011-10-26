@@ -64,6 +64,7 @@ class SecuritiesController < ApplicationController
   # PUT /securities/1.xml
   def update
     @security = Security.find(params[:id])
+    company = session[:company_id].c
     if (@security.name == "common")
       params[:security][:name] = "common" 
       notice = "cannot rename common"
@@ -73,7 +74,7 @@ class SecuritiesController < ApplicationController
 
     respond_to do |format|
       if @security.update_attributes(params[:security])
-        format.html { redirect_to(@security, :notice => notice) }
+        format.html { redirect_to(company, :notice => notice) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

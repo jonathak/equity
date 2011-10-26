@@ -157,19 +157,24 @@ class Company < ActiveRecord::Base
     prices = exit_price_array
     n = prices.size
     dx = prices[2] - prices[1]
+    conversion_prices = {}
+    conversions.each do |cp|
+      conversion_prices[cp[0].to_s] = cp[1]
+    end
+    e_p_a = exit_price_array
     temp = secs.map{|sec| [sec.id, (0..n-1).to_a]}
     temp.each do |s|
       s[1][0] = s[0].security.liq_payout || 0.0
     end
     (1..(n-1)).to_a.each do |p|
       secs.each{|s| slopes[s.id.to_s] = s.percent}
-      puts slopes
       clips = []
       clips_sum = 0.0
       temp.each do |s|
         s_id = s[0].to_s
         s_cap = s[0].security.cap
-        if s_cap && (s[1][p-1] + dx*slopes[s_id] > s_cap)
+        puts e_p_a[p]
+        if (s_cap && (s[1][p-1] + dx*slopes[s_id] > s_cap)) && (e_p_a[p] < conversion_prices[s_id])
           clips += [s_id]
         end
         clips_sum = clips.map{|c| s_id.to_i.s.percent}.sum
