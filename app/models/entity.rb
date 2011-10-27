@@ -27,6 +27,16 @@ class Entity < ActiveRecord::Base
     end
   end
   
+  # participation cap preference (for given security_id (s_id) if passed)
+  def cap(s_id = nil)
+    if s_id
+      security = s_id.s
+      ((security.liq_pref || 0) * net_dollars(s_id)) * (security.partic_cap || 1.0)
+    else
+      securities.uniq.map{|s| cap(s.id)}.sum
+    end
+  end
+  
   # creates a current liquidation chart
   # see the LiqChart class in lib directory
   # also see version in company model

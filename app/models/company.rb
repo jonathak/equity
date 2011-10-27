@@ -72,6 +72,11 @@ class Company < ActiveRecord::Base
     entities.map(&:liq_pref).sum
   end
   
+  #total participation cap of all securities and entities
+  def cap
+    entities.map(&:cap).sum
+  end
+  
   # creates a current liquidation chart
   # see the LiqChart class in lib directory
   # also see version in entity model
@@ -173,7 +178,6 @@ class Company < ActiveRecord::Base
       temp.each do |s|
         s_id = s[0].to_s
         s_cap = s[0].security.cap
-        puts e_p_a[p]
         if (s_cap && (s[1][p-1] + dx*slopes[s_id] > s_cap)) && (e_p_a[p] < conversion_prices[s_id])
           clips += [s_id]
         end
