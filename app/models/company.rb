@@ -179,13 +179,13 @@ class Company < ActiveRecord::Base
         s_id = s[0].to_s
         s_cap = s[0].security.cap
         if (s_cap && (s[1][p-1] + dx*slopes[s_id] > s_cap)) && (e_p_a[p] < conversion_prices[s_id])
-          clips += [s_id]
+          clips += [s[0]]
         end
-        clips_sum = clips.map{|c| s_id.to_i.s.percent}.sum
+        clips_sum = clips.map{|c| c.s.percent}.sum
       end
       temp.each do |s|
         s_id = s[0].to_s
-        if (clips.include?(s_id))
+        if (clips.include?(s[0]))
           slopes[s_id] = 0.0
         else
           slopes[s_id] = slopes[s_id]/(1.0-clips_sum)
