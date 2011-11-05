@@ -155,18 +155,17 @@ class Company < ActiveRecord::Base
   
   # array of payout arrays organized as such:
   # [[s_id,[ 1,2,3,...]], [sid, [1,2,3,...]],...]
-  def payouts
+  def payouts(n = 100)
     slopes = {}
     secs = securities.uniq
     secs.each{|s| slopes[s.id.to_s] = s.percent}
-    prices = exit_price_array
-    n = prices.size
+    prices = exit_price_array(n)
     dx = prices[2] - prices[1]
     conversion_prices = {}
     conversions.each do |cp|
       conversion_prices[cp[0].to_s] = cp[1]
     end
-    e_p_a = exit_price_array
+    e_p_a = exit_price_array(n)
     temp = secs.map{|sec| [sec.id, (0..n-1).to_a]}
     temp.each do |s|
       s[1][0] = s[0].security.liq_payout || 0.0
@@ -196,6 +195,19 @@ class Company < ActiveRecord::Base
       end
     end
     temp
+  end
+  
+  # array of total payouts
+  # used only to help confirm that the payouts method is working properly
+  def total_payout_diffs(n = 100)
+    num_sec = securities.size
+    num_sec_arr = (0...num_sec).to_a
+    p = payouts(n)
+    temp = num_sec_arr.map{|i| p[i][1]}
+    tot_pay = (0...n).to_a.map{|i| num_sec_arr.map{|j| temp[j][i]}.sum}
+    e_p_a = exit_price_array(n)
+    diff = (0...n).to_a.map{|i| e_p_a[i] - tot_pay[i]}
+    diff
   end
   
 end
