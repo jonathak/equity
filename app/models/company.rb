@@ -115,24 +115,6 @@ class Company < ActiveRecord::Base
     securities.where('name' == 'common').first.id
   end
   
-  # array of LiqPayoutChart objects linked with each security id
-  # does not yet account for participating preferred
-  def liq_payout_charts
-    basket = securities.select{|se| se.liq_payout > 0.0}.map{|s| [s.id, s.liq_payout_chart_prelim]}
-    equilib = basket.map{|i| i[1].five[0]}.max
-    basket.each do |i|
-      sec = i[0].s
-      sec.percent
-      sec.liq_pref
-      sec.junior_liq
-      i[1].data[4] = [equilib, equilib*sec.percent]
-      percent_liq = basket.select{|j| j[1].four[0] > i[1].four[0]}.map{|k| k[0].s.percent}.sum
-      extra = sec.junior_liq - (percent_liq/(sec.percent))*sec.liq_payout
-      i[1].data[3][0] += extra
-    end
-    basket
-  end
-  
   # exit price upon which all securities convert to common
   def equilibrium_price
     securities.uniq.reject{|s| s.percent == 0.0}.map{|s| (s.cap || 0.0)/s.percent}.max
