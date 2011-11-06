@@ -1,0 +1,89 @@
+<%= form_for(@security) do |f| %>
+  <% if @security.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@security.errors.count, "error") %> prohibited this security from being saved:</h2>
+
+      <ul>
+      <% @security.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label "must select kind" %><br />
+    <%= f.select(:kind, options_for_select(@kinds.map{|i| [i.name, i.id.to_s]})) %>
+  </div>
+  <% if (@kind == 3) || (@kind == 4) %>
+    <div class="field_liq" style="display:block;">
+  <% else %>
+    <div class="field_liq">
+  <% end %>
+    <%= f.label :rank %> (0 to 100)<br />
+    <%= f.text_field :rank %>
+  </div>
+  <% if (@kind == 4) %>
+    <div class="field_pref" style="display:block;">
+  <% else %>
+    <div class="field_pref">
+  <% end %>
+    <%= f.label :liquidation_preference %> (multiple)<br />
+    <%= f.text_field :liq_pref %>
+  </div>
+  <% if (@kind == 3) %>
+    <div class="field_debt" style="display:block;">
+  <% else %>
+    <div class="field_debt">
+  <% end %>
+    <%= f.label :discount_factor %> (use decimal)<br />
+    <%= f.text_field :disc_fact %>
+  </div>
+  <% if (@kind == 3) || (@kind == 4) %>
+    <div class="field_cov" style="display:block;">
+  <% else %>
+    <div class="field_cov">
+  <% end %>
+    <%= f.label :warrant_coverage %> (use decimal)<br />
+    <%= f.text_field :warrant_cov %>
+  </div>
+  <% if (@kind == 4) %>
+    <div class="field_pref" style="display:block;">
+  <% else %>
+    <div class="field_pref">
+  <% end %>
+    <%= f.label :participating? %><br />
+    <%= f.check_box :participating %> (check if yes)
+  </div>
+  <% if (@kind == 4) %>
+    <div class="field_pref" style="display:block;">
+  <% else %>
+    <div class="field_pref">
+  <% end %>
+    <%= f.label :participation_cap %> (multiple)<br />
+    <%= f.text_field :partic_cap %>
+  </div>
+  <% if (@kind == 3) %>
+    <div class="field_debt" style="display:block;">
+  <% else %>
+    <div class="field_debt">
+  <% end %>
+    <%= f.label :interest_rate %> (use decimal)<br />
+    <%= f.text_field :int_rate %>
+  </div>
+  <% if (@kind == 4) %>
+    <div class="field_pref" style="display:inline;">
+  <% else %>
+    <div class="field_pref">
+  <% end %>
+    <%= f.label :dividend_rate %> (use decimal)<br />
+    <%= f.text_field :div_rate %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

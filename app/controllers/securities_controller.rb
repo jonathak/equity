@@ -38,6 +38,10 @@ class SecuritiesController < ApplicationController
   def edit
     @security = Security.find(params[:id])
     @kinds = Kind.all
+    @liq = 'style = "display: inline"'
+    @kind = @security.kind.to_i
+    puts "............kind #{@kind}"
+    #@kind = 4
   end
 
   # POST /securities
