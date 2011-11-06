@@ -40,8 +40,6 @@ class SecuritiesController < ApplicationController
     @kinds = Kind.all
     @liq = 'style = "display: inline"'
     @kind = @security.kind.to_i
-    puts "............kind #{@kind}"
-    #@kind = 4
   end
 
   # POST /securities
