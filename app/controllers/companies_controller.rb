@@ -126,15 +126,10 @@ class CompaniesController < ApplicationController
     @pathways = company.pathways(target_id)
   end
   
-  def payout_chart
-    company = session[:company_id].to_i.c
-    @lp_charts = company.liq_payout_charts
-  end
-  
   def new_payout_chart
     company = session[:company_id].to_i.c
-    @exit_prices = company.exit_price_array
-    @payouts = company.payouts
+    @exit_prices = company.exit_price_array(100)
+    @payouts = company.payouts(100)
   end
   
   def sec_captable

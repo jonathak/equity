@@ -56,6 +56,6 @@
       %INPUT{:TYPE => "button", :VALUE => "Liquidation", :onClick => "window.location.replace('/entities/liquidity?entity_id=#{@entity.id}');"} 
       %INPUT{:TYPE => "button", :VALUE => "Dilution", :onClick => "window.location.replace('/entities/percentage?entity_id=#{@entity.id}');"}
       - if @entity.company.liq_pref > 0.0
-        %INPUT{:TYPE => "button", :VALUE => "Securities Payout Chart", :onClick => "window.location.replace('/companies/payout_chart?company_id=#{@entity.company.id}');"}
+        %INPUT{:TYPE => "button", :VALUE => "Securities Payout Chart", :onClick => "window.location.replace('/companies/new_payout_chart?company_id=#{@entity.company.id}');"}
 - else
   %center= "not authorized"
