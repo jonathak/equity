@@ -1,0 +1,27 @@
+- user = session[:user_id].to_i.u
+- (companies = user.companies) if user
+- if (companies.map(&:id).include?(@company.id))
+  %center
+    %p
+      %b= "#{@company.name} Liquidity Analysis"
+    %br
+    - if true
+      %table{:class => 'basic_table'}
+        %tr
+          %td
+            %u priority*
+          %td
+            %u total
+          %td
+            %u cumulative
+        - cum_tot = 0.0
+        - @c_lc.ranks.each do |rank|
+          %tr
+            %td= "#{@company.priorities.securities(rank).map(&:s).map(&:name)}"
+            %td= number_to_currency (tot = @c_lc.amount(:rank => rank)), :precision =>0
+            %td= number_to_currency (cum_tot += tot), :precision =>0
+    %br
+    %FORM
+      %INPUT{:TYPE => "button", :VALUE => "Back", :onClick => "javascript:window.location='/companies/#{@company.id}';"}
+- else
+  %center= "not authorized"

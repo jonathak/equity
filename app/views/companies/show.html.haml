@@ -40,7 +40,8 @@
 %table{:align => "center", :cellpadding => "5"}
   - if @company.liq_pref > 0.0
     %center
-      %button{:id => "sec_payout_chart"} Securities Payout Chart
+      %button{:id => "liq_pref_sec", :onClick => "window.location.replace('/companies/liquidity?company_id=#{@company.id}');"} Liquidation Data
+      %button{:id => "sec_payout_chart"} Participation Chart
   %center
     %button{:onclick => "window.location.replace('/companies/ent_captable');"} CapTable by Entity
     %button{:onclick => "window.location.replace('/companies/sec_captable');"} CapTable by Security

@@ -140,7 +140,11 @@ class CompaniesController < ApplicationController
   def ent_captable
     @company = session[:company_id].c
     @entities = @company.entities.reject{|i| i.name == @company.name}
-    
+  end
+  
+  def liquidity
+    @company = session[:company_id].to_i.c
+    @c_lc = @company.liq_chart
   end
   
 end
