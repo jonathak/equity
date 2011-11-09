@@ -43,7 +43,7 @@ class Entity < ActiveRecord::Base
   def liq_chart
     temp =[]
     l_c = LiqChart.new
-    liq_secs = securities.where('liq_pref > 0.0').uniq
+    liq_secs = company.securities.where('liq_pref > 0.0').uniq
     liq_secs.each do |liq_sec|
       amount = buys.where("security_id = #{liq_sec.id}").sum("dollars") -
               sales.where("security_id = #{liq_sec.id}").sum("dollars")
