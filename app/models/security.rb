@@ -20,10 +20,14 @@ class Security < ActiveRecord::Base
       buy_condition = "buyer_id = #{company.entity_id}"
     end
     case kind.to_i
-      when (1 || 2) # common or options
+      when (1) # common
         issued = transactions.where(sell_condition).uniq.map(&:shares).sum
         repurchased = transactions.where(buy_condition).uniq.map(&:shares).sum
-        issued - repurchased
+        issued > 0 ? issued - repurchased : 0.0
+      when (2) # options
+        issued = transactions.where(sell_condition).uniq.map(&:shares).sum
+        repurchased = transactions.where(buy_condition).uniq.map(&:shares).sum
+        issued > 0 ? issued - repurchased : 0.0
       when 3 # debt
         issuances = transactions.where(sell_condition).uniq.order("date ASC").map{|i| [i.date,i.dollars]}
         repurchases = transactions.where(buy_condition).uniq.order("date ASC").map{|i| [i.date,i.dollars]}
