@@ -32,4 +32,18 @@ class Array
     end
   end
   
+  def make_pairs
+    if size > 1
+      first = self[0]
+      second = self[1]
+      if size == 2
+        [[first,second]]
+      else
+        [[first,second]] + self.slice(1,size-1).make_pairs
+      end
+    else
+      nil
+    end
+  end
+  
 end

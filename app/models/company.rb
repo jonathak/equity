@@ -53,6 +53,12 @@ class Company < ActiveRecord::Base
     end
   end
   
+  # total indirect percentage in target_id
+  def indirect_percent(target_id)
+    pathways(target_id)
+    # to be completed
+  end
+  
   # array of company_ids representing linked investors
   def owners
     entities.map{|e| (e.investment.company.id if e.investment)}.reject{|i| i == nil}
