@@ -51,6 +51,6 @@
 							= "#{d.c.name}"
 							= link_to("  (pathway)", "companies/path_chart/?company_id=#{company.id};target_id=#{d}", :class => 'path_chart')
 						%td
-							="TK"
+							="#{number_to_percentage company.indirect_percent(d), :precision => 2}"
 %br
 %center= link_to('Add New Company', new_company_path)
