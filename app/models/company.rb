@@ -55,8 +55,7 @@ class Company < ActiveRecord::Base
   
   # total indirect percentage in target_id
   def indirect_percent(target_id)
-    pathways(target_id)
-    # to be completed
+    (pathways(target_id).map(&:make_pairs).map(&:chain_link_percent).sum)*100.0
   end
   
   # array of company_ids representing linked investors

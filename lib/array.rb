@@ -18,20 +18,6 @@ class Array
     end
   end
   
-  def link_percent
-    if size == 2
-      first = self[0]
-      second = self[1]
-      if (first.c) && (second.c)
-        first.c.alias_id(second).e.fully_diluted
-      else
-        nil
-      end
-    else
-      nil
-    end
-  end
-  
   def make_pairs
     if size > 1
       first = self[0]
@@ -44,6 +30,30 @@ class Array
     else
       nil
     end
+  end
+  
+  def link_percent
+    if size == 2
+      first = self[0]
+      second = self[1]
+      if (first.c) && (second.c)
+        (first.c.alias_id(second).e.fully_diluted)/100.0
+      else
+        nil
+      end
+    else
+      nil
+    end
+  end
+  
+  # all array elements must be flat pairs
+  # such as output from make_pairs
+  def chain_link_percent
+    product = 1.0
+    self.map(&:link_percent).each do |i|
+      product = product*i
+    end
+    product
   end
   
 end
