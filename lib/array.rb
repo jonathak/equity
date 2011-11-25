@@ -18,4 +18,18 @@ class Array
     end
   end
   
+  def link_percent
+    if size == 2
+      first = [0]
+      second = [1]
+      if (first.c) && (second.c)
+        first.c.alias_id(second).e.fully_diluted
+      else
+        nil
+      end
+    else
+      nil
+    end
+  end
+  
 end
