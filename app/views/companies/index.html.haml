@@ -41,8 +41,16 @@
 				- company.indirects.each do |d|
 					%tr
 						%td
-						%td{colspan:3, align:"center"}
+						%td{colspan:2, align:"center"}
+							="name"
+						%td
+							="ownership"
+					%tr
+						%td
+						%td{colspan:2, align:"center"}
 							= "#{d.c.name}"
 							= link_to("  (pathway)", "companies/path_chart/?company_id=#{company.id};target_id=#{d}", :class => 'path_chart')
+						%td
+							="TK"
 %br
 %center= link_to('Add New Company', new_company_path)
