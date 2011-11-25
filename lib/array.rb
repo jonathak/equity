@@ -20,8 +20,8 @@ class Array
   
   def link_percent
     if size == 2
-      first = [0]
-      second = [1]
+      first = self[0]
+      second = self[1]
       if (first.c) && (second.c)
         first.c.alias_id(second).e.fully_diluted
       else
