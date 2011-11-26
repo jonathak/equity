@@ -19,7 +19,7 @@ $(document).ready(function() {
 $(document).ready(function() {
   $('.company_list_hidden tr:odd td:not(:first-child)').css({backgroundColor:'#F9ECFF'});
   $('.company_list_hidden tr:last-child td:last-child').css({backgroundColor:'#FFEEE9'});
-  $('.company_indirects_hidden tr:odd td:last-child').css({backgroundColor:'#FFEEE9'});
+  $('.company_indirects_hidden tr:odd td:not(:first-child)').css({backgroundColor:'#FFEEE9'});
 });
 
 //this is used in entities#liquidity
