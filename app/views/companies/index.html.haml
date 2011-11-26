@@ -38,13 +38,13 @@
 					%td
 					%td{class:"indirect", colspan:3, align:"center"}= link_to("(click to show #{company.name}'s indirect investments)", "#", :class => "show_indirects", 'data-id' => "\#company_indirects_hidden_#{company.id}") if (company.indirects.count > 0)
 			%tbody{class:"company_indirects_hidden", id:"company_indirects_hidden_#{company.id}"}
+				%tr
+					%td
+					%td{colspan:2, align:"center"}
+						="name"
+					%td
+						="ownership"
 				- company.indirects.each do |d|
-					%tr
-						%td
-						%td{colspan:2, align:"center"}
-							="name"
-						%td
-							="ownership"
 					%tr
 						%td
 						%td{colspan:2, align:"center"}
