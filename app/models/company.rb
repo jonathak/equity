@@ -22,7 +22,7 @@ class Company < ActiveRecord::Base
   
   # entity_id of entity that represent itself in itself
   def entity_id
-    entities.select{|e| e.name = name}.first.id
+    entities.select{|e| e.name == name}.first.id
   end
   
   # id's of companies that company directly invests in
