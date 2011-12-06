@@ -29,11 +29,15 @@ class Security < ActiveRecord::Base
         repurchased = transactions.where(buy_condition).uniq.map(&:shares).sum
         issued > 0 ? issued - repurchased : 0.0
       when 3 # debt
-        issuances = transactions.where(sell_condition).uniq.order("date ASC").map{|i| [i.date,i.dollars]}
-        repurchases = transactions.where(buy_condition).uniq.order("date ASC").map{|i| [i.date,i.dollars]}
-        dollars_issued = issuances.map{|i| i[1]*(Date.today - i[0])*int_rate}.sum
-        dollars_repurchased = repurchases.map{|i| i[1]*(Date.today - i[0])*int_rate}.sum
-        (dollars_issued - dollars_repurchased)/(1.0 - disc_fact)
+        if transactions.size > 0
+          issuances = transactions.where(sell_condition).uniq.order("date ASC").map{|i| [i.date,i.dollars]}
+          repurchases = transactions.where(buy_condition).uniq.order("date ASC").map{|i| [i.date,i.dollars]}
+          dollars_issued = issuances.map{|i| i[1]*(Date.today - i[0])*int_rate}.sum
+          dollars_repurchased = repurchases.map{|i| i[1]*(Date.today - i[0])*int_rate}.sum
+          (dollars_issued - dollars_repurchased)/(1.0 - disc_fact)
+        else
+          0.0
+        end
       when 4 # pref
         # have not incorporated dividends yet ...
         issued_dollars = transactions.where(sell_condition).uniq.map(&:dollars).sum
