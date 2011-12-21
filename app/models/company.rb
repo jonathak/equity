@@ -128,7 +128,9 @@ class Company < ActiveRecord::Base
   # array of prices where securities convert 
   # ordered pairs [security_id, exit price]
   def conversions
-    securities.map(&:id).conversions_helper
+    # empty = securities.select{|s| s.percent == 0.0}
+    non_empty = securities.reject{|s| s.percent == 0.0}
+    non_empty.map(&:id).conversions_helper # + empty.map{|s| [s.id, 0.0]}
   end
   
   # array of exit prices to be used when integrating security payouts.
@@ -144,7 +146,7 @@ class Company < ActiveRecord::Base
   # [[s_id,[ 1,2,3,...]], [sid, [1,2,3,...]],...]
   def payouts(n = 100)
     slopes = {}
-    secs = securities.uniq
+    secs = securities.uniq.reject{|s| s.percent == 0.0}
     secs.each{|s| slopes[s.id.to_s] = s.percent}
     prices = exit_price_array(n)
     dx = prices[2] - prices[1]
