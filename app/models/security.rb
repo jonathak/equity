@@ -63,7 +63,7 @@ class Security < ActiveRecord::Base
     if participating
       (partic_cap ? net_dollars * partic_cap : nil)
     elsif liq_pref
-      liq_pref
+      liq_payout
     else
       nil
     end
