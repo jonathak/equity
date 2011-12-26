@@ -199,4 +199,11 @@ class Company < ActiveRecord::Base
     diff
   end
   
+  # most recent purchase price to be used in debt conversion cap table calculations
+  def most_recent_price
+    pricing_transactions = transactions.uniq.select{|t| t.dollars && t.shares}
+    last_date = pricing_transactions.map{|t| t.date}.max
+    pricing_transactions.select{|t| t.date == last_date}.map{|tt| tt.dollars/tt.shares.to_f}.first
+  end
+  
 end

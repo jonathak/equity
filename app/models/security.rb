@@ -29,12 +29,13 @@ class Security < ActiveRecord::Base
         repurchased = transactions.where(buy_condition).uniq.map(&:shares).sum
         issued > 0 ? issued - repurchased : 0.0
       when 3 # debt
+        # NEED TO REWRITE THIS CONDITION!!!
         if transactions.size > 0
           issuances = transactions.where(sell_condition).uniq.map{|i| [i.date,i.dollars]}
           repurchases = transactions.where(buy_condition).uniq.map{|i| [i.date,i.dollars]}
-          dollars_issued = issuances.map{|i| i[1]*(Date.today - i[0])*int_rate}.sum
-          dollars_repurchased = repurchases.map{|i| i[1]*(Date.today - i[0])*int_rate}.sum
-          (dollars_issued - dollars_repurchased)/(1.0 - (disc_fact || 0.0))
+          dollars_issued = issuances.map{|i| i[1]*(1.0 + (Date.today - i[0])*int_rate/365.0)}.sum
+          dollars_repurchased = repurchases.map{|i| i[1]*(1.0 + (Date.today - i[0])*int_rate/365.0)}.sum
+          (dollars_issued - dollars_repurchased)/(company.most_recent_price - (disc_fact || 0.0))  # WHAT'S THE CONVERSION PRICE?????
         else
           0.0
         end
