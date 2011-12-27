@@ -12,7 +12,7 @@
       %tr
         %td= security.name
         %td{align:"right"}= number_to_currency(security.net_dollars, :precision => 0)
-        %td{align:"right"}= number_with_precision(security.shares_common, :precision => 0)
+        %td{align:"right"}= number_with_precision(security.shares_common, :precision => 0, :delimiter => ',')
         %td{align:"right"}= number_to_percentage(100*security.percent, :precision => 2)
   %button{:onClick => "window.location.replace('/companies/#{@company.id}')"} back
   %button{:onClick => "alert('i need to add google chart here.')"} pie chart
