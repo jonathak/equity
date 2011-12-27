@@ -20,6 +20,7 @@ Equity::Application.routes.draw do
   match 'companies/sec_captable' => 'companies#sec_captable', as: 'sec_captable'
   match 'companies/ent_captable' => 'companies#ent_captable', as: 'ent_captable'
   match 'companies/liquidity' => 'companies#liquidity', as: 'liquidity'
+  match 'companies/sec_percentage_chart' => 'companies#sec_percentage_chart', as: 'sec_percentage_chart'
   
   match 'investments/inv_log_e' => 'investments#inv_log_e', as: 'inv_log_e'
   match 'investments/inv_sign_e' => 'investments#inv_sign_e', as: 'inv_sign_e'

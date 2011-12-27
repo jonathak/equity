@@ -206,4 +206,16 @@ class Company < ActiveRecord::Base
     pricing_transactions.select{|t| t.date == last_date}.map{|tt| tt.dollars/tt.shares.to_f}.first
   end
   
+  # creates a current percentage chart by security
+  # see the PercentageChart class in lib directory
+  def sec_percentage_chart
+    p_c = PercentageChart.new
+    p_secs = securities.uniq.map(&:id)
+    total_shares_common = shares_common.to_f
+    p_secs.each do |p_sec|
+      p_c.push [p_sec, 100*(p_sec.s.shares_common.to_f/total_shares_common)]
+    end
+    p_c
+  end
+  
 end
