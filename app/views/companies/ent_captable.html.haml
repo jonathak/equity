@@ -12,7 +12,7 @@
       %tr
         %td= link_to(" #{entity.name}", "/entities/#{entity.id}")
         %td{align:"right"}= number_to_currency(entity.net_dollars, :precision => 0)
-        %td{align:"right"}= number_with_precision(entity.shares_common, :precision => 0)
+        %td{align:"right"}= number_with_precision(entity.shares_common, :precision => 0, :delimiter => ',')
         %td{align:"right"}= number_to_percentage(100*(entity.shares_common/@company.shares_common), :precision => 2)
   %button{:onClick => "window.location.replace('/companies/#{@company.id}')"} back
   %button{:onClick => "alert('i need to add google chart here.')"} pie chart
