@@ -213,7 +213,23 @@ class Company < ActiveRecord::Base
     p_secs = securities.uniq.map(&:id)
     total_shares_common = shares_common.to_f
     p_secs.each do |p_sec|
-      p_c.push [p_sec, 100*(p_sec.s.shares_common.to_f/total_shares_common)]
+      if (p_sec.s.shares_common > 0)
+        p_c.push [p_sec, 100*(p_sec.s.shares_common.to_f/total_shares_common)]
+      end
+    end
+    p_c
+  end
+  
+  # creates a current percentage chart by entity
+  # see the PercentageChart class in lib directory
+  def ent_percentage_chart
+    p_c = PercentageChart.new
+    p_ents = entities.uniq.map(&:id)
+    total_shares_common = shares_common.to_f
+    p_ents.each do |p_ent|
+      if (p_ent.e.shares_common > 0)
+        p_c.push [p_ent, 100*(p_ent.e.shares_common.to_f/total_shares_common)]
+      end
     end
     p_c
   end

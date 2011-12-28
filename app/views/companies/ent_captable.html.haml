@@ -15,4 +15,4 @@
         %td{align:"right"}= number_with_precision(entity.shares_common, :precision => 0, :delimiter => ',')
         %td{align:"right"}= number_to_percentage(100*(entity.shares_common/@company.shares_common), :precision => 2)
   %button{:onClick => "window.location.replace('/companies/#{@company.id}')"} back
-  %button{:onClick => "alert('i need to add google chart here.')"} pie chart
+  %button{:onClick => "window.location.replace('/companies/ent_percentage_chart')"} pie chart

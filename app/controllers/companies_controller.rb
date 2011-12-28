@@ -152,4 +152,9 @@ class CompaniesController < ApplicationController
     @pc = @company.sec_percentage_chart
   end
   
+  def ent_percentage_chart
+    @company = session[:company_id].to_i.c
+    @pc = @company.ent_percentage_chart
+  end
+  
 end
