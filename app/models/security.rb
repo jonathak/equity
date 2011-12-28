@@ -29,13 +29,12 @@ class Security < ActiveRecord::Base
         repurchased = transactions.where(buy_condition).uniq.map(&:shares).sum
         issued > 0 ? issued - repurchased : 0.0
       when 3 # debt
-        # NEED TO REWRITE THIS CONDITION!!!
         if transactions.size > 0
           issuances = transactions.where(sell_condition).uniq.map{|i| [i.date,i.dollars]}
           repurchases = transactions.where(buy_condition).uniq.map{|i| [i.date,i.dollars]}
           dollars_issued = issuances.map{|i| i[1]*(1.0 + (Date.today - i[0])*int_rate/365.0)}.sum
           dollars_repurchased = repurchases.map{|i| i[1]*(1.0 + (Date.today - i[0])*int_rate/365.0)}.sum
-          (dollars_issued - dollars_repurchased)/(company.most_recent_price - (disc_fact || 0.0))  # WHAT'S THE CONVERSION PRICE?????
+          (dollars_issued - dollars_repurchased)/(company.most_recent_price - (disc_fact || 0.0))
         else
           0.0
         end
@@ -51,12 +50,17 @@ class Security < ActiveRecord::Base
   
   # dollar amount invested less sold
   def net_dollars
-    transactions.where(:seller_id => company.entity_id).sum(:dollars)
+    transactions.where(:seller_id => company.entity_id).sum(:dollars) - 
+    transactions.where(:buyer_id => company.entity_id).sum(:dollars)
   end
   
   # total liquidation payout associated with the security
   def liq_payout
-    liq_pref ? net_dollars * liq_pref : 0.0
+    if (kind.to_i == 3) #debt
+      shares_common * (company.most_recent_price - (disc_fact || 0.0))
+    else
+      liq_pref ? net_dollars * liq_pref : 0.0
+    end
   end
   
   # participation cap

@@ -88,11 +88,9 @@ class Company < ActiveRecord::Base
   def liq_chart
     temp =[]
     l_c = LiqChart.new
-    liq_secs = securities.where('liq_pref > 0.0').uniq
+    liq_secs = securities.select{|s| s.liq_payout > 0.0}.uniq
     liq_secs.each do |liq_sec|
-      amount = transactions.where("security_id = #{liq_sec.id} AND seller_id = #{entity_id}").sum("dollars") -
-               transactions.where("security_id = #{liq_sec.id} AND buyer_id = #{entity_id}").sum("dollars")
-      temp += [[liq_sec.rank, amount*liq_sec.liq_pref]]
+      temp += [[liq_sec.rank, liq_sec.liq_payout]]
     end
     ranks = temp.map{|t| t[0]}.uniq.sort
     pairs = ranks.map{|r| [r, temp.select{|t| t[0] == r}.map{|tt| tt[1]}.sum ]}
@@ -104,7 +102,7 @@ class Company < ActiveRecord::Base
   
   def priorities
     result = Priorities.new
-    ranks = securities.where('liq_pref > 0.0').uniq.map(&:rank).sort
+    ranks = securities.select{|s| s.liq_payout > 0.0}.uniq.map(&:rank).sort
     priorities = (0..(ranks.size-1)).to_a
     result.set_data (priorities.map{|p| [p,securities.select{|s| s.rank == ranks[p]}.map(&:id)]})
     result
