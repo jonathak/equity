@@ -215,7 +215,7 @@ class Company < ActiveRecord::Base
         p_c.push [p_sec, 100*(p_sec.s.shares_common.to_f/total_shares_common)]
       end
     end
-    p_c
+    p_c.descend
   end
   
   # creates a current percentage chart by entity
@@ -229,7 +229,7 @@ class Company < ActiveRecord::Base
         p_c.push [p_ent, 100*(p_ent.e.shares_common.to_f/total_shares_common)]
       end
     end
-    p_c
+    p_c.descend
   end
   
 end

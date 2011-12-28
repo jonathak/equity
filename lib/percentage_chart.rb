@@ -21,6 +21,11 @@ class PercentageChart
     @data
   end
   
+  def descend
+    @data = @data.sort{|a,b| b[1]<=>a[1]}
+    self
+  end
+  
   def rows
     @data.count + 1
   end
