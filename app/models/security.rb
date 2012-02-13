@@ -13,8 +13,8 @@ class Security < ActiveRecord::Base
   # number of common shares the complete issuance of a security converts into (optional, for a given entity)
   def shares_common(entity_id = nil)
     if entity_id
-      sell_condition = "seller_id = #{company.entity_id} AND buyer_id = #{entity_id}"
-      buy_condition = "buyer_id = #{company.entity_id} AND seller_id = #{entity_id}"
+      sell_condition = "buyer_id = #{entity_id}"
+      buy_condition = "seller_id = #{entity_id}"
     else
       sell_condition = "seller_id = #{company.entity_id}"
       buy_condition = "buyer_id = #{company.entity_id}"
