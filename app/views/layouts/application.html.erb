@@ -14,10 +14,9 @@
 		<% if session[:user_id] %>
 			<%= link_to("dashboard", companies_path) %><%= " . "%>
 			<% if session[:company_id] %>
-				<%= link_to("company", session[:company_id].to_i.c ) %><%= " . "%>
+				<%= link_to(session[:company_id].to_i.c.name, session[:company_id].to_i.c ) %><%= " . "%>
 				<%= link_to("transactions", '/transactions') %><%= " . "%>
 				<%= link_to("documents", '#') %><%= " . "%>
-				<%= link_to("set_up", session[:company_id].c) %><%= " . "%>
 			<% end %>
 			<%= link_to("sign_out", "/admin/logout") %>
 		<% end %>
