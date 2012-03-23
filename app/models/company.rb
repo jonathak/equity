@@ -74,12 +74,12 @@ class Company < ActiveRecord::Base
   
   #total liquidation preference of all securities and entities
   def liq_pref
-    entities.map(&:liq_pref).sum
+    securities.uniq.map(&:liq_payout).sum
   end
   
   #total participation cap of all securities and entities
   def cap
-    entities.map(&:cap).sum
+    securities.uniq.map(&:cap).sum
   end
   
   # creates a current liquidation chart
@@ -120,15 +120,18 @@ class Company < ActiveRecord::Base
   
   # exit price upon which all securities convert to common
   def equilibrium_price
-    securities.uniq.reject{|s| s.percent == 0.0}.map{|s| (s.cap || 0.0)/s.percent}.max
+    ((securities.uniq.reject{|s| s.percent == 0.0}.map{|s| (s.cap || 0.0)/s.percent}.max) || liq_pref)
   end
   
   # array of prices where securities convert 
   # ordered pairs [security_id, exit price]
   def conversions
-    # empty = securities.select{|s| s.percent == 0.0}
     non_empty = securities.reject{|s| s.percent == 0.0}
-    non_empty.map(&:id).conversions_helper # + empty.map{|s| [s.id, 0.0]}
+    if non_empty.length > 0
+      non_empty.map(&:id).conversions_helper
+    else
+      []
+    end
   end
   
   # array of exit prices to be used when integrating security payouts.

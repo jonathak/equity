@@ -21,7 +21,7 @@ class Entity < ActiveRecord::Base
   def liq_pref(s_id = nil)
     if s_id
       security = s_id.s
-      l_p = (security.liq_pref || 0) * net_dollars(s_id)
+      ((security.liq_pref || 0) * net_dollars(s_id)) + (security.per_class_liq * security.shares(id) / security.shares)
     else
       securities.uniq.map{|s| liq_pref(s.id)}.sum
     end
