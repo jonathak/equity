@@ -10,6 +10,33 @@ class Security < ActiveRecord::Base
   has_many :buyers, :through => :transactions
   has_many :sellers, :through => :transactions
   
+  # number of shares the complete issuance of a security converts into (optional, for a given entity)
+  def shares(entity_id = nil)
+    if entity_id
+      sell_condition = "buyer_id = #{entity_id}"
+      buy_condition = "seller_id = #{entity_id}"
+    else
+      sell_condition = "seller_id = #{company.entity_id}"
+      buy_condition = "buyer_id = #{company.entity_id}"
+    end
+    case kind.to_i
+      when (1) # common
+        issued = transactions.where(sell_condition).uniq.map(&:shares).sum
+        repurchased = transactions.where(buy_condition).uniq.map(&:shares).sum
+        issued > 0 ? issued - repurchased : 0.0
+      when (2) # options
+        0.0
+      when (3) # debt
+        0.0
+      when (4) # pref
+        # have not incorporated dividends yet ...
+        issued = transactions.where(sell_condition).uniq.map(&:shares).sum
+        repurchased = transactions.where(buy_condition).uniq.map(&:shares).sum
+        issued > 0 ? issued - repurchased : 0.0
+        end
+    end
+  end
+
   # number of common shares the complete issuance of a security converts into (optional, for a given entity)
   def shares_common(entity_id = nil)
     if entity_id
@@ -28,7 +55,7 @@ class Security < ActiveRecord::Base
         issued = transactions.where(sell_condition).uniq.map(&:shares).sum
         repurchased = transactions.where(buy_condition).uniq.map(&:shares).sum
         issued > 0 ? issued - repurchased : 0.0
-      when 3 # debt
+      when (3) # debt
         if transactions.size > 0
           issuances = transactions.where(sell_condition).uniq.map{|i| [i.date,i.dollars]}
           repurchases = transactions.where(buy_condition).uniq.map{|i| [i.date,i.dollars]}
@@ -38,13 +65,17 @@ class Security < ActiveRecord::Base
         else
           0.0
         end
-      when 4 # pref
+      when (4) # pref
         # have not incorporated dividends yet ...
-        issued_dollars = transactions.where(sell_condition).uniq.map(&:dollars).sum
-        issued_shares = transactions.where(sell_condition).uniq.map(&:shares).sum
-        repurchased_shares = transactions.where(buy_condition).uniq.map(&:shares).sum
-        conversion_price = issued_dollars.to_f / issued_shares.to_f
-        issued_shares > 0 ? (issued_dollars - (repurchased_shares * conversion_price)) / conversion_price : 0.0
+        if non_convert
+          0.0
+        else
+          issued_dollars = transactions.where(sell_condition).uniq.map(&:dollars).sum
+          issued_shares = transactions.where(sell_condition).uniq.map(&:shares).sum
+          repurchased_shares = transactions.where(buy_condition).uniq.map(&:shares).sum
+          conversion_price = issued_dollars.to_f / issued_shares.to_f
+          issued_shares > 0 ? (issued_dollars - (repurchased_shares * conversion_price)) / conversion_price : 0.0
+        end
     end
   end
   
@@ -59,7 +90,11 @@ class Security < ActiveRecord::Base
     if (kind.to_i == 3) #debt
       shares_common * (company.most_recent_price - (disc_fact || 0.0))
     else
-      liq_pref ? net_dollars * liq_pref : 0.0
+      if non_convert
+        per_class_liq
+      else
+        (liq_pref ? net_dollars * liq_pref : 0.0) + per_class_liq
+      end
     end
   end
   
@@ -110,7 +145,11 @@ class Security < ActiveRecord::Base
   end
   
   def percent
-    shares_common.to_f/(company.shares_common.to_f)
+    if company.shares_common.to_f > 0.0
+      shares_common.to_f/(company.shares_common.to_f)
+    else
+      0.0
+    end
   end
   
   # returns LiqPayoutChart object associated with security

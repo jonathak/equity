@@ -27,6 +27,10 @@
     <%= f.label :liquidation_preference %> (multiple)<br />
     <%= f.text_field :liq_pref %>
   </div>
+  <div class="field_pref">
+    <%= f.label :per_class_liquidation_preference %> (fixed)<br />
+    <%= f.text_field :per_class_liq %>
+  </div>
   <div class="field_debt">
     <%= f.label :discount_factor %> (use decimal)<br />
     <%= f.text_field :disc_fact %>
@@ -36,8 +40,12 @@
     <%= f.text_field :warrant_cov %>
   </div>
   <div class="field_pref">
+    <%= f.label :non_convertible? %><br />
+    <%= f.check_box :non_convert %> (check if non_convertible)
+  </div>
+  <div class="field_pref">
     <%= f.label :participating? %><br />
-    <%= f.check_box :participating %> (check if yes)
+    <%= f.check_box :participating %> (check if participating)
   </div>
   <div class="field_pref">
     <%= f.label :participation_cap %> (multiple)<br />

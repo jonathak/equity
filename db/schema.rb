@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110830190742) do
+ActiveRecord::Schema.define(:version => 20120320150402) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -73,6 +73,8 @@ ActiveRecord::Schema.define(:version => 20110830190742) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "company_id"
+    t.boolean  "non_convert"
+    t.float    "per_class_liq"
   end
 
   create_table "transactions", :force => true do |t|
