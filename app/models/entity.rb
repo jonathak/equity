@@ -43,11 +43,12 @@ class Entity < ActiveRecord::Base
   def liq_chart
     temp =[]
     l_c = LiqChart.new
-    liq_secs = company.securities.where('liq_pref > 0.0').uniq
+    liq_secs = company.securities.uniq.select{ |s| s.liq_payout > 0.0}
     liq_secs.each do |liq_sec|
       amount = buys.where("security_id = #{liq_sec.id}").sum("dollars") -
               sales.where("security_id = #{liq_sec.id}").sum("dollars")
-      temp += [[liq_sec.rank, amount*liq_sec.liq_pref]]
+      amount = amount || 0.0
+      temp += [[liq_sec.rank, (amount*(liq_sec.liq_pref || 0.0) + liq_sec.per_class_portion(id))]]
     end
     ranks = temp.map{|t| t[0]}.uniq.sort
     pairs = ranks.map{|r| [r, temp.select{|t| t[0] == r}.map{|tt| tt[1]}.sum ]}

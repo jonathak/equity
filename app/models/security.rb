@@ -99,6 +99,16 @@ class Security < ActiveRecord::Base
     end
   end
   
+  # portion of per_class_liq to entity id.
+  def per_class_portion(e_id = nil)
+    if (e_id != nil) || (shares == 0)
+      portion = shares(e_id)/shares.to_f
+      portion * (per_class_liq || 0.0)
+    else
+      0.0
+    end
+  end
+  
   # participation cap
   def cap
     if participating
