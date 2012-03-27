@@ -101,7 +101,7 @@ class Security < ActiveRecord::Base
   
   # portion of per_class_liq to entity id.
   def per_class_portion(e_id = nil)
-    if (e_id != nil) || (shares == 0)
+    if (e_id != nil) || (shares != 0)
       portion = shares(e_id)/shares.to_f
       portion * (per_class_liq || 0.0)
     else
