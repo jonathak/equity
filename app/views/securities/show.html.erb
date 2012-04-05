@@ -7,6 +7,14 @@
 </p>
 
 <p>
+  <b>Components</b>
+</p>
+
+<% @component_factors_names.each do |name|%>
+<p><%= name %></p>
+<% end %>
+
+<p>
   <b>Kind:</b>
   <%= @security.kind %>
 </p>

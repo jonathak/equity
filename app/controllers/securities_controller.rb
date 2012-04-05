@@ -15,6 +15,7 @@ class SecuritiesController < ApplicationController
   # GET /securities/1.xml
   def show
     @security = Security.find(params[:id])
+    @component_factors_names = @security.captures.map{|c| "#{c.factor} #{c.component.name}"}
 
     respond_to do |format|
       format.html # show.html.erb
