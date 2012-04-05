@@ -51,7 +51,7 @@ class PossessionsController < ApplicationController
 
     respond_to do |format|
       if @possession.save
-        format.html { redirect_to(@possession, :notice => 'Possession was successfully created.') }
+        format.html { redirect_to("/companies/#{session[:company_id]}", :notice => 'Possession was successfully created.') }
         format.xml  { render :xml => @possession, :status => :created, :location => @possession }
       else
         format.html { render :action => "new" }
