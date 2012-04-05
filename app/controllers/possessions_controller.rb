@@ -2,7 +2,8 @@ class PossessionsController < ApplicationController
   # GET /possessions
   # GET /possessions.xml
   def index
-    @possessions = Possession.all
+    company_id = session[:company_id]
+    @possessions = Possession.all.select{|p| p.composite_id.s.company.id == company_id}
 
     respond_to do |format|
       format.html # index.html.erb

@@ -39,6 +39,8 @@
           %td{:colspan => 4}= link_to("(add new security)", "/securities/new")
         %tr
           %td{:colspan => 4}= link_to("(combine securities)", "/possessions/new")
+        %tr
+          %td{:colspan => 4}= link_to("(index of combinations)", "/possessions")
 %table{:align => "center", :cellpadding => "5"}
   - if @company.liq_pref > 0.0
     %center
