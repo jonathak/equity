@@ -13,11 +13,15 @@
 
   <div class="field">
     <%= f.label :composite_id %><br />
-    <%= f.text_field :composite_id %>
+    <%= collection_select(:possession, :composite_id, @securities, :id, :name) %>
   </div>
   <div class="field">
     <%= f.label :component_id %><br />
-    <%= f.text_field :component_id %>
+    <%= collection_select(:possession, :component_id, @securities, :id, :name) %>
+  </div>
+  <div class="field">
+    <%= f.label :factor %><br />
+    <%= f.text_field :factor %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -25,6 +25,13 @@ class PossessionsController < ApplicationController
   # GET /possessions/new.xml
   def new
     @possession = Possession.new
+    
+    if session[:company_id].to_i > 0
+      @company = session[:company_id].company
+      @securities = [Security.new(:name => "select one")] + @company.securities
+    else
+      @securities = [Security.new(:name => "none available")]
+    end
 
     respond_to do |format|
       format.html # new.html.erb

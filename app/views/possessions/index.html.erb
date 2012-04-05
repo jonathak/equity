@@ -1,9 +1,9 @@
-<h1>Listing possessions</h1>
-
+<center>
 <table>
   <tr>
-    <th>Composite</th>
-    <th>Component</th>
+    <th>composite</th>
+    <th>factor</th>
+    <th>component</th>
     <th></th>
     <th></th>
     <th></th>
@@ -11,8 +11,9 @@
 
 <% @possessions.each do |possession| %>
   <tr>
-    <td><%= possession.composite_id %></td>
-    <td><%= possession.component_id %></td>
+    <td><%= possession.composite_id.s.name %></td>
+    <td><%= possession.factor %></td>
+    <td><%= possession.component_id.s.name %></td>
     <td><%= link_to 'Show', possession %></td>
     <td><%= link_to 'Edit', edit_possession_path(possession) %></td>
     <td><%= link_to 'Destroy', possession, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -23,3 +24,4 @@
 <br />
 
 <%= link_to 'New Possession', new_possession_path %>
+</center>
