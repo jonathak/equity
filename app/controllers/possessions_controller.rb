@@ -27,11 +27,15 @@ class PossessionsController < ApplicationController
   def new
     @possession = Possession.new
     
+    # need to add some ajax code to eliminate composite from list of available components
+    
     if session[:company_id].to_i > 0
       @company = session[:company_id].company
       @securities = [Security.new(:name => "select one")] + @company.securities
+      @composite_securities = [Security.new(:name => "select one")] + @company.securities.select{|s| s.kind == "5"}
     else
       @securities = [Security.new(:name => "none available")]
+      @composite_securities = [Security.new(:name => "none available")]
     end
 
     respond_to do |format|

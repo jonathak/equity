@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :composite_id %><br />
-    <%= collection_select(:possession, :composite_id, @securities, :id, :name) %>
+    <%= collection_select(:possession, :composite_id, @composite_securities, :id, :name) %>
   </div>
   <div class="field">
     <%= f.label :component_id %><br />
