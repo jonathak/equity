@@ -12,6 +12,16 @@ class Security < ActiveRecord::Base
   has_many :uses, :foreign_key => :component_id, :class_name => "Possession"
   has_many :captures, :foreign_key => :composite_id, :class_name => "Possession"
   
+  # components (security id's) of a composite security
+  def components
+    captures.uniq.map(&:component_id)
+  end
+  
+  # is security a composite?
+  def composite?
+    components.length > 0
+  end
+  
   # number of shares the complete issuance of a security converts into (optional, for a given entity)
   def shares(entity_id = nil)
     if entity_id
@@ -91,11 +101,7 @@ class Security < ActiveRecord::Base
     if (kind.to_i == 3) #debt
       shares_common * (company.most_recent_price - (disc_fact || 0.0))
     elsif (kind.to_i == 4) #pref
-      if non_convert
-        (per_class_liq || 0.0)
-      else
-        (liq_pref ? net_dollars * liq_pref : 0.0) + (per_class_liq || 0.0)
-      end
+      (liq_pref ? net_dollars * liq_pref : 0.0) + (per_class_liq || 0.0)
     else
       0.0
     end
