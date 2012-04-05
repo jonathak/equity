@@ -37,6 +37,8 @@
             %td= link_to(' . delete', s, :confirm => 'Are you sure?', :method => :delete) if (s.name != 'common')
         %tr
           %td{:colspan => 4}= link_to("(add new security)", "/securities/new")
+        %tr
+          %td{:colspan => 4}= link_to("(combine securities)", "#")
 %table{:align => "center", :cellpadding => "5"}
   - if @company.liq_pref > 0.0
     %center
