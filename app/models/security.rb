@@ -9,6 +9,8 @@ class Security < ActiveRecord::Base
   has_many :transactions
   has_many :buyers, :through => :transactions
   has_many :sellers, :through => :transactions
+  has_many :uses, :foreign_key => :component_id, :class_name => "Possession"
+  has_many :captures, :foreign_key => :composite_id, :class_name => "Possession"
   
   # number of shares the complete issuance of a security converts into (optional, for a given entity)
   def shares(entity_id = nil)

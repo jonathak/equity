@@ -1,5 +1,7 @@
 Equity::Application.routes.draw do
   
+  resources :possessions
+
   get "entry/home"
   get "entry/login"
   get "entry/signup"

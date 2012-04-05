@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Composite:</b>
+  <%= @possession.composite_id %>
+</p>
+
+<p>
+  <b>Component:</b>
+  <%= @possession.component_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_possession_path(@possession) %> |
+<%= link_to 'Back', possessions_path %>

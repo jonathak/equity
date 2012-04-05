@@ -1,0 +1,25 @@
+<%= form_for(@possession) do |f| %>
+  <% if @possession.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@possession.errors.count, "error") %> prohibited this possession from being saved:</h2>
+
+      <ul>
+      <% @possession.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :composite_id %><br />
+    <%= f.text_field :composite_id %>
+  </div>
+  <div class="field">
+    <%= f.label :component_id %><br />
+    <%= f.text_field :component_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
