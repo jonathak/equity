@@ -1,0 +1,21 @@
+  Processing by PossessionsController#new as HTML
+Completed 500 Internal Server Error in 0ms
+  Processing by PossessionsController#create as HTML
+  Parameters: {"possession"=>{}}
+Completed 500 Internal Server Error in 0ms
+  Processing by PossessionsController#create as HTML
+  Parameters: {"possession"=>{}}
+Completed 500 Internal Server Error in 0ms
+  Processing by PossessionsController#create as HTML
+  Parameters: {"possession"=>{}}
+Completed 500 Internal Server Error in 0ms
+  Processing by PossessionsController#create as HTML
+  Parameters: {"possession"=>{}}
+Completed 500 Internal Server Error in 0ms
+
+
+Started GET "/possessions" for 127.0.0.1 at 2012-04-06 00:35:01 -0400
+  Processing by PossessionsController#index as HTML
+  [1m[36mPossession Load (0.2ms)[0m  [1mSELECT "possessions".* FROM "possessions"[0m
+SQLite3::SQLException: no such table: possessions: SELECT "possessions".* FROM "possessions"
+Completed 500 Internal Server Error in 1ms

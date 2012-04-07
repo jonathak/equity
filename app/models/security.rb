@@ -22,7 +22,7 @@ class Security < ActiveRecord::Base
     components.length > 0
   end
   
-  # number of shares the complete issuance of a security converts into (optional, for a given entity)
+  # number of shares of the complete issuance of a security (optional, for a given entity)
   def shares(entity_id = nil)
     if entity_id
       sell_condition = "buyer_id = #{entity_id}"
@@ -45,6 +45,8 @@ class Security < ActiveRecord::Base
         issued = transactions.where(sell_condition).uniq.map(&:shares).sum
         repurchased = transactions.where(buy_condition).uniq.map(&:shares).sum
         issued > 0 ? issued - repurchased : 0.0
+      when (5) #composite
+        nil # need to complete this case ....
     end
   end
 
@@ -87,6 +89,8 @@ class Security < ActiveRecord::Base
           conversion_price = issued_dollars.to_f / issued_shares.to_f
           issued_shares > 0 ? (issued_dollars - (repurchased_shares * conversion_price)) / conversion_price : 0.0
         end
+      when (5) # composit
+        captures.map{|c| (c.factor.to_f * c.component.shares_common)}.sum
     end
   end
   
