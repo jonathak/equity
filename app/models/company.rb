@@ -85,7 +85,7 @@ class Company < ActiveRecord::Base
   # creates a current liquidation chart
   # see the LiqChart class in lib directory
   # also see version in entity model
-  def liq_chart
+  def liq_chart #this method should be rewritten now that there are composite securities ... 
     temp =[]
     l_c = LiqChart.new
     liq_secs = securities.select{|s| s.liq_payout > 0.0}.uniq
@@ -145,7 +145,7 @@ class Company < ActiveRecord::Base
   
   # array of payout arrays organized as such:
   # [[s_id,[ 1,2,3,...]], [sid, [1,2,3,...]],...]
-  def payouts(n = 100)
+  def payouts(n = 100) #this method needs to be rewritten now that there are composite securities ... 
     slopes = {}
     secs = securities.uniq.reject{|s| s.percent == 0.0}
     secs.each{|s| slopes[s.id.to_s] = s.percent}

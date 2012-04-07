@@ -108,9 +108,10 @@ class Security < ActiveRecord::Base
     if (kind.to_i == 3) #debt
       shares_common * (company.most_recent_price - (disc_fact || 0.0))
     elsif (kind.to_i == 4) #pref
-      (liq_pref ? net_dollars * liq_pref : 0.0) + (per_class_liq || 0.0)
+      (liq_pref ? net_dollars * liq_pref : 0.0) + (per_class_liq || 0.0) +
+        uses.map{|u| u.composite.shares * u.factor.to_f * (liq_pref || 0.0)}.sum
     elsif (kind.to_i == 5) #composite
-      shares * captures.map{|c| c.factor.to_f * (c.component.liq_pref || 0.0)}.sum # need to modify to include per_class_liq
+      0.0 # not considering composites to have liq_payout as defined here
     else
       0.0
     end
