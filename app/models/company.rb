@@ -85,7 +85,7 @@ class Company < ActiveRecord::Base
   # creates a current liquidation chart
   # see the LiqChart class in lib directory
   # also see version in entity model
-  def liq_chart #this method should be rewritten now that there are composite securities ... 
+  def liq_chart
     temp =[]
     l_c = LiqChart.new
     liq_secs = securities.select{|s| s.liq_payout > 0.0}.uniq

@@ -10,7 +10,9 @@ class Security < ActiveRecord::Base
   has_many :buyers, :through => :transactions
   has_many :sellers, :through => :transactions
   has_many :uses, :foreign_key => :component_id, :class_name => "Possession"
+  has_many :composites, :through => :uses
   has_many :captures, :foreign_key => :composite_id, :class_name => "Possession"
+  has_many :components, :through => :captures
   
   # components (security id's) of a composite security
   def components
@@ -110,6 +112,7 @@ class Security < ActiveRecord::Base
     elsif (kind.to_i == 4) #pref
       (liq_pref ? net_dollars * liq_pref : 0.0) + (per_class_liq || 0.0) +
         uses.map{|u| u.composite.shares * u.factor.to_f * (liq_pref || 0.0)}.sum
+        # the above implies that factor is in dollars, but not that it can be shares in other contexts (such as common stock).
     elsif (kind.to_i == 5) #composite
       0.0 # not considering composites to have liq_payout as defined here
     else
@@ -119,7 +122,7 @@ class Security < ActiveRecord::Base
   
   # portion of per_class_liq to entity id.
   def per_class_portion(e_id = nil)
-    if (e_id != nil) || (shares != 0)
+    if (e_id != nil) && (shares != 0)
       portion = shares(e_id)/shares.to_f
       portion * (per_class_liq || 0.0)
     else

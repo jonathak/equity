@@ -21,9 +21,26 @@ class Entity < ActiveRecord::Base
   def liq_pref(s_id = nil)
     if s_id
       security = s_id.s
-      ((security.liq_pref || 0) * net_dollars(s_id)) + (security.per_class_liq * security.shares(id) / security.shares)
+      if security.composites.length > 0 # is it part of a composite?
+        composites = security.composites
+        owned_composites = composites.select{|c| c.shares(id) > 0.0}
+        portion = owned_composites.map{|o| o.shares(id) * o.captures.select{|c| c.component.id == security.id}.first.factor}.sum
+        # next we assume factor is in dollars or shares appropriately. should make this more robust.
+        temp = (portion * security.liq_pref)
+        if security.shares > 0.0
+          temp += portion * (security.per_class_liq || 0.0) / security.shares
+        end
+        temp
+      else
+        temp = ((security.liq_pref || 0) * net_dollars(s_id))
+        if security.shares > 0.0
+          temp += ((security.per_class_liq || 0.0) * security.shares(id) / security.shares)
+        end
+        temp
+      end
     else
       securities.uniq.map{|s| liq_pref(s.id)}.sum
+      # need to add components ... here ...
     end
   end
   
@@ -45,10 +62,10 @@ class Entity < ActiveRecord::Base
     l_c = LiqChart.new
     liq_secs = company.securities.uniq.select{ |s| s.liq_payout > 0.0}
     liq_secs.each do |liq_sec|
-      amount = buys.where("security_id = #{liq_sec.id}").sum("dollars") -
-              sales.where("security_id = #{liq_sec.id}").sum("dollars")
+      amount = liq_pref(liq_sec.id) || 0.0
       amount = amount || 0.0
-      temp += [[liq_sec.rank, (amount*(liq_sec.liq_pref || 0.0) + liq_sec.per_class_portion(id))]]
+      puts amount
+      temp += [[liq_sec.rank, (amount + liq_sec.per_class_portion(id))]]
     end
     ranks = temp.map{|t| t[0]}.uniq.sort
     pairs = ranks.map{|r| [r, temp.select{|t| t[0] == r}.map{|tt| tt[1]}.sum ]}
