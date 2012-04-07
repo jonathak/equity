@@ -109,6 +109,8 @@ class Security < ActiveRecord::Base
       shares_common * (company.most_recent_price - (disc_fact || 0.0))
     elsif (kind.to_i == 4) #pref
       (liq_pref ? net_dollars * liq_pref : 0.0) + (per_class_liq || 0.0)
+    elsif (kind.to_i == 5) #composite
+      shares * captures.map{|c| c.factor.to_f * (c.component.liq_pref || 0.0)}.sum # need to modify to include per_class_liq
     else
       0.0
     end
