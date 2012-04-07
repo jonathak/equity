@@ -93,7 +93,7 @@ class Security < ActiveRecord::Base
         end
       when (5) # composite
         # still need to flesh this out more ... for options, debt, and pref ...
-        shares * captures.map{|c| (c.component.kind == "1" ? c.factor.to_f : 0.0)}.sum
+        shares * captures.map{|c| (["1"].include?(c.component.kind)) ? c.factor.to_f : 0.0}.sum
     end
   end
   
