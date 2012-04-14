@@ -141,6 +141,8 @@ class TransactionsController < ApplicationController
             render "sec_debt"
           when 4
             render "sec_pref"
+          when 5
+            render "sec_com"
           else
             render "sec"
         end
