@@ -120,7 +120,7 @@ class Company < ActiveRecord::Base
   
   # exit price upon which all securities convert to common
   def equilibrium_price
-    ((securities.uniq.reject{|s| s.percent == 0.0}.map{|s| (s.cap || 0.0)/s.percent}.max) || liq_pref)
+    [((securities.uniq.reject{|s| s.percent == 0.0}.map{|s| (s.cap || 0.0)/s.percent}.max) || liq_pref), liq_pref].max 
   end
   
   # array of prices where securities convert 
