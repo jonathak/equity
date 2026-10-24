@@ -1,1 +1,51 @@
-This is a web app for keeping track of private equity transactions and investment cascades. For more information, please contact Jon Kaufman at jhk12345@gmail.com.
+# Equity
+
+A Ruby on Rails application for modeling equity ownership, capitalization tables, and the distribution of proceeds among different classes of securities in privately held companies.
+
+## Overview
+
+Equity was developed to explore the financial and computational problems associated with complex capitalization structures, including preferred stock, convertible debt, options, and securities with multiple contractual rights.
+
+The application maintains records of companies, investors, securities, and transactions, and uses those records to calculate ownership interests and model distributions under alternative liquidity scenarios.
+
+## Financial Modeling
+
+The application includes algorithms for:
+
+- **Capitalization tables:** Calculating ownership by investor and security class, including fully diluted ownership.
+- **Liquidation preferences:** Modeling distributions according to the seniority and liquidation preferences of different security classes.
+- **Participating preferred stock:** Calculating distributions subject to participation rights and participation caps.
+- **Convertible securities:** Modeling the conversion of preferred stock and convertible debt into common equity.
+- **Composite securities:** Representing securities composed of multiple underlying financial instruments.
+- **Indirect ownership:** Tracing investment relationships across multiple companies and calculating ownership through investment chains.
+- **Exit scenarios:** Calculating and visualizing security-level payouts across a range of company exit valuations.
+
+## Implementation
+
+The application was developed using Ruby, Ruby on Rails, ActiveRecord, and a relational database.
+
+The financial calculations are implemented primarily in the `Company`, `Security`, and `Entity` models.
+
+The application separates the representation of financial instruments and transactions from the calculations used to determine ownership, liquidation preferences, and distributions.
+
+It also includes web interfaces for managing companies, securities, investors, and transactions, together with graphical representations of capitalization tables and payout scenarios.
+
+## Design Rationale
+
+The project was motivated by the complexity of calculating financial outcomes for companies with multiple classes of securities and differing contractual rights.
+
+Rather than treating a capitalization table as a static spreadsheet, the application represents financial instruments and their ownership relationships as structured data. This allows ownership percentages and potential distributions to be recalculated as transactions and capitalization structures change.
+
+The implementation also explores the use of recursive algorithms for tracing indirect ownership through chains of investments.
+
+## Project Status
+
+This is a historical software-development project from 2011–2012, preserved as an example of financial modeling and application development.
+
+The repository contains experimental and partially completed functionality, including work on composite securities and liquidation payout calculations.
+
+It uses an older version of Ruby on Rails and has not been updated for current production deployment. The financial calculations have not been independently validated for contemporary use.
+
+## Purpose
+
+The project illustrates the translation of complex financial agreements and ownership structures into computational models, combining financial analysis, algorithm development, relational data modeling, and web application programming.
